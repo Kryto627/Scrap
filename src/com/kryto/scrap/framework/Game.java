@@ -66,11 +66,11 @@ public class Game extends Canvas implements Runnable {
 		
 		Graphics2D g = (Graphics2D)bStrat.getDrawGraphics();
 		//Draw stuff
-		
-		scrapGame.render(g);
-		
+			
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
+		
+		scrapGame.render(g);
 		
 		g.dispose();
 		bStrat.show();
