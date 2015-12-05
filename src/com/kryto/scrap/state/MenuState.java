@@ -2,40 +2,42 @@ package com.kryto.scrap.state;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 
 import com.kryto.scrap.framework.Window;
-import com.kryto.scrap.gfx.Animation;
 import com.kryto.scrap.gfx.Assets;
-import com.kryto.scrap.gfx.Sprite;
+import com.kryto.scrap.input.Keyboard;
 
 public class MenuState implements IGameState {
 
-	private Sprite frigid = new Sprite("/Frigid.png");
-	private Animation frigedAnimated = new Animation(100, frigid.getSubSprite(0, 0, 32, 32), frigid.getSubSprite(0, 32, 32, 32));
-	private int x;
-	
 	@Override
 	public void init(GameStateManager gsm) {
-		frigid = new Sprite("/Frigid.png");
-		frigedAnimated = new Animation(100, frigid.getSubSprite(0, 0, 32, 32), frigid.getSubSprite(0, 32, 32, 32));
+		
 	}
 
 	@Override
 	public void update(GameStateManager gsm) {
 		
-		frigedAnimated.update();
+		Assets.updateAnimations();
 		
-		if (x > Window.WIDTH + 256) {
-			x = 0;
-		} else {
-			x+= 5;
+		if (Keyboard.getInstance().isPressed(KeyEvent.VK_ESCAPE)) {
+			System.exit(0);
 		}
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		Assets.GRAVITY_ITALIC.renderCenteredString(g, "Your game is loading...", Color.WHITE, Window.WIDTH / 2, Window.HEIGHT / 2);
-		frigedAnimated.render(g, -256 + x, Window.HEIGHT / 2 - 128, 256, 256);
+		
+		g.setColor(new Color(0x335F7F));
+		g.fillRect(0, 0, Window.WIDTH + 10, Window.HEIGHT + 10);
+		
+		int width = 57 * 7;
+		int height = 21 * 7;
+		Assets.logo.render(g, Window.getCenterX() - (width / 2), 100, width, height);
+		
+		Assets.cruiseAnimated.render(g, Window.getCenterX() - 256, Window.getCenterY(), 128, 128);
+		Assets.frigidAnimated.render(g, Window.getCenterX() + 64, Window.getCenterY(), -128, 128);
+		Assets.boilerAnimated.render(g, Window.getCenterX() + 256, Window.getCenterY(), -128, 128);
 	}
 
 	@Override
