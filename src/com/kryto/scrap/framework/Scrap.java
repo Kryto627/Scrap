@@ -3,36 +3,29 @@ package com.kryto.scrap.framework;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import com.kryto.scrap.gfx.Animation;
 import com.kryto.scrap.gfx.Assets;
-import com.kryto.scrap.gfx.Sprite;
+import com.kryto.scrap.state.GameStateManager;
+import com.kryto.scrap.state.MenuState;
 import com.kryto.scrap.util.Timer;
 
 public class Scrap {
 	
-	public static final boolean DEBUGMODE = true;
+	public static final boolean DEBUGMODE = false;
 	
 	public Timer timer = new Timer(1000);
 	public int fps, lastfps;
 	
-	private Sprite frigid = new Sprite("/Frigid.png");
-	private Animation frigedAnimated = new Animation(100, frigid.getSubSprite(0, 0, 32, 32), frigid.getSubSprite(0, 32, 32, 32));
-	
-	int i = 0;
+	public GameStateManager stateManager;
 	
 	public void init() {
 		Assets.init();
+		stateManager = new GameStateManager();
+		stateManager.addState(0, new MenuState());
+		stateManager.switchState(0);
 	}
 	
 	public void update() {
-		
-		frigedAnimated.update();
-		
-		if (i > Window.WIDTH + 256) {
-			i = 0;
-		}
-		
-		else i+= 5;
+		stateManager.update();
 	}
 	
 	public void render(Graphics2D g) {	
@@ -44,9 +37,10 @@ public class Scrap {
 			fps = 0;
 		}
 		
-		if (DEBUGMODE) Assets.GRAVITY_ITALIC.renderString(g, Integer.toString(lastfps), Color.WHITE, 0, 50);
+		if (DEBUGMODE) {
+			Assets.GRAVITY_ITALIC.renderString(g, Integer.toString(lastfps), Color.WHITE, 0, 50);
+		}
 		
-		Assets.GRAVITY_ITALIC.renderCenteredString(g, "Your game is loading...", Color.WHITE, Window.WIDTH / 2, Window.HEIGHT / 2);
-		frigedAnimated.render(g, -256 + i, Window.HEIGHT / 2 - 128, 256, 256);
+		stateManager.render(g);
 	}
 }

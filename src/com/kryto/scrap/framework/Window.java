@@ -27,4 +27,12 @@ public class Window {
 		frame.setVisible(true);
 		game.start();
 	}
+	
+	public static int getCenterX() {
+		return WIDTH / 2;
+	}
+	
+	public static int getCenterY() {
+		return HEIGHT / 2;
+	}
 }
