@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
+import com.kryto.scrap.input.Keyboard;
+import com.kryto.scrap.input.Mouse;
+
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
@@ -18,7 +21,6 @@ public class Game extends Canvas implements Runnable {
 	}	
 	
 	public synchronized void start() {
-		
 		running = true;
 		thread = new Thread(this);
 		thread.start();
@@ -26,6 +28,10 @@ public class Game extends Canvas implements Runnable {
 	
 	@Override
 	public void run() {
+		addKeyListener(Keyboard.getInstance());
+		addMouseListener(Mouse.getInstance());
+		addMouseMotionListener(Mouse.getInstance());
+		addMouseWheelListener(Mouse.getInstance());
 		
 		scrapGame.init();
 		
