@@ -1,5 +1,7 @@
 package com.kryto.scrap;
 
+import org.lwjgl.opengl.GL11;
+
 import com.kryto.scrap.state.GameStateManager;
 import com.kryto.scrap.state.MenuState;
 
@@ -20,7 +22,12 @@ public class GLScrap {
 	}
 	
 	public void render() {
+		
+		GL11.glPushAttrib(GL11.GL_CURRENT_BIT);
+		
 		stateManager.render();
+		
+		GL11.glPopAttrib();
 	}
 	
 	public void cleanup() {

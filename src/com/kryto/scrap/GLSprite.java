@@ -32,7 +32,7 @@ public class GLSprite {
 	
 	public void render(float x, float y, float w, float h) {
 		
-		texture.bind();
+		texture.bind();		
 		
 		GL11.glBegin(GL11.GL_QUADS);
 		
@@ -49,6 +49,8 @@ public class GLSprite {
 			GL11.glVertex2f(x, y + h);
 		
 		GL11.glEnd();
+		
+		GL11.glLoadIdentity();
 	}
 	
 	public void renderSubTile(float renderX, float renderY, float renderWidth, float renderHeight, int tileX, int tileY, int tileWidth, int tileHeight) {
@@ -83,6 +85,8 @@ public class GLSprite {
 			GL11.glVertex2f(renderX, renderY + renderHeight);
 		
 		GL11.glEnd();
+		
+		GL11.glLoadIdentity();
 	}
 	
 	public void renderSubIndex(float x, float y, float w, float h, int i, int tileWidth, int tileHeight) {

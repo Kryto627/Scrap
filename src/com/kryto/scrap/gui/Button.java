@@ -15,9 +15,10 @@ public class Button {
 	private GLSubSprite image, selected_image;
 	private String text;
 	private static int defaultWidth = 101;
+	private static int defaultScale = 4;
 	
 	public Button(int x, int y, int width, String text) {
-		this.bounds = new Rectangle(x - ((width * 5) / 2), y - ((21 * 5) / 2), width * 5, 21 * 5);
+		this.bounds = new Rectangle(x - ((width * defaultScale) / 2), y - ((21 * defaultScale) / 2), width * defaultScale, 21 * defaultScale);
 		this.image = GLAssets.gui_sheet.getSubSprite(0, 0, width - 4, 21);
 		this.selected_image = GLAssets.gui_sheet.getSubSprite(0, 21, width - 4, 21);
 		this.text = text;		
@@ -38,16 +39,16 @@ public class Button {
 	public void render() {	
 		
 		if (!isMouseOver()) {		
-			image.renderCentered((float)bounds.getCenterX() - 10, (float)bounds.getCenterY(), 5);
-			GLAssets.button_end.renderCentered(bounds.x + bounds.width - 10, (float)bounds.getCenterY(), 5);
+			image.renderCentered((float)bounds.getCenterX() - 10, (float)bounds.getCenterY(), defaultScale);
+			GLAssets.button_end.renderCentered(bounds.x + bounds.width - 10, (float)bounds.getCenterY(), defaultScale);
 		}
 		
 		else {
-			selected_image.renderCentered((float)bounds.getCenterX() - 10, (float)bounds.getCenterY(), 5);
-			GLAssets.selected_button_end.renderCentered(bounds.x + bounds.width - 10, (float)bounds.getCenterY(), 5);
+			selected_image.renderCentered((float)bounds.getCenterX() - 10, (float)bounds.getCenterY(), defaultScale);
+			GLAssets.selected_button_end.renderCentered(bounds.x + bounds.width - 10, (float)bounds.getCenterY(), defaultScale);
 		}
-				
-		GLAssets.PIXEL_OPERATOR.renderCentered(text, (int)bounds.getCenterX(), (int)bounds.getCenterY(), Color.white);
+		
+		GLAssets.PIXEL_OPERATOR.renderCentered(text, (float)bounds.getCenterX(), (float)bounds.getCenterY(), Color.darkGray);
 	}
 		
 	public boolean isMouseOver() {		
