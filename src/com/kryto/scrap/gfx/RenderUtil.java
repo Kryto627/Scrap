@@ -1,8 +1,10 @@
-package com.kryto.scrap;
+package com.kryto.scrap.gfx;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
+
+import com.kryto.scrap.Game;
 
 public class RenderUtil {
 
@@ -79,5 +81,9 @@ public class RenderUtil {
 		Color.white.bind();
 
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
+	}
+	
+	public static void setBackgroundColor(Color color) {
+		renderRect(0, 0, Game.getWidth(), Game.getHeight(), color);
 	}
 }

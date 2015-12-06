@@ -1,18 +1,19 @@
 package com.kryto.scrap;
 
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
-public class GLGame {
+public class Game {
 
 	public static final float VERSION = 0.1F;
 	public static final String TITLE = "Scrap";
 
-	private GLScrap scrap;
+	private Scrap scrap;
 	
 	public static void main(String[] args) {
-		new GLGame().start();
+		new Game().start();
 	}
 	
 	public void start() {
@@ -40,7 +41,7 @@ public class GLGame {
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glDisable(GL11.GL_LIGHTING);
 		
-        scrap = new GLScrap();
+        scrap = new Scrap();
         scrap.init();
         
 		while (!Display.isCloseRequested()) {
@@ -74,5 +75,9 @@ public class GLGame {
 	
 	public static int getCenterY() {
 		return getHeight() / 2;
+	}
+	
+	public static double getRealMouseY() {
+		return getHeight() - Mouse.getY();
 	}
 }

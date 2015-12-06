@@ -1,4 +1,4 @@
-package com.kryto.scrap;
+package com.kryto.scrap.gfx;
 
 import com.kryto.scrap.util.Timer;
 

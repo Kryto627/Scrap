@@ -7,27 +7,20 @@ import com.kryto.scrap.gfx.GLAssets;
 import com.kryto.scrap.gfx.RenderUtil;
 import com.kryto.scrap.gui.Button;
 
-public class MenuState implements IGameState {
+public class ProfileState implements IGameState {
 
-	public Button start_button, options_button, exit_button;
+	public Button profile_1, profile_2, profile_3;
 	
 	@Override
 	public void init(GameStateManager gsm) {
-		start_button = new Button(2, "START");
-		options_button = new Button(1, "OPTIONS");
-		exit_button = new Button(0, "EXIT");
+		profile_1 = new Button(2, "");
+		profile_2 = new Button(1, "");
+		profile_3 = new Button(0, "");
 	}
 
 	@Override
 	public void update(GameStateManager gsm) {
 		
-		if (start_button.isClicked()) {
-			gsm.switchState(1);
-		}
-		
-		if (exit_button.isClicked()) {
-			System.exit(0);
-		}
 	}
 
 	@Override
@@ -35,11 +28,11 @@ public class MenuState implements IGameState {
 		
 		RenderUtil.setBackgroundColor(new Color(0x38698C));
 		
-		GLAssets.logo.renderCentered(Game.getCenterX(), 150, 7);
+		GLAssets.PIXEL_OPERATOR.renderCentered("CHOOSE A PROFILE", Game.getCenterX(), Game.getCenterY() - 200, Color.white);
 		
-		start_button.render();	
-		options_button.render();
-		exit_button.render();
+		profile_1.render();
+		profile_2.render();
+		profile_3.render();
 	}
 
 	@Override
@@ -49,6 +42,6 @@ public class MenuState implements IGameState {
 
 	@Override
 	public void onLeave() {
-		
+
 	}
 }

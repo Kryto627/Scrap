@@ -1,4 +1,4 @@
-package com.kryto.scrap;
+package com.kryto.scrap.gfx;
 
 public class GLSubSprite {
 

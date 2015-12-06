@@ -1,4 +1,4 @@
-package com.kryto.scrap;
+package com.kryto.scrap.gfx;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
