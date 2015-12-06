@@ -36,6 +36,6 @@ public class GLFont {
 	}
 	
 	public void renderCentered(String text, float x, float y, Color color) {
-		trueTypeFont.drawString(x - (trueTypeFont.getWidth(text) / 2), y - (trueTypeFont.getHeight() / 2), text, color);
+		trueTypeFont.drawString(x - (trueTypeFont.getWidth(text) / 2), y - (trueTypeFont.getHeight(text) / 2), text, color);
 	}
 }

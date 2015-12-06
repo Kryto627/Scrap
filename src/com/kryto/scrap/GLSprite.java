@@ -51,7 +51,7 @@ public class GLSprite {
 		GL11.glEnd();
 	}
 	
-	public void renderSubTile(float renderX, float renderY, float renderWidth, float renderHeight, float tileX, float tileY, float tileWidth, float tileHeight) {
+	public void renderSubTile(float renderX, float renderY, float renderWidth, float renderHeight, int tileX, int tileY, int tileWidth, int tileHeight) {
 		
 		texture.bind();
 		
@@ -85,13 +85,13 @@ public class GLSprite {
 		GL11.glEnd();
 	}
 	
-	public void renderSubIndex(float x, float y, float w, float h, int i, float tileWidth, float tileHeight) {
+	public void renderSubIndex(float x, float y, float w, float h, int i, int tileWidth, int tileHeight) {
 		
 		int tileAmountX = (int) (texture.getTextureWidth() / tileWidth);
 		int tileAmountY = (int) (texture.getTextureHeight() / tileHeight);
 		
-		float tileX = (i % tileAmountX) * tileWidth;
-		float tileY = (i % tileAmountY) * tileHeight;
+		int tileX = (i % tileAmountX) * tileWidth;
+		int tileY = (i % tileAmountY) * tileHeight;
 		
 		renderSubTile(x, y, w, h, tileX, tileY, tileWidth, tileHeight);
 	}

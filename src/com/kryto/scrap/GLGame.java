@@ -2,15 +2,12 @@ package com.kryto.scrap;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
 public class GLGame {
 
 	public static final float VERSION = 0.1F;
 	public static final String TITLE = "Scrap";
-	public static final int WIDTH = 1280;
-	public static final int HEIGHT = 720;
 
 	private GLScrap scrap;
 	
@@ -24,7 +21,8 @@ public class GLGame {
 		Display.setResizable(false);
 
 		try {
-			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
+			
+			Display.setFullscreen(true);			
 			Display.create();
 		} 
 		
@@ -34,7 +32,7 @@ public class GLGame {
 
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, WIDTH, HEIGHT, 0, 1, -1);
+		GL11.glOrtho(0, getWidth(), getHeight(), 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -59,11 +57,19 @@ public class GLGame {
 		Display.destroy();
 	}
 	
+	public static int getWidth() {
+		return Display.getWidth();
+	}
+	
+	public static int getHeight() {
+		return Display.getHeight();
+	}
+	
 	public static int getCenterX() {
-		return WIDTH / 2;
+		return getWidth() / 2;
 	}
 	
 	public static int getCenterY() {
-		return HEIGHT / 2;
+		return getHeight() / 2;
 	}
 }

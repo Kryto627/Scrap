@@ -8,11 +8,11 @@ import com.kryto.scrap.gui.Button;
 
 public class MenuState implements IGameState {
 
-	public static Button button = new Button(0, "Start");
+	public static Button button;
 	
 	@Override
 	public void init(GameStateManager gsm) {
-		
+		button = new Button(GLGame.getCenterX(), GLGame.getCenterY(), 50, "START");
 	}
 
 	@Override
@@ -26,13 +26,7 @@ public class MenuState implements IGameState {
 	@Override
 	public void render() {
 		
-		int width = 64 * 7;
-		int height = 32 * 7;
-		GLAssets.logo.render(GLGame.getCenterX() - (width / 2), 100, width, height);
-		
-		//Assets.cruiseAnimated.render(g, Window.getCenterX() - 256, Window.getCenterY(), 128, 128);
-		//Assets.frigidAnimated.render(g, Window.getCenterX() + 64, Window.getCenterY(), -128, 128);
-		//Assets.boilerAnimated.render(g, Window.getCenterX() + 256, Window.getCenterY(), -128, 128);
+		GLAssets.logo.renderCentered(GLGame.getCenterX(), 100, 7);
 		
 		button.render();
 	}

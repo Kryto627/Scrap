@@ -21,11 +21,6 @@ public class GLScrap {
 	
 	public void render() {
 		stateManager.render();
-		
-		GLSpriteSheet sheet = new GLSpriteSheet("gui.png");
-		GLSprite sprite = sheet.getSubSprite(0, 0, 32, 32);
-		
-		sprite.render(0, 0, 50, 50);
 	}
 	
 	public void cleanup() {
