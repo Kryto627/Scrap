@@ -12,12 +12,9 @@ public class GLSprite {
 	private Texture texture;
 	
 	public GLSprite(String path) {
-		
 		try {
 			texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(path), GL11.GL_NEAREST);
-		} 
-		
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
