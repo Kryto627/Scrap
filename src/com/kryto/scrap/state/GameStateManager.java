@@ -1,6 +1,5 @@
 package com.kryto.scrap.state;
 
-import java.awt.Graphics2D;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,9 +33,9 @@ public class GameStateManager {
 		}
 	}
 	
-	public void render(Graphics2D g) {
+	public void render() {
 		if (currentState != null) {
-			currentState.render(g);
+			currentState.render();
 		}
 	}
 }

@@ -1,20 +1,26 @@
 package com.kryto.scrap;
 
-import org.newdawn.slick.Color;
+import com.kryto.scrap.state.GameStateManager;
+import com.kryto.scrap.state.MenuState;
 
 public class GLScrap {
 	
+	public GameStateManager stateManager;
+	
 	public void init() {
 		GLAssets.init();
+		
+		stateManager = new GameStateManager();
+		stateManager.addState(0, new MenuState());
+		stateManager.switchState(0);
 	}
 	
 	public void update() {
-		GLAssets.update();
+		stateManager.update();
 	}
 	
 	public void render() {
-		Color.white.bind();
-		new Rectangle(10, 10, 100, 100).trace();
+		stateManager.render();
 	}
 	
 	public void cleanup() {

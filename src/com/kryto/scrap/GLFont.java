@@ -14,13 +14,21 @@ public class GLFont {
 	private Font font;
 	
 	public GLFont(String path, float size) {
+		
 		try {
 			font = Font.createFont(Font.TRUETYPE_FONT, ResourceLoader.getResourceAsStream(path));
 			font = font.deriveFont(size);
 			trueTypeFont = new TrueTypeFont(font, true);
-		} catch (FontFormatException | IOException e) {
+		} 
+		
+		catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void setSize(float size) {
+		font = font.deriveFont(size);
+		trueTypeFont = new TrueTypeFont(font, true);
 	}
 	
 	public void render(String text, float x, float y, Color color) {

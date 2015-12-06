@@ -19,13 +19,16 @@ public class GLGame {
 	}
 	
 	public void start() {
+		
 		Display.setTitle(TITLE);
 		Display.setResizable(false);
 
 		try {
 			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
 			Display.create();
-		} catch (LWJGLException e) {
+		} 
+		
+		catch (LWJGLException e) {
 			e.printStackTrace();
 		}
 
@@ -54,5 +57,13 @@ public class GLGame {
 
 		scrap.cleanup();
 		Display.destroy();
+	}
+	
+	public static int getCenterX() {
+		return WIDTH / 2;
+	}
+	
+	public static int getCenterY() {
+		return HEIGHT / 2;
 	}
 }
