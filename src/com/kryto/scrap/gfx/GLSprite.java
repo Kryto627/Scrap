@@ -1,61 +1,78 @@
 package com.kryto.scrap.gfx;
 
-import java.io.IOException;
-
-import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
-import org.newdawn.slick.util.ResourceLoader;
+import java.awt.image.BufferedImage;
+import static org.lwjgl.opengl.GL11.*;
 
 public class GLSprite {
 
-	private Texture texture;
+	private BufferedImage image;
+	private int textureID;
+	private int width, height;
 	
 	public GLSprite(String path) {
-		
-		try {
-			texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(path), GL11.GL_NEAREST);
-		} 
-		
-		catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.image = ImageLoader.loadImage(path);
+		this.width = image.getWidth();
+		this.height = image.getHeight();
+		this.textureID = ImageLoader.loadTexture(image);
 	}
 	
-	public GLSprite(Texture texture) {
-		this.texture = texture;
+	public GLSprite(BufferedImage image) {
+		this.image = image;
+		this.width = image.getWidth();
+		this.height = image.getHeight();
+		this.textureID = ImageLoader.loadTexture(image);
 	}
 	
-	public void render(float x, float y) {
-		render(x, y, texture.getTextureWidth(), texture.getTextureHeight());
+	public GLSprite getSubSprite(int x, int y, int width, int height) {
+		return new GLSprite(image.getSubimage(x, y, width, height));
+	}
+	
+	public void bind() {
+		glBindTexture(GL_TEXTURE_2D, textureID);
+	}
+	
+	public void unbind() {
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 	
 	public void render(float x, float y, float width, float height) {
 		
-		RenderUtil.renderTexture(texture, x, y, width, height);
+		glEnable(GL_TEXTURE_2D);
+		
+		bind();
+		
+		glBegin(GL_QUADS);		
+		
+			glTexCoord2f(0, 0);
+			glVertex2f(x, y);
+			
+			glTexCoord2f(1, 0);
+			glVertex2f(x + width, y);
+			
+			glTexCoord2f(1, 1);
+			glVertex2f(x + width, y + height);
+			
+			glTexCoord2f(0, 1);
+			glVertex2f(x, y + height);
+		
+		glEnd();
+		
+		unbind();
+		
+		glDisable(GL_TEXTURE_2D);
+		
+		glLoadIdentity();
 	}
 	
-	public void renderSubTile(float renderX, float renderY, float renderWidth, float renderHeight, int tileX, int tileY, int tileWidth, int tileHeight) {
-		
-		RenderUtil.renderTexture(texture, renderX, renderY, renderWidth, renderHeight, tileX, tileY, tileWidth, tileHeight);
+	public void renderCentered(float x, float y, float scale) {
+		render(x - ((width * scale) / 2), y - ((height * scale) / 2), width * scale, height * scale);
 	}
 	
-	public void renderSubIndex(float x, float y, float w, float h, int i, int tileWidth, int tileHeight) {
-		
-		int tileAmountX = (int) (texture.getTextureWidth() / tileWidth);
-		int tileAmountY = (int) (texture.getTextureHeight() / tileHeight);
-		
-		int tileX = (i % tileAmountX) * tileWidth;
-		int tileY = (i % tileAmountY) * tileHeight;
-		
-		renderSubTile(x, y, w, h, tileX, tileY, tileWidth, tileHeight);
+	public int getWidth() {
+		return width;
 	}
 	
-	public GLSubSprite getSubSprite(int tileX, int tileY, int tileWidth, int tileHeight) {
-		return new GLSubSprite(this, tileX, tileY, tileWidth, tileHeight);
-	}
-	
-	public Texture getTexture() {
-		return texture;
+	public int getHeight() {
+		return height;
 	}
 }

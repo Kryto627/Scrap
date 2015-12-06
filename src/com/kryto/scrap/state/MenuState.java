@@ -2,8 +2,8 @@ package com.kryto.scrap.state;
 
 import org.newdawn.slick.Color;
 
+import com.kryto.scrap.Assets;
 import com.kryto.scrap.Game;
-import com.kryto.scrap.gfx.GLAssets;
 import com.kryto.scrap.gfx.RenderUtil;
 import com.kryto.scrap.gui.Button;
 
@@ -35,7 +35,7 @@ public class MenuState implements IGameState {
 		
 		RenderUtil.setBackgroundColor(new Color(0x38698C));
 		
-		GLAssets.logo.renderCentered(Game.getCenterX(), 150, 7);
+		Assets.logo.renderCentered(Game.getCenterX(), 150, 7);
 		
 		start_button.render();	
 		options_button.render();

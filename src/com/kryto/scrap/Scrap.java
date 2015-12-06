@@ -3,7 +3,6 @@ package com.kryto.scrap;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import com.kryto.scrap.gfx.GLAssets;
 import com.kryto.scrap.profile.ProfileManager;
 import com.kryto.scrap.state.ChooseMechState;
 import com.kryto.scrap.state.GameStateManager;
@@ -18,7 +17,7 @@ public class Scrap {
 		
 		ProfileManager.getInstance().load();
 		
-		GLAssets.init();
+		Assets.init();
 		
 		stateManager = new GameStateManager();
 		stateManager.addState(0, new MenuState());
@@ -47,6 +46,6 @@ public class Scrap {
 	
 	public void cleanup() {
 		ProfileManager.getInstance().save();
-		GLAssets.cleanup();
+		Assets.cleanup();
 	}
 }

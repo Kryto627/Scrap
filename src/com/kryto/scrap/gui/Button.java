@@ -5,14 +5,14 @@ import java.awt.Rectangle;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 
+import com.kryto.scrap.Assets;
 import com.kryto.scrap.Game;
-import com.kryto.scrap.gfx.GLAssets;
-import com.kryto.scrap.gfx.GLSubSprite;
+import com.kryto.scrap.gfx.GLSprite;
 
 public class Button {
 
 	public Rectangle bounds;
-	private GLSubSprite image, selected_image;
+	private GLSprite image, selected_image;
 	private String text;
 	
 	private static boolean canCallClick;
@@ -26,8 +26,8 @@ public class Button {
 		
 		this.text = text;
 		
-		this.image = GLAssets.gui_sheet.getSubSprite(0, 0, width - 4, 21);
-		this.selected_image = GLAssets.gui_sheet.getSubSprite(0, 21, width - 4, 21);			
+		this.image = Assets.gui_sheet.getSubSprite(0, 0, width - 4, 21);
+		this.selected_image = Assets.gui_sheet.getSubSprite(0, 21, width - 4, 21);			
 	}
 	
 	public Button(int x, int y, String text) {
@@ -48,7 +48,7 @@ public class Button {
 			brightness = 0;
 			
 			image.renderCentered((float)bounds.getCenterX() - 9, (float)bounds.getCenterY(), defaultScale);
-			GLAssets.button_end.renderCentered(bounds.x + bounds.width - 9, (float)bounds.getCenterY(), defaultScale);
+			Assets.button_end.renderCentered(bounds.x + bounds.width - 9, (float)bounds.getCenterY(), defaultScale);
 		}
 		
 		else {
@@ -60,10 +60,11 @@ public class Button {
 			else brightness -= 0.08F;			
 					
 			selected_image.renderCentered((float)bounds.getCenterX() - 9, (float)bounds.getCenterY(), defaultScale + 0.2F);
-			GLAssets.selected_button_end.renderCentered((bounds.x + bounds.width - 9) + 7 + 0.2F, (float)bounds.getCenterY(), defaultScale + 0.2F);
+			Assets.selected_button_end.renderCentered((bounds.x + bounds.width - 9) + 7 + 0.2F, (float)bounds.getCenterY(), defaultScale + 0.2F);
 		}
 		
-		GLAssets.PIXEL_OPERATOR.renderCentered(text, (float)bounds.getCenterX(), (float)bounds.getCenterY(), Color.darkGray.brighter(brightness));
+		Color.white.bind();
+		Assets.PIXEL_OPERATOR.renderCentered(text, (float)bounds.getCenterX(), (float)bounds.getCenterY(), Color.darkGray.brighter(brightness));
 	}
 		
 	public void setText(String text) {

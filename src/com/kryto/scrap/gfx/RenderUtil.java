@@ -2,13 +2,12 @@ package com.kryto.scrap.gfx;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.opengl.Texture;
 
 import com.kryto.scrap.Game;
 
 public class RenderUtil {
 
-	public static void renderTexture(Texture texture, float x, float y, float width, float height) {
+	/*public static void renderTexture(Texture texture, float x, float y, float width, float height) {
 
 		texture.bind();
 
@@ -61,11 +60,9 @@ public class RenderUtil {
 		GL11.glEnd();
 
 		GL11.glLoadIdentity();
-	}
+	}*/
 
 	public static void renderRect(float x, float y, float width, float height, Color color) {
-
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
 
 		color.bind();
 
@@ -79,9 +76,37 @@ public class RenderUtil {
 		GL11.glEnd();
 
 		Color.white.bind();
-
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
+	
+	/*public static void trace(Rectangle rect) {	
+		
+		float x = (float)rect.getX();
+		float y = (float)rect.getY();
+		float width = (float)rect.getWidth();
+		float height = (float)rect.getHeight();
+		
+		GL11.glLineWidth(2.5F);
+
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex2f(x, y);
+		GL11.glVertex2f(x + width, y);
+		GL11.glEnd();
+
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex2f(x + width, y);
+		GL11.glVertex2f(x + width, y + height);
+		GL11.glEnd();
+
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex2f(x + width, y + height);
+		GL11.glVertex2f(x, y + height);
+		GL11.glEnd();
+		
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex2f(x, y + height);
+		GL11.glVertex2f(x, y);
+		GL11.glEnd();		
+	}*/
 	
 	public static void setBackgroundColor(Color color) {
 		renderRect(0, 0, Game.getWidth(), Game.getHeight(), color);

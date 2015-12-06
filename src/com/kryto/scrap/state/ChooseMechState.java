@@ -2,8 +2,8 @@ package com.kryto.scrap.state;
 
 import org.newdawn.slick.Color;
 
+import com.kryto.scrap.Assets;
 import com.kryto.scrap.Game;
-import com.kryto.scrap.gfx.GLAssets;
 import com.kryto.scrap.gfx.RenderUtil;
 import com.kryto.scrap.profile.Profile;
 import com.kryto.scrap.profile.ProfileManager;
@@ -27,7 +27,7 @@ public class ChooseMechState implements IGameState {
 		
 		RenderUtil.setBackgroundColor(new Color(0x38698C));
 		
-		GLAssets.PIXEL_OPERATOR.renderCentered("CHOOSE A MECH", Game.getCenterX(), Game.getCenterY() - 200, Color.white);		
+		Assets.PIXEL_OPERATOR.renderCentered("CHOOSE A MECH", Game.getCenterX(), Game.getCenterY() - 200, Color.white);		
 	}
 
 	@Override
