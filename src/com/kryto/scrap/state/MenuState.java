@@ -26,7 +26,7 @@ public class MenuState implements IGameState {
 		}
 		
 		if (exit_button.isClicked()) {
-			System.exit(0);
+			Game.shutdown();
 		}
 	}
 

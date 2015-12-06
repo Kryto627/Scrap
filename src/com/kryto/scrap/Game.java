@@ -10,6 +10,8 @@ public class Game {
 	public static final float VERSION = 0.1F;
 	public static final String TITLE = "Scrap";
 
+	private static boolean running = true;
+	
 	private Scrap scrap;
 	
 	public static void main(String[] args) {
@@ -44,7 +46,7 @@ public class Game {
         scrap = new Scrap();
         scrap.init();
         
-		while (!Display.isCloseRequested()) {
+		while (running && !Display.isCloseRequested()) {
 
 			GL11.glClearColor(0, 0, 0, 1);
 			
@@ -59,6 +61,10 @@ public class Game {
 
 		scrap.cleanup();
 		Display.destroy();
+	}
+	
+	public static void shutdown() {
+		running = false;
 	}
 	
 	public static int getWidth() {

@@ -15,6 +15,8 @@ public class Button {
 	private GLSubSprite image, selected_image;
 	private String text;
 	
+	private static boolean canCallClick;
+	
 	private static int defaultWidth = 70;
 	private static int defaultScale = 4;
 	
@@ -36,30 +38,53 @@ public class Button {
 		this(Game.getCenterX(), (Game.getCenterY() - (index * 100)) + 200, defaultWidth, text);
 	}
 	
-	public void update() {
-		
-	}
+	float brightness = 0;
+	boolean forward = true;
 	
 	public void render() {	
 		
-		if (!isMouseOver()) {		
+		if (!isMouseOver()) {	
+			
+			brightness = 0;
+			
 			image.renderCentered((float)bounds.getCenterX() - 9, (float)bounds.getCenterY(), defaultScale);
 			GLAssets.button_end.renderCentered(bounds.x + bounds.width - 9, (float)bounds.getCenterY(), defaultScale);
 		}
 		
 		else {
+			
+			if (brightness >= 3) forward = false;
+			else if (brightness < 0) forward = true;
+			
+			if (forward) brightness += 0.08F;
+			else brightness -= 0.08F;			
+					
 			selected_image.renderCentered((float)bounds.getCenterX() - 9, (float)bounds.getCenterY(), defaultScale + 0.2F);
 			GLAssets.selected_button_end.renderCentered((bounds.x + bounds.width - 9) + 7 + 0.2F, (float)bounds.getCenterY(), defaultScale + 0.2F);
 		}
 		
-		GLAssets.PIXEL_OPERATOR.renderCentered(text, (float)bounds.getCenterX(), (float)bounds.getCenterY(), Color.darkGray);
+		GLAssets.PIXEL_OPERATOR.renderCentered(text, (float)bounds.getCenterX(), (float)bounds.getCenterY(), Color.darkGray.brighter(brightness));
 	}
 		
+	public void setText(String text) {
+		this.text = text;
+	}
+	
 	public boolean isMouseOver() {		
 		return bounds.contains(Mouse.getX(), Game.getRealMouseY());
 	}
 	
 	public boolean isClicked() {
-		return isMouseOver() && Mouse.isButtonDown(0);
+		
+		if (isMouseOver() && Mouse.isButtonDown(0) && canCallClick) {
+			canCallClick = false;
+			return true;
+		}
+		
+		if (!Mouse.isButtonDown(0)) {
+			canCallClick = true;
+		}	
+		
+		return false;
 	}
 }
