@@ -22,6 +22,10 @@ public class GLSprite {
 		}
 	}
 	
+	public GLSprite(Texture texture) {
+		this.texture = texture;
+	}
+	
 	public void render(float x, float y) {
 		render(x, y, texture.getWidth(), texture.getHeight());
 	}
@@ -94,5 +98,9 @@ public class GLSprite {
 	
 	public Texture getTexture() {
 		return texture;
+	}
+	
+	public GLSubSprite getSubSprite(int tileX, int tileY, int tileWidth, int tileHeight) {
+		return new GLSubSprite(this, tileX, tileY, tileWidth, tileHeight);
 	}
 }
