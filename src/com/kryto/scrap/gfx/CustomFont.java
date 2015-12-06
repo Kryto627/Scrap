@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 
 public class CustomFont {
@@ -32,20 +33,20 @@ public class CustomFont {
 		font = font.deriveFont((float)size);
 	}
 	
-	public double getWidth(String str) {
+	public double getWidth(String str) {		
+		return getBounds(str).getWidth();		
+	}
 		
-		AffineTransform at = new AffineTransform();
-		FontRenderContext frc = new FontRenderContext(at, true, true);
-		
-		return font.getStringBounds(str, frc).getWidth();		
+	public double getHeight(String str) {		
+		return getBounds(str).getHeight();		
 	}
 	
-	public double getHeight(String str) {
+	public Rectangle2D getBounds(String text) {
 		
 		AffineTransform at = new AffineTransform();
 		FontRenderContext frc = new FontRenderContext(at, true, true);
 		
-		return font.getStringBounds(str, frc).getHeight();		
+		return font.getStringBounds(text, frc);
 	}
 	
 	public void setupRender(Graphics2D g) {		
@@ -60,6 +61,7 @@ public class CustomFont {
 	}
 	
 	public void renderCenteredString(Graphics2D g, String text, Color color, int x, int y) {
-		renderString(g, text, color, (int) (x - (getWidth(text) / 2)), (int) (x - (getHeight(text) / 2)));
+		
+		renderString(g, text, color, (int) (x - (getWidth(text) / 2)), (int) (y - (getHeight(text) / 2)));	
 	}
 }
