@@ -1,10 +1,14 @@
 package com.kryto.scrap.gfx;
 
+import com.kryto.scrap.GLSprite;
+
 public class Assets {
 
 	public static CustomFont GRAVITY_ITALIC;
 	
 	public static Sprite logo;
+	
+	public static GLSprite button;
 	
 	public static Sprite frigid;
 	public static Animation frigidAnimated;
@@ -21,6 +25,8 @@ public class Assets {
 		GRAVITY_ITALIC.setSize(32);
 		
 		logo = new Sprite("/scrap_logo.png");
+		
+		button = new GLSprite("button.png");
 		
 		frigid = new Sprite("/frigid_1.png");
 		frigidAnimated = new Animation(500, frigid.getSubSprite(0, 0, 32, 32), frigid.getSubSprite(0, 32, 32, 32));

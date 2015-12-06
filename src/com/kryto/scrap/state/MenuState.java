@@ -38,10 +38,6 @@ public class MenuState implements IGameState {
 		int height = 21 * 7;
 		Assets.logo.render(g, Window.getCenterX() - (width / 2), 100, width, height);
 		
-		//Assets.cruiseAnimated.render(g, Window.getCenterX() - 256, Window.getCenterY(), 128, 128);
-		//Assets.frigidAnimated.render(g, Window.getCenterX() + 64, Window.getCenterY(), -128, 128);
-		//Assets.boilerAnimated.render(g, Window.getCenterX() + 256, Window.getCenterY(), -128, 128);
-		
 		button.render(g);
 	}
 
