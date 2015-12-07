@@ -19,9 +19,7 @@ public class ImageLoader {
 		
 		glBindTexture(GL_TEXTURE_2D, textureID);
 		
-		int[] pixels = new int[image.getWidth() * image.getHeight()];
-
-		image.getRGB(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
+		int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
 		
         ByteBuffer buffer = BufferUtils.createByteBuffer(image.getWidth() * image.getHeight() * 4);
         

@@ -39,8 +39,6 @@ public class ChooseMechState implements IGameState {
 	@Override
 	public void render() {
 		
-		RenderUtil.setBackgroundColor(new Color(0x38698C));
-		
 		Assets.PIXEL_OPERATOR.renderCentered("CHOOSE A MECH", Game.getCenterX(), Game.getCenterY() - 200, Color.white);		
 		
 		frigid_button.render();

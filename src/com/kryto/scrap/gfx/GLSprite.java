@@ -59,9 +59,9 @@ public class GLSprite {
 		
 		unbind();
 		
-		glDisable(GL_TEXTURE_2D);
-		
 		glLoadIdentity();
+		
+		glDisable(GL_TEXTURE_2D);
 	}
 	
 	public void renderCentered(float x, float y, float scale) {
