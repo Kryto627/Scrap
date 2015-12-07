@@ -3,6 +3,7 @@ package com.kryto.scrap;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
 public class Game {
@@ -10,6 +11,8 @@ public class Game {
 	public static final float VERSION = 0.1F;
 	public static final String TITLE = "Scrap";
 
+	private final boolean DEBUG = true;
+	
 	private static boolean running = true;
 	
 	private Scrap scrap;
@@ -25,7 +28,14 @@ public class Game {
 
 		try {
 			
-			Display.setFullscreen(true);			
+			if (!DEBUG) {			
+				Display.setFullscreen(true);			
+			}
+			
+			else {
+				Display.setDisplayMode(new DisplayMode(1280, 728));
+			}
+			
 			Display.create();
 		} 
 		

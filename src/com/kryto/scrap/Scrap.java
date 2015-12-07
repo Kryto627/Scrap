@@ -3,6 +3,7 @@ package com.kryto.scrap;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import com.kryto.scrap.character.CharacterRegistry;
 import com.kryto.scrap.profile.ProfileManager;
 import com.kryto.scrap.state.ChooseMechState;
 import com.kryto.scrap.state.GameStateManager;
@@ -18,6 +19,7 @@ public class Scrap {
 		ProfileManager.getInstance().load();
 		
 		Assets.init();
+		CharacterRegistry.init();
 		
 		stateManager = new GameStateManager();
 		stateManager.addState(0, new MenuState());
