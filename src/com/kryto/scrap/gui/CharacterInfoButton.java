@@ -23,12 +23,16 @@ public class CharacterInfoButton {
 	
 	public void render() {
 		
-		character.render((float)bounds.getX(), (float)bounds.getY(), (float)bounds.getWidth(), (float)bounds.getHeight());	
+		float scale = 1;
 		
 		if (isMouseOver()) {
 			
-			Assets.PIXEL_OPERATOR.renderCentered(character.getType().getName(), (float)bounds.getCenterX(), (float)(bounds.getY() + bounds.getHeight() + 25), Color.white);			
+			scale = 1.1F;
+			
+			Assets.PIXEL_OPERATOR.renderCentered(character.getType().getName(), (float)bounds.getCenterX(), (float)(bounds.getY() + bounds.getHeight() + 35), Color.white);			
 		}
+		
+		character.renderCentered((float)bounds.getCenterX(), (float)bounds.getCenterY(), (float)bounds.getWidth(), (float)bounds.getHeight(), scale);	
 	}
 	
 	public boolean isMouseOver() {		

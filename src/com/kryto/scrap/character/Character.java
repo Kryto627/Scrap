@@ -22,13 +22,16 @@ public class Character implements Serializable {
 		return getType() != null;
 	}
 	
-	public void render(float x, float y, float width, float height) {
+	public void renderCentered(float x, float y, float width, float height, float scale) {
+		
+		float scaledWidth = width * scale;
+		float scaledHeight = height * scale;
 		
 		if (hasType() && animation == null) {		
 			animation = getType().getAnimationByString();
 		}
 		
-		if (animation != null) animation.render(x, y, width, height);
+		if (animation != null) animation.render(x - (scaledWidth / 2), y - (scaledHeight / 2), scaledWidth, scaledHeight);
 	}
 	
 	//TODO return character's baseHealth + (level * whatever);
