@@ -1,9 +1,11 @@
 package com.kryto.scrap;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.Display;
+import org.newdawn.slick.Color;
 
 import com.kryto.scrap.character.CharacterRegistry;
+import com.kryto.scrap.gfx.RenderUtil;
 import com.kryto.scrap.profile.ProfileManager;
 import com.kryto.scrap.state.ChooseMechState;
 import com.kryto.scrap.state.GameStateManager;
@@ -39,11 +41,10 @@ public class Scrap {
 	
 	public void render() {
 		
-		GL11.glPushAttrib(GL11.GL_CURRENT_BIT);
+		Assets.background.render(0, 0, Display.getWidth(), Display.getHeight());
+		RenderUtil.setBackgroundColor(new Color(0, 0, 0, 0.5F));
 		
 		stateManager.render();
-		
-		GL11.glPopAttrib();
 	}
 	
 	public void cleanup() {

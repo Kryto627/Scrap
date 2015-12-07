@@ -1,5 +1,6 @@
 package com.kryto.scrap.state;
 
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
 
 import com.kryto.scrap.Assets;
@@ -41,7 +42,7 @@ public class ProfileState implements IGameState {
 	@Override
 	public void render() {
 		
-		RenderUtil.setBackgroundColor(new Color(0x38698C));
+		//RenderUtil.setBackgroundColor(new Color(0x38698C));
 		
 		profile_1.setText(manager.profiles[0] == null ? "New" : "Load 1");
 		profile_2.setText(manager.profiles[1] == null ? "New" : "Load 2");
