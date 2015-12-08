@@ -5,7 +5,6 @@ import org.newdawn.slick.Color;
 import com.kryto.scrap.Assets;
 import com.kryto.scrap.Game;
 import com.kryto.scrap.character.Character;
-import com.kryto.scrap.gfx.RenderUtil;
 import com.kryto.scrap.gui.CharacterInfoButton;
 import com.kryto.scrap.profile.Profile;
 import com.kryto.scrap.profile.ProfileManager;
