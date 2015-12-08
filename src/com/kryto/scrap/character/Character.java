@@ -9,8 +9,9 @@ public class Character implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	public int ID;
-	public int level;
 	public int exp;
+	public int levelCost;
+	public int level;		
 	
 	public transient GLAnimation animation;
 	
@@ -18,8 +19,16 @@ public class Character implements Serializable {
 		return CharacterRegistry.characters[ID];		
 	}
 	
-	public boolean hasType() {
-		return getType() != null;
+	public int getEXPCost() {
+		return (level + 1) * 5;
+	}
+	
+	public int getMaxHealth() {
+		return (level + 1) * getType().getHealthMultiplier();
+	}
+	
+	public int getMaxAttack() {
+		return (level + 1) * getType().getAttackMultiplier();
 	}
 	
 	public void renderCentered(float x, float y, float width, float height, float scale) {
@@ -27,20 +36,10 @@ public class Character implements Serializable {
 		float scaledWidth = width * scale;
 		float scaledHeight = height * scale;
 		
-		if (hasType() && animation == null) {		
+		if (getType() != null && animation == null) {		
 			animation = getType().getAnimationByString();
 		}
 		
 		if (animation != null) animation.render(x - (scaledWidth / 2), y - (scaledHeight / 2), scaledWidth, scaledHeight);
-	}
-	
-	//TODO return character's baseHealth + (level * whatever);
-	public int getMaxHealth() {
-		return (level + 1) * 10;
-	}
-	
-	//TODO Fix this!
-	public int getLevelExpCost() {
-		return (level + 1) * 10;
 	}
 }

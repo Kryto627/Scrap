@@ -14,11 +14,11 @@ public class CharacterRegistry {
 			characters[ID] = character;
 		}	
 	}
-
+	
 	public static void init() {
 
-		addCharacter(1, new TypeFrigid());
-		addCharacter(2, new TypeCruise());
-		addCharacter(3, new TypeBoiler());
+		addCharacter(1, new TypeCruise());
+		addCharacter(2, new TypeBoiler());
+		addCharacter(3, new TypeFrigid());	
 	}
 }

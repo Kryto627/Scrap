@@ -2,8 +2,8 @@ package com.kryto.scrap.state;
 
 import org.newdawn.slick.Color;
 
-import com.kryto.scrap.Assets;
 import com.kryto.scrap.Game;
+import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gui.Button;
 import com.kryto.scrap.profile.ProfileManager;
 
@@ -44,7 +44,7 @@ public class ProfileState implements IGameState {
 		profile_2.setText(manager.profiles[1] == null ? "New" : "Load 2");
 		profile_3.setText(manager.profiles[2] == null ? "New" : "Load 3");
 			
-		Assets.PIXEL_OPERATOR.renderCentered("CHOOSE A PROFILE", Game.getCenterX(), Game.getCenterY() - 200, Color.white);
+		Assets.PIXEL_OPERATOR_BIG.renderCentered("CHOOSE A PROFILE", Game.getCenterX(), Game.getCenterY() - 200, Color.white);
 		
 		profile_1.render();
 		profile_2.render();
