@@ -30,6 +30,22 @@ public class GLAnimation {
 		}
 	}
 	
+	public GLAnimation(long time, GLSprite sheet, int size) {
+		this.timer = new Timer(time);
+		
+		int tilesX = sheet.getWidth() / size;
+		int tilesY = sheet.getHeight() / size;
+		
+		this.sprites = new GLSprite[tilesX * tilesY];
+		
+		for (int x = 0; x < tilesX; x++) {
+			for (int y = 0; y < tilesY; y++) {
+			
+				sprites[x + y * tilesX] = sheet.getSubSprite(x * size, y * size, size, size);
+			}
+		}
+	}
+	
 	public GLSprite getCurrentSprite() {
 		return sprites[currentFrame];
 	}

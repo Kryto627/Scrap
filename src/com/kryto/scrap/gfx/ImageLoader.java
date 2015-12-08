@@ -29,6 +29,7 @@ public class ImageLoader {
             	
                 int pixel = pixels[x + y * image.getWidth()];
                 
+                // ARGB -> RGBA
                 buffer.put((byte) ((pixel >> 16) & 0xFF));
                 buffer.put((byte) ((pixel >> 8) & 0xFF));
                 buffer.put((byte) (pixel & 0xFF)); 
