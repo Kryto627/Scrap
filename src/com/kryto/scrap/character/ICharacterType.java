@@ -10,7 +10,7 @@ public interface ICharacterType {
 	//TODO Transformations change the number
 	public default GLAnimation getAnimationByString() {
 		GLSprite sprite = new GLSprite(getName().toLowerCase() + "_1.png");
-		GLAnimation animation = new GLAnimation(500, sprite, 32);
+		GLAnimation animation = new GLAnimation(500, sprite.getSubSprite(0, 0, 32, 32), sprite.getSubSprite(0, 32, 32, 32));
 		return animation;
 	}
 }
