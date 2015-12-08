@@ -109,7 +109,7 @@ public class Game {
 
 		double scaleFact = (windowWidth / resWidth);
 
-		int result = (int) (resWidth - (mouseX / scaleFact));
+		int result = (int) (mouseX / scaleFact);
 
 		return result;
 	}

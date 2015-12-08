@@ -36,7 +36,7 @@ public class CharacterInfoButton {
 	}
 	
 	public boolean isMouseOver() {		
-		return bounds.contains(Mouse.getX(), Game.getRealMouseY());
+		return bounds.contains(Game.getRealMouseX(), Game.getRealMouseY());
 	}
 	
 	public boolean isClicked() {
