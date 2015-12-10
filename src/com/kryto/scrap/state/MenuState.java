@@ -1,6 +1,6 @@
 package com.kryto.scrap.state;
 
-import com.kryto.scrap.Assets;
+import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.Game;
 import com.kryto.scrap.gui.Button;
 
@@ -29,8 +29,6 @@ public class MenuState implements IGameState {
 
 	@Override
 	public void render() {
-		
-		//RenderUtil.setBackgroundColor(new Color(0x38698C));
 		
 		Assets.logo.renderCentered(Game.getCenterX(), 150, 7);
 		

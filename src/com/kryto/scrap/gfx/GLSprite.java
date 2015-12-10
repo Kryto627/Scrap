@@ -1,7 +1,8 @@
 package com.kryto.scrap.gfx;
 
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+
+import com.kryto.scrap.geometry.Rectangle;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -67,11 +68,15 @@ public class GLSprite {
 	}
 	
 	public void renderCentered(float x, float y, float scale) {
-		render(x - ((width * scale) / 2), y - ((height * scale) / 2), width * scale, height * scale);
+		
+		float scaledWidth = width * scale;
+		float scaledHeight = height * scale;
+		
+		render(x - (scaledWidth / 2), y - (scaledHeight / 2), scaledWidth, scaledHeight);
 	}
 	
 	public void render(Rectangle rect) {
-		render((float)rect.getX(), (float)rect.getY(), (float)rect.getWidth(), (float)rect.getHeight());
+		render(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 	}
 	
 	public int getWidth() {

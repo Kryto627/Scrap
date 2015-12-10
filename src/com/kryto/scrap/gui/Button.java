@@ -1,33 +1,28 @@
 package com.kryto.scrap.gui;
 
-import java.awt.Rectangle;
-
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 
-import com.kryto.scrap.Assets;
 import com.kryto.scrap.Game;
+import com.kryto.scrap.geometry.Rectangle;
+import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gfx.GLSprite;
 
-public class Button {
+public class Button extends Component {
 
-	public Rectangle bounds;
-	private GLSprite image, selected_image;
+	private GLSprite image;
 	private String text;
 	
-	private static boolean canCallClick;
+	private float brightness = 0;
+	private boolean forward = true;
 	
-	private static int defaultWidth = 70;
-	private static int defaultScale = 4;
+	private static final int defaultWidth = 275;
 	
-	public Button(int x, int y, int width, String text) {
-		
-		this.bounds = new Rectangle(x - ((width * defaultScale) / 2), y - ((21 * defaultScale) / 2), width * defaultScale, 21 * defaultScale);
+	public Button(int x, int y, int width, String text) {		
+		super(new Rectangle(x, y, width, 80));
 		
 		this.text = text;
 		
-		this.image = Assets.gui_sheet.getSubSprite(0, 0, width - 4, 21);
-		this.selected_image = Assets.gui_sheet.getSubSprite(0, 21, width - 4, 21);			
+		this.image = Assets.gui_sheet.getSubSprite(0, 0, 70, 21);
 	}
 	
 	public Button(int x, int y, String text) {
@@ -35,57 +30,36 @@ public class Button {
 	}
 	
 	public Button(int index, String text) {
-		this(Game.getCenterX(), (Game.getCenterY() - (index * 100)) + 200, defaultWidth, text);
+		this(Game.getCenterX() - defaultWidth / 2, (Game.getCenterY() - (index * 100)) + 200, defaultWidth, text);
 	}
-	
-	float brightness = 0;
-	boolean forward = true;
 	
 	public void render() {	
 		
-		if (!isMouseOver()) {	
-			
+		Rectangle rect = bounds;
+		
+		if (!isMouseOver()) {			
 			brightness = 0;
-			
-			image.renderCentered((float)bounds.getCenterX() - 9, (float)bounds.getCenterY(), defaultScale);
-			Assets.button_end.renderCentered(bounds.x + bounds.width - 9, (float)bounds.getCenterY(), defaultScale);
 		}
 		
 		else {
 			
-			if (brightness >= 3) forward = false;
+			rect = rect.addSize(30, 10);
+			
+			if (brightness >= 1) forward = false;
 			else if (brightness < 0) forward = true;
 			
 			if (forward) brightness += 0.08F;
-			else brightness -= 0.08F;			
-					
-			selected_image.renderCentered((float)bounds.getCenterX() - 9, (float)bounds.getCenterY(), defaultScale + 0.2F);
-			Assets.selected_button_end.renderCentered((bounds.x + bounds.width - 9) + 7, (float)bounds.getCenterY(), defaultScale + 0.2F);
+			else brightness -= 0.08F;	
 		}
 		
+		image.render(rect);
+		Assets.button_end.render(rect.getX() + rect.getWidth() - 20, rect.getY(), 20, rect.getHeight());
+		
 		Color.white.bind();
-		Assets.PIXEL_OPERATOR.renderCentered(text, (float)bounds.getCenterX(), (float)bounds.getCenterY(), Color.darkGray.brighter(brightness));
+		Assets.PIXEL_OPERATOR_BIG.renderCentered(text, rect.getCenterX(), rect.getCenterY(), Color.darkGray.brighter(brightness));
 	}
 		
 	public void setText(String text) {
 		this.text = text;
-	}
-	
-	public boolean isMouseOver() {		
-		return bounds.contains(Game.getRealMouseX(), Game.getRealMouseY());
-	}
-	
-	public boolean isClicked() {
-		
-		if (isMouseOver() && Mouse.isButtonDown(0) && canCallClick) {
-			canCallClick = false;
-			return true;
-		}
-		
-		if (!Mouse.isButtonDown(0)) {
-			canCallClick = true;
-		}	
-		
-		return false;
-	}
+	}	
 }

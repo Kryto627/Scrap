@@ -7,8 +7,8 @@ import org.lwjgl.opengl.GL11;
 
 public class Game {
 
-	public static final int WIDTH = 1280;
-	public static final int HEIGHT = 720;
+	//public static final int WIDTH = 1280;
+	//public static final int HEIGHT = 720;
 
 	public static final String TITLE = "Scrap";
 	private static boolean running = true;
@@ -73,11 +73,11 @@ public class Game {
 	}
 
 	public static int getWidth() {
-		return WIDTH;
+		return Display.getWidth();
 	}
 
 	public static int getHeight() {
-		return HEIGHT;
+		return Display.getHeight();
 	}
 
 	public static int getCenterX() {
@@ -87,8 +87,12 @@ public class Game {
 	public static int getCenterY() {
 		return getHeight() / 2;
 	}
+	
+	public static float getRealMouseY() {		
+		return getHeight() - Mouse.getY();
+	}
 
-	public static int getRealMouseY() {
+	/*public static int getRealMouseY() {
 
 		double windowHeight = (double) Display.getHeight();
 		double resHeight = (double) HEIGHT;
@@ -112,5 +116,5 @@ public class Game {
 		int result = (int) (mouseX / scaleFact);
 
 		return result;
-	}
+	}*/
 }

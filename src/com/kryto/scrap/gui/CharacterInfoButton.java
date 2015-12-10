@@ -1,23 +1,18 @@
 package com.kryto.scrap.gui;
 
-import java.awt.Rectangle;
-
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 
-import com.kryto.scrap.Assets;
 import com.kryto.scrap.Game;
 import com.kryto.scrap.character.Character;
+import com.kryto.scrap.geometry.Rectangle;
+import com.kryto.scrap.gfx.Assets;
 
-public class CharacterInfoButton {
+public class CharacterInfoButton extends Component {
 
-	private Rectangle bounds;
 	private Character character;
 	
-	private static boolean canCallClick;
-	
 	public CharacterInfoButton(int x, int y, Character character) {
-		this.bounds = new Rectangle(x - (200 / 2), y - (200 / 2), 200, 200);
+		super(new Rectangle(x - (200 / 2), y - (200 / 2), 200, 200));
 		this.character = character;
 	}
 	
@@ -29,27 +24,17 @@ public class CharacterInfoButton {
 			
 			scale = 1.1F;
 			
-			Assets.PIXEL_OPERATOR.renderCentered(character.getType().getName(), (float)bounds.getCenterX(), (float)(bounds.getY() + bounds.getHeight() + 35), Color.white);			
+			character.getType().getElement().getEmblem().renderCentered((float)bounds.getCenterX(), (float)bounds.getCenterY() - 185, 3);
+			Assets.PIXEL_OPERATOR_SMALL.renderCentered(character.getType().getElement().getName(), (float)bounds.getCenterX(), (float)(bounds.getY() - 30), Color.white);
+			
+			Assets.PIXEL_OPERATOR_SMALL.renderCentered(character.getType().getName(), (float)bounds.getCenterX(), (float)(bounds.getY() + bounds.getHeight() + 30), Color.white);
+		
+			Assets.PIXEL_OPERATOR_SMALL.renderCentered("HP: " + character.getMaxHealth(), (float)bounds.getCenterX(), (float)(bounds.getY() + bounds.getHeight() + 55), Color.green);
+			Assets.PIXEL_OPERATOR_SMALL.renderCentered("ATTACK: " + character.getMaxAttack(), (float)bounds.getCenterX(), (float)(bounds.getY() + bounds.getHeight() + 80), Color.red);		
+		
+			Assets.PIXEL_OPERATOR_BIG.renderCentered("\"" + character.getType().getIntroQuote() + "\"", Game.getCenterX(), Game.getCenterY() + 300, Color.white);
 		}
 		
 		character.renderCentered((float)bounds.getCenterX(), (float)bounds.getCenterY(), (float)bounds.getWidth(), (float)bounds.getHeight(), scale);	
-	}
-	
-	public boolean isMouseOver() {		
-		return bounds.contains(Game.getRealMouseX(), Game.getRealMouseY());
-	}
-	
-	public boolean isClicked() {
-		
-		if (isMouseOver() && Mouse.isButtonDown(0) && canCallClick) {
-			canCallClick = false;
-			return true;
-		}
-		
-		if (!Mouse.isButtonDown(0)) {
-			canCallClick = true;
-		}	
-		
-		return false;
 	}
 }

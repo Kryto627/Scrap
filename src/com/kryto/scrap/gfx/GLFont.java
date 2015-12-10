@@ -50,7 +50,7 @@ public class GLFont {
 	}
 	
 	public void renderCentered(String text, float x, float y, Color color) {		
-		render(text, x - (getWidth(text) / 2), y - (getHeight() / 2), color);		
+		render(text, x - (getWidth(text) / 2), y - (getHeight() / 2), color);
 	}
 	
 	public int getWidth(String text) {

@@ -6,12 +6,10 @@ import com.kryto.scrap.Game;
 import com.kryto.scrap.character.Character;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gui.CharacterInfoButton;
-import com.kryto.scrap.profile.Profile;
-import com.kryto.scrap.profile.ProfileManager;
 
 public class ChooseMechState implements IGameState {
 
-	private Profile profile = ProfileManager.getInstance().getCurrentProfile();
+	//private Profile profile = ProfileManager.getInstance().getCurrentProfile();
 	
 	private CharacterInfoButton cruise_button, boiler_button, frigid_button;
 	
@@ -37,7 +35,7 @@ public class ChooseMechState implements IGameState {
 	@Override
 	public void render() {
 		
-		Assets.PIXEL_OPERATOR_BIG.renderCentered("CHOOSE A MECH", Game.getCenterX(), Game.getCenterY() - 300, Color.white);		
+		Assets.PIXEL_OPERATOR_BIG.renderCentered("CHOOSE A STARTER MECH", Game.getCenterX(), Game.getCenterY() - 300, Color.white);		
 		
 		cruise_button.render();
 		boiler_button.render();

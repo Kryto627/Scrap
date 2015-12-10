@@ -1,11 +1,8 @@
-package com.kryto.scrap;
-
-import com.kryto.scrap.gfx.GLFont;
-import com.kryto.scrap.gfx.GLSprite;
+package com.kryto.scrap.gfx;
 
 public class Assets {
 
-	public static GLFont PIXEL_OPERATOR;
+	public static GLFont PIXEL_OPERATOR_BIG, PIXEL_OPERATOR_SMALL;
 	
 	public static GLSprite gui_sheet;
 	
@@ -18,7 +15,8 @@ public class Assets {
 	
 	public static void init() {
 		
-		PIXEL_OPERATOR = new GLFont("PixelOperator-Bold.ttf", 64);
+		PIXEL_OPERATOR_BIG = new GLFont("PixelOperator-Bold.ttf", 64);
+		PIXEL_OPERATOR_SMALL = new GLFont("PixelOperator-Bold.ttf", 32);
 		
 		gui_sheet = new GLSprite("gui.png");
 		

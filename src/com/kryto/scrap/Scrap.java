@@ -5,6 +5,7 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
 
 import com.kryto.scrap.character.CharacterRegistry;
+import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gfx.RenderUtil;
 import com.kryto.scrap.profile.ProfileManager;
 import com.kryto.scrap.state.ChooseMechState;
