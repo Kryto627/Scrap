@@ -15,20 +15,20 @@ public class Component {
 		this.bounds = bounds;
 	}
 	
-	public Rectangle getBounds() {
-		return bounds;
-	}
-	
-	public void setBounds(Rectangle bounds) {
-		this.bounds = bounds;
-	}
-	
 	public void update() {
 		
 	}
 	
 	public void render() {
 		
+	}
+	
+	public Rectangle getBounds() {
+		return bounds;
+	}
+	
+	public void setBounds(Rectangle bounds) {
+		this.bounds = bounds;
 	}
 	
 	public boolean isMouseOver() {		

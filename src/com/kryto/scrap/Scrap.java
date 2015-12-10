@@ -4,7 +4,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
 
-import com.kryto.scrap.character.CharacterRegistry;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gfx.RenderUtil;
 import com.kryto.scrap.profile.ProfileManager;
@@ -22,7 +21,6 @@ public class Scrap {
 		ProfileManager.getInstance().load();
 		
 		Assets.init();
-		CharacterRegistry.init();
 		
 		stateManager = new GameStateManager();
 		stateManager.addState(0, new MenuState());

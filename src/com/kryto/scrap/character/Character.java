@@ -8,16 +8,13 @@ public class Character implements Serializable {
 		
 	private static final long serialVersionUID = 1L;
 	
-	public int ID;
+	public ICharacterType type;
+	
 	public int exp;
 	public int levelCost;
 	public int level;		
 	
 	public transient GLAnimation animation;
-	
-	public ICharacterType getType() {		
-		return CharacterRegistry.characters[ID];		
-	}
 	
 	public int getEXPCost() {
 		return (level + 1) * 5;
@@ -36,10 +33,16 @@ public class Character implements Serializable {
 		float scaledWidth = width * scale;
 		float scaledHeight = height * scale;
 		
-		if (getType() != null && animation == null) {		
-			animation = getType().getAnimationByString();
+		if (type != null && animation == null) {		
+			animation = type.getAnimationByString();
 		}
 		
-		if (animation != null) animation.render(x - (scaledWidth / 2), y - (scaledHeight / 2), scaledWidth, scaledHeight);
+		if (animation != null) {
+			animation.render(x - (scaledWidth / 2), y - (scaledHeight / 2), scaledWidth, scaledHeight);
+		}
+	}
+	
+	public ICharacterType getType() {		
+		return type;		
 	}
 }
