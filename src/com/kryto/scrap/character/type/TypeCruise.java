@@ -1,32 +1,32 @@
-package com.kryto.scrap.character;
+package com.kryto.scrap.character.type;
 
-import com.kryto.scrap.element.ElementIce;
+import com.kryto.scrap.element.ElementWind;
 import com.kryto.scrap.element.IElement;
 
-public class TypeFrigid implements ICharacterType {
+public class TypeCruise implements ICharacterType {
 
 	@Override
 	public String getName() {
-		return "Frigid";
+		return "Cruise";
 	}
 
 	@Override
 	public String getIntroQuote() {
-		return "They call him The Fridge.";
+		return "The Top Gun.";
 	}
 	
 	@Override
 	public int getHealthMultiplier() {
-		return 1200;
+		return 800;
 	}
-		
+	
 	@Override
 	public int getAttackMultiplier() {
-		return 160;
+		return 240;
 	}
 	
 	@Override
 	public IElement getElement() {
-		return new ElementIce();
+		return new ElementWind();
 	}
 }

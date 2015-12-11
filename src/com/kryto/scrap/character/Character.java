@@ -2,6 +2,7 @@ package com.kryto.scrap.character;
 
 import java.io.Serializable;
 
+import com.kryto.scrap.character.type.ICharacterType;
 import com.kryto.scrap.gfx.GLAnimation;
 
 public class Character implements Serializable {

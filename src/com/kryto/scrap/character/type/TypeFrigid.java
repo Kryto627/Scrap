@@ -1,32 +1,32 @@
-package com.kryto.scrap.character;
+package com.kryto.scrap.character.type;
 
-import com.kryto.scrap.element.ElementFire;
+import com.kryto.scrap.element.ElementIce;
 import com.kryto.scrap.element.IElement;
 
-public class TypeBoiler implements ICharacterType {
+public class TypeFrigid implements ICharacterType {
 
 	@Override
 	public String getName() {
-		return "Boiler";
+		return "Frigid";
 	}
-	
+
 	@Override
 	public String getIntroQuote() {
-		return "His flames? Death.";
+		return "They call him The Fridge.";
 	}
 	
 	@Override
 	public int getHealthMultiplier() {
-		return 1000;
+		return 1200;
+	}
+		
+	@Override
+	public int getAttackMultiplier() {
+		return 160;
 	}
 	
 	@Override
-	public int getAttackMultiplier() {
-		return 200;
-	}
-
-	@Override
 	public IElement getElement() {
-		return new ElementFire();
+		return new ElementIce();
 	}
 }

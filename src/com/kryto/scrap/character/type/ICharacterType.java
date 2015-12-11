@@ -1,4 +1,4 @@
-package com.kryto.scrap.character;
+package com.kryto.scrap.character.type;
 
 import com.kryto.scrap.element.IElement;
 import com.kryto.scrap.gfx.GLAnimation;

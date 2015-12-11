@@ -4,10 +4,10 @@ import org.newdawn.slick.Color;
 
 import com.kryto.scrap.Game;
 import com.kryto.scrap.character.Character;
-import com.kryto.scrap.character.ICharacterType;
-import com.kryto.scrap.character.TypeBoiler;
-import com.kryto.scrap.character.TypeCruise;
-import com.kryto.scrap.character.TypeFrigid;
+import com.kryto.scrap.character.type.ICharacterType;
+import com.kryto.scrap.character.type.TypeBoiler;
+import com.kryto.scrap.character.type.TypeCruise;
+import com.kryto.scrap.character.type.TypeFrigid;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gui.CharacterInfoButton;
 
