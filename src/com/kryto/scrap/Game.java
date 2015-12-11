@@ -7,8 +7,8 @@ import org.lwjgl.opengl.GL11;
 
 public class Game {
 
-	//public static final int WIDTH = 1280;
-	//public static final int HEIGHT = 720;
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
 
 	public static final String TITLE = "Scrap";
 	private static boolean running = true;
@@ -73,11 +73,11 @@ public class Game {
 	}
 
 	public static int getWidth() {
-		return Display.getWidth();
+		return WIDTH;
 	}
 
 	public static int getHeight() {
-		return Display.getHeight();
+		return HEIGHT;
 	}
 
 	public static int getCenterX() {

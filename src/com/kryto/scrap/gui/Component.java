@@ -2,7 +2,7 @@ package com.kryto.scrap.gui;
 
 import org.lwjgl.input.Mouse;
 
-import com.kryto.scrap.Game;
+import com.kryto.scrap.Input;
 import com.kryto.scrap.geometry.Rectangle;
 
 public class Component {
@@ -32,7 +32,7 @@ public class Component {
 	}
 	
 	public boolean isMouseOver() {		
-		return bounds.contains(Mouse.getX(), Game.getRealMouseY());
+		return bounds.contains(Input.getMouseX(), Input.getMouseY());
 	}
 	
 	public boolean isClicked() {
