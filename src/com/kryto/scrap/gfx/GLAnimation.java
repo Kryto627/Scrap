@@ -1,5 +1,6 @@
 package com.kryto.scrap.gfx;
 
+import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.util.Timer;
 
 public class GLAnimation {
@@ -60,5 +61,10 @@ public class GLAnimation {
 	public void render(float x, float y, float width, float height) {
 		update();
 		getCurrentSprite().render(x, y, width, height);
+	}
+	
+	public void render(Rectangle rectangle) {
+		update();
+		getCurrentSprite().render(rectangle);
 	}
 }
