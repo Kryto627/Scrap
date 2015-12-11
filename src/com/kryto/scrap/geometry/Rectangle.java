@@ -22,6 +22,22 @@ public class Rectangle {
 		this.height = rect.height;
 	}
 	
+	public boolean contains(float px, float py) {
+		return px > x && px < (x + width) && py > y && py < (y + height);
+	}
+	
+	public Rectangle addSize(float w, float h) {
+		return new Rectangle(x - (w / 2), y - (h / 2), width + w, height + h);
+	}
+	
+	public void fill(Color color) {
+		RenderUtil.renderRect(x, y, width, height, color);
+	}
+	
+	public Rectangle clone() {
+		return new Rectangle(this);
+	}
+	
 	public float getX() {
 		return x;
 	}
@@ -44,17 +60,5 @@ public class Rectangle {
 	
 	public float getCenterY() {
 		return y + height / 2;
-	}
-	
-	public boolean contains(float px, float py) {
-		return px > x && px < (x + width) && py > y && py < (y + height);
-	}
-	
-	public Rectangle addSize(float w, float h) {
-		return new Rectangle(x - (w / 2), y - (h / 2), width + w, height + h);
-	}
-	
-	public void fill(Color color) {
-		RenderUtil.renderRect(x, y, width, height, color);
 	}
 }
