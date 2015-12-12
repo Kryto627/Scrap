@@ -7,6 +7,7 @@ import org.newdawn.slick.Color;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gfx.RenderUtil;
 import com.kryto.scrap.profile.ProfileManager;
+import com.kryto.scrap.state.BattleState;
 import com.kryto.scrap.state.ChooseMechState;
 import com.kryto.scrap.state.GameStateManager;
 import com.kryto.scrap.state.MenuState;
@@ -26,7 +27,8 @@ public class Scrap {
 		stateManager.addState(0, new MenuState());
 		stateManager.addState(1, new ProfileState());
 		stateManager.addState(2, new ChooseMechState());
-		stateManager.switchState(0);
+		stateManager.addState(3, new BattleState());
+		stateManager.switchState(3);
 	}
 	
 	public void update() {

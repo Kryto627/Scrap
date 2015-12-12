@@ -1,6 +1,5 @@
 package com.kryto.scrap.character;
 
-import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.gfx.GLAnimation;
 
 public class CharacterSlot {
@@ -14,11 +13,8 @@ public class CharacterSlot {
 	private int maxAttack;
 	private int attack;
 	
-	private Rectangle bounds;
-	
-	public CharacterSlot(Character character, Rectangle bounds) {
+	public CharacterSlot(Character character) {
 		this.character = character;
-		this.bounds = bounds;
 		initCharData();
 	}
 
@@ -31,12 +27,12 @@ public class CharacterSlot {
 		attack = maxAttack;
 	}
 	
-	public void render() {
-		animation.render(bounds);
-	}
-	
-	public Rectangle getBounds() {
-		return bounds;
+	public void render(float x, float y, float width, float height, boolean flip) {
+		if (!flip) {
+			animation.render(x, y, width, height);
+		} else {
+			animation.render(x + width, y, -width, height);
+		}
 	}
 	
 	public int getMaxHealth() {
