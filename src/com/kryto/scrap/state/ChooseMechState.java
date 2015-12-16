@@ -10,19 +10,26 @@ import com.kryto.scrap.character.type.TypeCruise;
 import com.kryto.scrap.character.type.TypeFrigid;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gui.CharacterInfoButton;
+import com.kryto.scrap.profile.Profile;
+import com.kryto.scrap.profile.ProfileManager;
 
 public class ChooseMechState implements IGameState {
 
-	//private Profile profile = ProfileManager.getInstance().getCurrentProfile();
+	private Profile profile;
 	
 	private CharacterInfoButton cruise_button, boiler_button, frigid_button;
 	
 	@Override
 	public void init(GameStateManager gsm) {
 		
-		cruise_button = new CharacterInfoButton(Game.getCenterX() - 300, Game.getCenterY(), buildCharacter(new TypeFrigid()));
+		cruise_button = new CharacterInfoButton(Game.getCenterX() - 300, Game.getCenterY(), buildCharacter(new TypeCruise()));
 		boiler_button = new CharacterInfoButton(Game.getCenterX(), Game.getCenterY(), buildCharacter(new TypeBoiler()));
-		frigid_button = new CharacterInfoButton(Game.getCenterX() + 300, Game.getCenterY(), buildCharacter(new TypeCruise()));
+		frigid_button = new CharacterInfoButton(Game.getCenterX() + 300, Game.getCenterY(), buildCharacter(new TypeFrigid()));
+	}
+	
+	@Override
+	public void onEnter() {
+		profile = ProfileManager.getInstance().getCurrentProfile();
 	}
 
 	private Character buildCharacter(ICharacterType type) {		
@@ -33,7 +40,31 @@ public class ChooseMechState implements IGameState {
 	
 	@Override
 	public void update(GameStateManager gsm) {
+		if (cruise_button.isClicked()) {
+			Character character = new Character();
+			character.type = new TypeCruise();
+			profile.charLib.characters.add(character);
+			enterFight(gsm, character);
+		}
 		
+		if (boiler_button.isClicked()) {
+			Character character = new Character();
+			character.type = new TypeBoiler();
+			profile.charLib.characters.add(character);
+			enterFight(gsm, character);
+		}
+		
+		if (frigid_button.isClicked()) {
+			Character character = new Character();
+			character.type = new TypeFrigid();
+			profile.charLib.characters.add(character);
+			enterFight(gsm, character);
+		}
+	}
+
+	private void enterFight(GameStateManager gsm, Character character) {
+		profile.charLib.hand[0] = character;
+		gsm.switchState(3);
 	}
 
 	@Override
@@ -44,11 +75,6 @@ public class ChooseMechState implements IGameState {
 		cruise_button.render();
 		boiler_button.render();
 		frigid_button.render();
-	}
-
-	@Override
-	public void onEnter() {
-		
 	}
 
 	@Override

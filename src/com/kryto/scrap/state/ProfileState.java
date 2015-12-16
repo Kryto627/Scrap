@@ -24,9 +24,17 @@ public class ProfileState implements IGameState {
 	@Override
 	public void update(GameStateManager gsm) {
 		
-		if (profile_1.isClicked()) manager.loadProfile(0);
-		if (profile_2.isClicked()) manager.loadProfile(1);
-		if (profile_3.isClicked()) manager.loadProfile(2);
+		if (profile_1.isClicked()) {
+			manager.loadProfile(0);
+		}
+		
+		if (profile_2.isClicked()) {
+			manager.loadProfile(1);
+		}
+		
+		if (profile_3.isClicked()) {
+			manager.loadProfile(2);
+		}
 		
 		if (manager.getCurrentProfile() != null) {
 			gsm.switchState(2);

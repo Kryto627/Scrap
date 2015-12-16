@@ -17,6 +17,14 @@ public class Character implements Serializable {
 	
 	public transient GLAnimation animation;
 	
+	public Character(ICharacterType type) {
+		this.type = type;
+	}
+	
+	public Character() {
+		type = null;
+	}
+	
 	public int getEXPCost() {
 		return (level + 1) * 5;
 	}

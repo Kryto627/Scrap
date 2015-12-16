@@ -1,9 +1,13 @@
 package com.kryto.scrap.character.type;
 
+import java.io.Serializable;
+
 import com.kryto.scrap.element.ElementFire;
 import com.kryto.scrap.element.IElement;
 
-public class TypeBoiler implements ICharacterType {
+public class TypeBoiler implements ICharacterType, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String getName() {

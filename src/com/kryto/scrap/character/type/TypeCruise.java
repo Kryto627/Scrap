@@ -1,9 +1,13 @@
 package com.kryto.scrap.character.type;
 
+import java.io.Serializable;
+
 import com.kryto.scrap.element.ElementWind;
 import com.kryto.scrap.element.IElement;
 
-public class TypeCruise implements ICharacterType {
+public class TypeCruise implements ICharacterType, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String getName() {

@@ -28,7 +28,7 @@ public class Scrap {
 		stateManager.addState(1, new ProfileState());
 		stateManager.addState(2, new ChooseMechState());
 		stateManager.addState(3, new BattleState());
-		stateManager.switchState(3);
+		stateManager.switchState(0);
 	}
 	
 	public void update() {

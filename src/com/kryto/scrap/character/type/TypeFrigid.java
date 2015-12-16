@@ -1,9 +1,13 @@
 package com.kryto.scrap.character.type;
 
+import java.io.Serializable;
+
 import com.kryto.scrap.element.ElementIce;
 import com.kryto.scrap.element.IElement;
 
-public class TypeFrigid implements ICharacterType {
+public class TypeFrigid implements ICharacterType, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String getName() {

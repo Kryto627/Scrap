@@ -11,7 +11,7 @@ public class Profile implements Serializable {
 	public CharacterLibrary charLib;
 	
 	public Profile() {
-		markForDelete = false;
+		markForDelete = true;
 		charLib = new CharacterLibrary();
 	}
 }
