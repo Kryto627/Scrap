@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 
 import com.kryto.scrap.Game;
+import com.kryto.scrap.geometry.Rectangle;
 
 public class RenderUtil {
 
@@ -78,7 +79,9 @@ public class RenderUtil {
 		Color.white.bind();
 	}
 	
-	/*public static void trace(Rectangle rect) {	
+	public static void trace(Rectangle rect, Color color) {	
+		
+		color.bind();
 		
 		float x = (float)rect.getX();
 		float y = (float)rect.getY();
@@ -105,8 +108,10 @@ public class RenderUtil {
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex2f(x, y + height);
 		GL11.glVertex2f(x, y);
-		GL11.glEnd();		
-	}*/
+		GL11.glEnd();
+		
+		Color.white.bind();
+	}
 	
 	public static void setBackgroundColor(Color color) {
 		renderRect(0, 0, Game.getWidth(), Game.getHeight(), color);

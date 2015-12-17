@@ -79,6 +79,14 @@ public class GLSprite {
 		render(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 	}
 	
+	public void render(Rectangle rect, boolean flip) {
+		if (flip) { 
+			render(rect.getX() + rect.getWidth(), rect.getY(), -rect.getWidth(), rect.getHeight());
+		} else {
+			render(rect);
+		}
+	}
+	
 	public int getWidth() {
 		return width;
 	}

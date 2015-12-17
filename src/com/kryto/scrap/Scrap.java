@@ -18,6 +18,8 @@ public class Scrap {
 	
 	public GameStateManager stateManager = GameStateManager.getInstance();
 	
+	public static BattleState battleState;
+	
 	public void init() {
 		
 		ProfileManager.getInstance().load();
@@ -25,10 +27,12 @@ public class Scrap {
 		Assets.init();
 		BattleSetups.init();
 		
+		battleState = new BattleState();
+		
 		stateManager.addState(0, new MenuState());
 		stateManager.addState(1, new ProfileState());
 		stateManager.addState(2, new ChooseMechState());
-		stateManager.addState(3, BattleState.getInstance());
+		stateManager.addState(3, battleState);
 		stateManager.switchState(0);
 	}
 	

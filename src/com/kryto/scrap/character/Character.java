@@ -9,13 +9,12 @@ public class Character implements Serializable {
 		
 	private static final long serialVersionUID = 1L;
 	
-	public ICharacterType type;
+	public transient GLAnimation animation;
 	
+	public ICharacterType type;
 	public int exp;
 	public int levelCost;
-	public int level;		
-	
-	public transient GLAnimation animation;
+	public int level;
 	
 	public Character(ICharacterType type) {
 		this.type = type;
@@ -54,4 +53,12 @@ public class Character implements Serializable {
 	public ICharacterType getType() {		
 		return type;		
 	}
+	
+	//------------------------------------------------ CHANGABLE STATS --------------------------------------------------------
+	
+	/*public transient int health;
+	
+	public void loadStats() {
+		health = getMaxHealth();
+	}*/
 }

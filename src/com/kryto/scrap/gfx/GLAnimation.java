@@ -67,4 +67,9 @@ public class GLAnimation {
 		update();
 		getCurrentSprite().render(rectangle);
 	}
+	
+	public void render(Rectangle rectangle, boolean flip) {
+		update();
+		getCurrentSprite().render(rectangle, flip);
+	}
 }

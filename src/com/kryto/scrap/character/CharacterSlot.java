@@ -1,5 +1,9 @@
 package com.kryto.scrap.character;
 
+import org.lwjgl.input.Mouse;
+
+import com.kryto.scrap.Input;
+import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.gfx.GLAnimation;
 
 public class CharacterSlot {
@@ -13,12 +17,21 @@ public class CharacterSlot {
 	private int maxAttack;
 	private int attack;
 	
-	public CharacterSlot(Character character) {
-		this.character = character;
-		initCharData();
+	private Rectangle bounds;
+	private boolean flip;
+	
+	private boolean isGood;
+	private boolean selected;
+	
+	public CharacterSlot(Rectangle bounds, boolean flip) {
+		this.bounds = bounds;
+		this.flip = flip;
 	}
 
-	private void initCharData() {
+	public void initCharData(Character character, boolean isGood) {
+		this.character = character;
+		this.isGood = isGood;
+		
 		animation = character.type.getAnimationByString();
 		maxHealth = character.getMaxHealth();
 		health = maxHealth;
@@ -27,12 +40,32 @@ public class CharacterSlot {
 		attack = maxAttack;
 	}
 	
-	public void render(float x, float y, float width, float height, boolean flip) {
-		if (!flip) {
-			animation.render(x, y, width, height);
-		} else {
-			animation.render(x + width, y, -width, height);
+	public void update() {
+		if (character != null && Mouse.isButtonDown(0)) {
+			selected = bounds.contains(Input.getMouseX(), Input.getMouseY());
 		}
+	}
+	
+	public void render() {
+		if (character != null) {
+			animation.render(bounds, flip);
+		}
+	}
+	
+	public boolean isGood() {
+		return isGood;
+	}
+	
+	public boolean isSelected() {
+		return selected;
+	}
+	
+	public Rectangle getBounds() {
+		return bounds;
+	}
+	
+	public Character getCharacter() {
+		return character;
 	}
 	
 	public int getMaxHealth() {
