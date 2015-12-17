@@ -5,8 +5,18 @@ import java.util.Map;
 
 public class GameStateManager {
 
-	private Map<Integer, IGameState> register = new HashMap<Integer, IGameState>();
+	private static GameStateManager instance = new GameStateManager();
+	
+	public static GameStateManager getInstance() {
+		return instance;
+	}
+	
+	private Map<Integer, IGameState> register;
 	private IGameState currentState;
+	
+	private GameStateManager() {
+		register = new HashMap<Integer, IGameState>();
+	}
 	
 	public IGameState getCurrentState() {
 		return currentState;

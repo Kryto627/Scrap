@@ -3,6 +3,7 @@ package com.kryto.scrap.state;
 import org.newdawn.slick.Color;
 
 import com.kryto.scrap.Game;
+import com.kryto.scrap.battle.BattleSetups;
 import com.kryto.scrap.character.Character;
 import com.kryto.scrap.character.type.ICharacterType;
 import com.kryto.scrap.character.type.TypeBoiler;
@@ -64,7 +65,7 @@ public class ChooseMechState implements IGameState {
 
 	private void enterFight(GameStateManager gsm, Character character) {
 		profile.charLib.hand[0] = character;
-		gsm.switchState(3);
+		BattleState.enterBattle(BattleSetups.firstBattle);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
 
+import com.kryto.scrap.battle.BattleSetups;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gfx.RenderUtil;
 import com.kryto.scrap.profile.ProfileManager;
@@ -15,19 +16,19 @@ import com.kryto.scrap.state.ProfileState;
 
 public class Scrap {
 	
-	public GameStateManager stateManager;
+	public GameStateManager stateManager = GameStateManager.getInstance();
 	
 	public void init() {
 		
 		ProfileManager.getInstance().load();
 		
 		Assets.init();
+		BattleSetups.init();
 		
-		stateManager = new GameStateManager();
 		stateManager.addState(0, new MenuState());
 		stateManager.addState(1, new ProfileState());
 		stateManager.addState(2, new ChooseMechState());
-		stateManager.addState(3, new BattleState());
+		stateManager.addState(3, BattleState.getInstance());
 		stateManager.switchState(0);
 	}
 	
