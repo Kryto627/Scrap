@@ -1,5 +1,7 @@
 package com.kryto.scrap.character;
 
+import java.util.Random;
+
 import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.gfx.GLAnimation;
 
@@ -13,6 +15,9 @@ public class CharacterStack {
 	
 	private int maxAttack;
 	private int attack;
+	
+	private boolean isDone;
+	private CharacterStack target;
 	
 	public CharacterStack(Character character) {
 		initCharData(character);
@@ -49,11 +54,42 @@ public class CharacterStack {
 	public int getHealth() {
 		return health;
 	}
-	
+
 	public int getMaxAttack() {
 		return maxAttack;
 	}
+	
 	public int getAttack() {
 		return attack;
+	}
+	
+	public boolean isDone() {
+		return isDone;
+	}
+	
+	public void setDone(boolean isDone) {
+		this.isDone = isDone;
+	}
+	
+	public CharacterStack getTarget() {
+		return target;
+	}
+	
+	public void setTarget(CharacterStack target) {
+		this.target = target;
+	}
+	
+	public void damage(float power, CharacterStack attacker) {
+		
+		Random random = new Random();
+		
+		int maxDamage = (int) (attacker.getMaxAttack() * (power * 0.01F));
+		int damage = random.nextInt(maxDamage);
+		
+		health -= damage;
+	}
+	
+	public void attack(float power) {
+		target.damage(power, this);
 	}
 }

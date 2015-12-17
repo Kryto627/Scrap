@@ -1,6 +1,5 @@
 package com.kryto.scrap.level;
 
-import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 
 import com.kryto.scrap.character.Character;
@@ -14,12 +13,14 @@ public class HandManager {
 	public static final int AMOUNT = 2;
 
 	public CharacterStack[] hand;
-	
-	public int selectedIndex;
-	public boolean canSkip;
+	public float x, y;
 
-	public HandManager() {
+	public int selectedIndex;
+	
+	public HandManager(float x, float y) {
 		hand = new CharacterStack[AMOUNT];
+		this.x = x;
+		this.y = y;
 	}
 
 	public void setup() {
@@ -31,53 +32,63 @@ public class HandManager {
 			if (character != null) {
 				hand[i] = new CharacterStack(character);
 			}
+			
+			if (i == selectedIndex) {
+				
+				RenderUtil.trace(getBounds(i).addSize(20, 20), Color.white);
+			}
 		}
 	}
 	
 	public void update() {
 		
-		boolean forward = Keyboard.isKeyDown(Keyboard.KEY_RIGHT);
-		boolean backward = Keyboard.isKeyDown(Keyboard.KEY_LEFT);
-		
-		if (canSkip && forward) {
-			selectedIndex++;
-			canSkip = false;
+		if (!isAllDone()) {
+			
+			selectNextActingCharacter();
+			
 		}
-		
-		if (canSkip && backward) {
-			selectedIndex--;
-			canSkip = false;
-		}
-		
-		if (!forward && !backward) {
-			canSkip = true;
-		}
-		
-		if (selectedIndex < 0) {
-			selectedIndex = AMOUNT - 1;
-		}
-		
-		selectedIndex %= AMOUNT;
 	}
-	
-	public void render(float x, float y) {
 		
+	public void render() {
+
 		for (int i = 0; i < AMOUNT; i++) {
-			
-			Rectangle rect = new Rectangle(x + (i * 175), y, 128, 128);
-			
+
+			Rectangle rect = getBounds(i);
+
 			if (hand[i] != null) {
 				hand[i].render(rect);
 			}
-			
-			if (selectedIndex == i) {
-				
-				RenderUtil.trace(rect.addSize(20, 20), Color.white);
-			}
 		}
 	}
+
+	public Rectangle getBounds(int index) {
+		return new Rectangle(x + (index * 175), y, 128, 128);
+	}
 	
-	public CharacterStack getCurrentChar() {
+	public boolean isAllDone() {
+		boolean done = true;
+		
+		for (CharacterStack stack : hand) {
+			if (stack != null && !stack.isDone()) {
+				done = false;
+			}
+		}
+		
+		return done;
+	}
+	
+	public CharacterStack getSelectedCharacter() {
 		return hand[selectedIndex];
+	}
+	
+	public void selectNextActingCharacter() {
+		
+		for (int i = 0; i < AMOUNT; i++) {
+			
+			if (hand[i] != null && !hand[i].isDone()) {
+				
+				selectedIndex = i;
+			}
+		}
 	}
 }
