@@ -39,15 +39,6 @@ public class HandManager {
 			}
 		}
 	}
-	
-	public void update() {
-		
-		if (!isAllDone()) {
-			
-			selectNextActingCharacter();
-			
-		}
-	}
 		
 	public void render() {
 
@@ -81,14 +72,20 @@ public class HandManager {
 		return hand[selectedIndex];
 	}
 	
-	public void selectNextActingCharacter() {
+	public CharacterStack nextActingCharacter() {
 		
-		for (int i = 0; i < AMOUNT; i++) {
+		for (CharacterStack stack : hand) {
 			
-			if (hand[i] != null && !hand[i].isDone()) {
+			if (stack != null && !stack.isDone()) {
 				
-				selectedIndex = i;
+				return stack;
 			}
 		}
+		
+		return null;
+	}
+	
+	public CharacterStack getCharacterAt(int index) {
+		return hand[index];
 	}
 }

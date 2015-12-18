@@ -69,8 +69,33 @@ public class EnemyMamager {
 	public Rectangle getBounds(int index) {
 		return new Rectangle(x - (index * 175) - 128, y, 128, 128);
 	}
-	
+
 	public CharacterStack getTargetCharacter() {
 		return hand[target];
+	}
+
+	public boolean isAllDone() {
+		boolean done = true;
+
+		for (CharacterStack stack : hand) {
+			if (stack != null && !stack.isDone()) {
+				done = false;
+			}
+		}
+
+		return done;
+	}
+
+	public CharacterStack nextActingCharacter() {
+
+		for (CharacterStack stack : hand) {
+
+			if (stack != null && !stack.isDone()) {
+
+				return stack;
+			}
+		}
+
+		return null;
 	}
 }
