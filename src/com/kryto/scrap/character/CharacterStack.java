@@ -24,8 +24,6 @@ public class CharacterStack {
 	private int attack;
 
 	private boolean isDone;
-	private CharacterStack target;
-	private float power;
 	
 	private ParticleSystem particleSystem = new ParticleSystem();
 
@@ -102,24 +100,12 @@ public class CharacterStack {
 	public void setDone(boolean isDone) {
 		this.isDone = isDone;
 	}
+	
+	//-------------------------------------------------------------------------------------------------------------------------
 
-	public CharacterStack getTarget() {
-		return target;
-	}
-
-	public void setTarget(CharacterStack target) {
-		this.target = target;
-	}
-
-	public void takeTurn(CharacterStack target, float power) {
-		this.target = target;
-		this.power = power;
-		isDone = true;
-	}
-
-	public void attack() {
+	public void attack(float power, CharacterStack target) {
 		target.damage(power, this);
-		isDone = false;
+		isDone = true;
 	}
 
 	public void damage(float power, CharacterStack attacker) {

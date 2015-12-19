@@ -8,6 +8,7 @@ public class BattleSetups {
 	
 	public static void init() {
 		firstBattle = new BattleSetup();
-		firstBattle.setupChar(0, new TypeFrigid());
+		firstBattle.addChar(new TypeFrigid());
+		firstBattle.addChar(new TypeFrigid());
 	}
 }

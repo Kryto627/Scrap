@@ -1,22 +1,25 @@
 package com.kryto.scrap.battle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.kryto.scrap.character.Character;
 import com.kryto.scrap.character.type.ICharacterType;
 
 public class BattleSetup {
 
-	private Character[] characters;
+	private List<Character> characters;
 	
 	public BattleSetup() {
-		characters = new Character[2];
+		characters = new ArrayList<Character>();
 	}
 	
-	public void setupChar(int index, ICharacterType type) {
+	public void addChar(ICharacterType type) {
 		Character character = new Character(type);
-		characters[index] = character;
+		characters.add(character);
 	}
 	
-	public Character[] getCharacters() {
+	public List<Character> getCharacters() {
 		return characters;
 	}
 }
