@@ -5,14 +5,12 @@ import java.util.Random;
 import com.kryto.scrap.Game;
 import com.kryto.scrap.battle.BattleSetup;
 import com.kryto.scrap.character.CharacterStack;
-import com.kryto.scrap.gfx.GLSprite;
+import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gui.Button;
 import com.kryto.scrap.level.attack.BufferedAttack;
 import com.kryto.scrap.level.attack.BufferedAttackManager;
 
 public class Level {
-
-	private GLSprite panel, background;
 
 	private PlayerManager playerManager;
 	private EnemyMamager enemyMamager;
@@ -24,9 +22,6 @@ public class Level {
 	private BufferedAttackManager attackManager;
 
 	public Level() {
-
-		panel = new GLSprite("panel.png");
-		background = new GLSprite("battle_bg.png");
 
 		playerManager = new PlayerManager(100, 200);
 		enemyMamager = new EnemyMamager(Game.getWidth() - 100, 200);
@@ -116,12 +111,13 @@ public class Level {
 
 	public void render() {
 
-		panel.render(0, 360, Game.getWidth(), 360);
-		background.render(0, 0, Game.getWidth(), Game.getHeight() / 2);
-
+		Assets.battle_background.render(0, 0, Game.getWidth(), Game.getHeight());
+		
 		playerManager.render();
 		enemyMamager.render();
 
-		attackBtn.render();
+		if (state != TurnState.ATTACK) {
+			attackBtn.render();
+		}		
 	}
 }

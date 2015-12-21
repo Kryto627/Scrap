@@ -47,7 +47,7 @@ public class Scrap {
 	
 	public void render() {
 		
-		Assets.background.render(0, 0, Display.getWidth(), Display.getHeight());
+		Assets.menu_background.render(0, 0, Display.getWidth(), Display.getHeight());
 		RenderUtil.setBackgroundColor(new Color(0, 0, 0, 0.5F));
 		
 		stateManager.render();
