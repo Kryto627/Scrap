@@ -53,15 +53,7 @@ public class Level {
 
 			if (!playerManager.isAllDone()) {
 				
-				CharacterStack stack = playerManager.nextActingCharacter();
-
-				if (attackBtn.isClicked()) {
-
-					BufferedAttack attack = new BufferedAttack(stack, enemyMamager.getTargetCharacter(), 75);
-					attackManager.addAttack(attack);
-					
-					stack.setDone(true);
-				}
+				updatePlayer();
 				
 			} else {
 				state = TurnState.ENEMY;
@@ -72,16 +64,7 @@ public class Level {
 			
 			if (!enemyMamager.isAllDone()) {
 					
-				CharacterStack stack = enemyMamager.nextActingCharacter();
-
-				Random random = new Random();
-				
-				int target = random.nextInt(playerManager.getList().size());
-
-				BufferedAttack attack = new BufferedAttack(stack, playerManager.getCharacterAt(target), 75);
-				attackManager.addAttack(attack);
-					
-				stack.setDone(true);
+				updateEnemy();
 				
 			} else {
 				state = TurnState.ATTACK;
@@ -102,6 +85,33 @@ public class Level {
 				state = TurnState.PLAYER;
 			}
 		}
+	}
+	
+	private void updatePlayer() {
+		
+		CharacterStack stack = playerManager.nextActingCharacter();
+		
+		if (attackBtn.isClicked()) {
+
+			BufferedAttack attack = new BufferedAttack(stack, enemyMamager.getTargetCharacter(), 75);
+			attackManager.addAttack(attack);
+			
+			stack.setDone(true);
+		}
+	}
+	
+	private void updateEnemy() {
+		
+		CharacterStack stack = enemyMamager.nextActingCharacter();
+
+		Random random = new Random();
+		
+		int target = random.nextInt(playerManager.getList().size());
+
+		BufferedAttack attack = new BufferedAttack(stack, playerManager.getCharacterAt(target), 75);
+		attackManager.addAttack(attack);
+			
+		stack.setDone(true);
 	}
 
 	public void render() {
