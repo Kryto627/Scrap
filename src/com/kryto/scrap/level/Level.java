@@ -116,7 +116,7 @@ public class Level {
 		playerManager.render();
 		enemyMamager.render();
 
-		if (state != TurnState.ATTACK) {
+		if (state == TurnState.PLAYER) {
 			attackBtn.render();
 		}		
 	}

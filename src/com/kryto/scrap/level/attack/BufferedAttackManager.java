@@ -1,22 +1,16 @@
 package com.kryto.scrap.level.attack;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.kryto.scrap.util.Timer;
+import com.kryto.scrap.util.WipingArrayList;
 
 public class BufferedAttackManager {
 
-	private List<BufferedAttack> attacks;
+	private WipingArrayList<BufferedAttack> attacks;
 	private Timer attackTime;
 	
 	public BufferedAttackManager() {
-		attacks = new ArrayList<BufferedAttack>();
+		attacks = new WipingArrayList<BufferedAttack>();
 		attackTime = new Timer(1000);
-	}
-	
-	public void next() {
-		attacks.remove(0);
 	}
 	
 	public boolean isDone() {
@@ -31,11 +25,22 @@ public class BufferedAttackManager {
 		
 		if (attackTime.isDoneAndReset() && !isDone()) {
 			
-			BufferedAttack attack = attacks.get(0);
-			
-			attack.attack();
-			
-			next();
+			getFastestAttack().attack();
 		}
+		
+		attacks.clean();
+	}
+	
+	private BufferedAttack getFastestAttack() {
+		
+		BufferedAttack fastest = null;
+		
+		for (BufferedAttack attack : attacks) {
+			if (fastest == null || fastest.getSpeed() < attack.getSpeed()) {
+				fastest = attack;
+			}
+		}
+		
+		return fastest;
 	}
 }
