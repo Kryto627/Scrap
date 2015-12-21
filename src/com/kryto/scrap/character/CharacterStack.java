@@ -1,7 +1,5 @@
 package com.kryto.scrap.character;
 
-import java.util.Random;
-
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 
@@ -103,17 +101,7 @@ public class CharacterStack {
 	
 	//-------------------------------------------------------------------------------------------------------------------------
 
-	public void attack(float power, CharacterStack target) {
-		target.damage(power, this);
-		isDone = true;
-	}
-
-	public void damage(float power, CharacterStack attacker) {
-
-		Random random = new Random();
-
-		int maxDamage = (int) (attacker.getMaxAttack() * (power * 0.01F));
-		int damage = random.nextInt(maxDamage);
+	public void damage(int damage) {
 
 		health -= damage;
 		

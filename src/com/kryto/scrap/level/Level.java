@@ -7,7 +7,8 @@ import com.kryto.scrap.battle.BattleSetup;
 import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.gfx.GLSprite;
 import com.kryto.scrap.gui.Button;
-import com.kryto.scrap.util.Timer;
+import com.kryto.scrap.level.attack.BufferedAttack;
+import com.kryto.scrap.level.attack.BufferedAttackManager;
 
 public class Level {
 
@@ -18,8 +19,9 @@ public class Level {
 
 	private Button attackBtn;
 
-	private Timer turnTimer;
 	private TurnState state;
+	
+	private BufferedAttackManager attackManager;
 
 	public Level() {
 
@@ -31,8 +33,9 @@ public class Level {
 
 		attackBtn = new Button(100, 500, "Attack");
 
-		turnTimer = new Timer(1000);
 		state = TurnState.PLAYER;
+		
+		attackManager = new BufferedAttackManager();
 	}
 
 	public void setupBattle(BattleSetup setup) {
@@ -54,13 +57,13 @@ public class Level {
 
 				if (attackBtn.isClicked()) {
 
-					stack.attack(75, enemyMamager.getTargetCharacter());
-
-					turnTimer.reset();
+					BufferedAttack attack = new BufferedAttack(stack, enemyMamager.getTargetCharacter(), 75);
+					attackManager.addAttack(attack);
+					
+					stack.setDone(true);
 				}
 				
 			} else {
-				enemyMamager.resetAllCharacters();
 				state = TurnState.ENEMY;
 			}
 		}
@@ -68,23 +71,34 @@ public class Level {
 		if (state == TurnState.ENEMY) {
 			
 			if (!enemyMamager.isAllDone()) {
+					
+				CharacterStack stack = enemyMamager.nextActingCharacter();
+
+				Random random = new Random();
 				
-				if (turnTimer.isDone()) {
+				int target = random.nextInt(playerManager.getList().size());
+
+				BufferedAttack attack = new BufferedAttack(stack, playerManager.getCharacterAt(target), 75);
+				attackManager.addAttack(attack);
 					
-					CharacterStack stack = enemyMamager.nextActingCharacter();
-
-					Random random = new Random();
-
-					int target = random.nextInt(playerManager.getList().size());
-					int power = 75;
-
-					stack.attack(power, playerManager.getCharacterAt(target));
-					
-					turnTimer.reset();
-				}
+				stack.setDone(true);
 				
 			} else {
+				state = TurnState.ATTACK;
+			}
+		}
+		
+		if (state == TurnState.ATTACK) {
+			
+			if (!attackManager.isDone()) {
+				
+				attackManager.update();
+				
+			} else {
+				
+				enemyMamager.resetAllCharacters();
 				playerManager.resetAllCharacters();
+				
 				state = TurnState.PLAYER;
 			}
 		}
