@@ -1,4 +1,4 @@
-package com.kryto.scrap.level;
+package com.kryto.scrap.character.manager;
 
 import java.util.ArrayList;
 import java.util.List;

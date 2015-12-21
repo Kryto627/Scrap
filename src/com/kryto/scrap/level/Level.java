@@ -5,10 +5,13 @@ import java.util.Random;
 import com.kryto.scrap.Game;
 import com.kryto.scrap.battle.BattleSetup;
 import com.kryto.scrap.character.CharacterStack;
+import com.kryto.scrap.character.manager.EnemyMamager;
+import com.kryto.scrap.character.manager.PlayerManager;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gui.Button;
 import com.kryto.scrap.level.attack.BufferedAttack;
 import com.kryto.scrap.level.attack.BufferedAttackManager;
+import com.kryto.scrap.level.state.TurnState;
 
 public class Level {
 

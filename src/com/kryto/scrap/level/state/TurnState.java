@@ -1,4 +1,4 @@
-package com.kryto.scrap.level;
+package com.kryto.scrap.level.state;
 
 public enum TurnState {
 

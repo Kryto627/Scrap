@@ -1,4 +1,4 @@
-package com.kryto.scrap.level;
+package com.kryto.scrap.character.manager;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
