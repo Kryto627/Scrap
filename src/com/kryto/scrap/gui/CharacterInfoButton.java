@@ -30,7 +30,7 @@ public class CharacterInfoButton extends Component {
 			Assets.PIXEL_OPERATOR_SMALL.renderCentered(character.getType().getName(), (float)bounds.getCenterX(), (float)(bounds.getY() + bounds.getHeight() + 30), Color.white);
 		
 			Assets.PIXEL_OPERATOR_SMALL.renderCentered("HP: " + character.getMaxHealth(), (float)bounds.getCenterX(), (float)(bounds.getY() + bounds.getHeight() + 55), Color.green);
-			Assets.PIXEL_OPERATOR_SMALL.renderCentered("ATTACK: " + character.getMaxAttack(), (float)bounds.getCenterX(), (float)(bounds.getY() + bounds.getHeight() + 80), Color.red);		
+			Assets.PIXEL_OPERATOR_SMALL.renderCentered("ATTACK: " + character.getMaxDamage(), (float)bounds.getCenterX(), (float)(bounds.getY() + bounds.getHeight() + 80), Color.red);		
 		
 			Assets.PIXEL_OPERATOR_BIG.renderCentered("\"" + character.getType().getIntroQuote() + "\"", Game.getCenterX(), Game.getCenterY() + 300, Color.white);
 		}

@@ -1,6 +1,6 @@
 package com.kryto.scrap.battle;
 
-import com.kryto.scrap.character.type.TypeCruise;
+import com.kryto.scrap.character.type.TypeBoiler;
 
 public class BattleSetups {
 
@@ -8,6 +8,6 @@ public class BattleSetups {
 	
 	public static void init() {
 		firstBattle = new BattleSetup();
-		firstBattle.addChar(new TypeCruise());
+		firstBattle.addChar(new TypeBoiler());
 	}
 }

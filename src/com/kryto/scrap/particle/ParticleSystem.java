@@ -55,8 +55,11 @@ public class ParticleSystem {
 		
 		for (int i =  0; i < amount; i++) {
 			
-			float dx = (random.nextFloat() + (spred + spred)) - spred;
-			float dy = (random.nextFloat() + (spred + spred)) - spred;
+			float max = spred;
+			float min = -spred;
+			
+			float dx = random.nextFloat() * (max - min) + min;
+			float dy = random.nextFloat() * (max - min) + min;
 			
 			spawnParticle(x, y, width, height, color, time, dx, dy);
 		}

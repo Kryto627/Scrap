@@ -9,11 +9,11 @@ public class Input {
 
 	public static float getMouseX() {
 
-		return MathUtil.sacle(Mouse.getX(), Display.getWidth(), Game.WIDTH);
+		return MathUtil.scale(Mouse.getX(), Display.getWidth(), Game.WIDTH);
 	}
 
 	public static float getMouseY() {
 
-		return (float) (Game.HEIGHT - MathUtil.sacle(Mouse.getY(), Display.getHeight(), Game.HEIGHT));
+		return (float) (Game.HEIGHT - MathUtil.scale(Mouse.getY(), Display.getHeight(), Game.HEIGHT));
 	}
 }

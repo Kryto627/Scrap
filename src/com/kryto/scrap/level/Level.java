@@ -16,7 +16,7 @@ import com.kryto.scrap.level.state.TurnState;
 public class Level {
 
 	private PlayerManager playerManager;
-	private EnemyMamager enemyMamager;
+	private EnemyMamager enemyManager;
 
 	private Button attackBtn;
 
@@ -27,7 +27,7 @@ public class Level {
 	public Level() {
 
 		playerManager = new PlayerManager(100, 200);
-		enemyMamager = new EnemyMamager(Game.getWidth() - 100, 200);
+		enemyManager = new EnemyMamager(Game.getWidth() - 100, 200);
 
 		attackBtn = new Button(100, 500, "Attack");
 
@@ -37,7 +37,7 @@ public class Level {
 	}
 
 	public void setupBattle(BattleSetup setup) {
-		enemyMamager.setup(setup);
+		enemyManager.setup(setup);
 	}
 
 	public void setupHand() {
@@ -45,7 +45,7 @@ public class Level {
 	}
 
 	public void update() {
-		enemyMamager.update();
+		enemyManager.update();
 
 		if (state == TurnState.PLAYER) {
 
@@ -60,7 +60,7 @@ public class Level {
 		
 		if (state == TurnState.ENEMY) {
 			
-			if (!enemyMamager.isAllDone()) {
+			if (!enemyManager.isAllDone()) {
 					
 				updateEnemy();
 				
@@ -77,11 +77,25 @@ public class Level {
 				
 			} else {
 				
-				enemyMamager.resetAllCharacters();
+				enemyManager.resetAllCharacters();
 				playerManager.resetAllCharacters();
 				
-				state = TurnState.PLAYER;
+				state = TurnState.BUFF;
 			}
+		}
+		
+		if (state == TurnState.BUFF) {
+			for (CharacterStack stack : playerManager.getList()) {
+				stack.getBuffManager().update();
+				stack.getCharacter().updatePassive(stack);
+			}
+			
+			for (CharacterStack stack : enemyManager.getList()) {
+				stack.getBuffManager().update();
+				stack.getCharacter().updatePassive(stack);
+			}
+			
+			state = TurnState.PLAYER;
 		}
 	}
 	
@@ -89,9 +103,11 @@ public class Level {
 		
 		CharacterStack stack = playerManager.nextActingCharacter();
 		
+		stack.getBuffManager().onTurn();
+		
 		if (attackBtn.isClicked()) {
 
-			BufferedAttack attack = new BufferedAttack(stack, enemyMamager.getTargetCharacter(), 75);
+			BufferedAttack attack = new BufferedAttack(stack, enemyManager.getTargetCharacter(), 75);
 			attackManager.addAttack(attack);
 			
 			stack.setDone(true);
@@ -100,16 +116,21 @@ public class Level {
 	
 	private void updateEnemy() {
 		
-		CharacterStack stack = enemyMamager.nextActingCharacter();
+		CharacterStack stack = enemyManager.nextActingCharacter();
 
-		Random random = new Random();
+		stack.getBuffManager().onTurn();
 		
-		int target = random.nextInt(playerManager.getList().size());
-
-		BufferedAttack attack = new BufferedAttack(stack, playerManager.getCharacterAt(target), 75);
-		attackManager.addAttack(attack);
+		if (!stack.isDone()) {
 			
-		stack.setDone(true);
+			Random random = new Random();
+			
+			int target = random.nextInt(playerManager.getList().size());
+
+			BufferedAttack attack = new BufferedAttack(stack, playerManager.getCharacterAt(target), 75);
+			attackManager.addAttack(attack);
+				
+			stack.setDone(true);
+		}
 	}
 
 	public void render() {
@@ -117,7 +138,7 @@ public class Level {
 		Assets.battle_background.render(0, 0, Game.getWidth(), Game.getHeight());
 		
 		playerManager.render();
-		enemyMamager.render();
+		enemyManager.render();
 
 		if (state == TurnState.PLAYER) {
 			attackBtn.render();

@@ -32,7 +32,7 @@ public class Character implements Serializable {
 		return (level + 1) * getType().getHealthMultiplier();
 	}
 	
-	public int getMaxAttack() {
+	public int getMaxDamage() {
 		return (level + 1) * getType().getAttackMultiplier();
 	}
 	
@@ -50,6 +50,14 @@ public class Character implements Serializable {
 	
 	public int getCriticalChance() {
 		return 10;
+	}
+	
+	public void updatePassive(CharacterStack stack) {
+		getType().updatePassive(stack);
+	}
+	
+	public void onAttack(CharacterStack attacker, CharacterStack target) {
+		getType().onAttack(attacker, target);
 	}
 		
 	public void renderCentered(float x, float y, float width, float height, float scale) {

@@ -3,6 +3,7 @@ package com.kryto.scrap.character;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 
+import com.kryto.scrap.effects.EffectManager;
 import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gfx.GLAnimation;
@@ -18,12 +19,13 @@ public class CharacterStack {
 	private int maxHealth;
 	private int health;
 
-	private int maxAttack;
-	private int attack;
+	private int maxDamage;
 
 	private boolean isDone;
 	
 	private ParticleSystem particleSystem = new ParticleSystem();
+	
+	private EffectManager buffManager;
 
 	public CharacterStack(Character character) {
 		initCharData(character);
@@ -37,8 +39,9 @@ public class CharacterStack {
 		maxHealth = character.getMaxHealth();
 		health = maxHealth;
 
-		maxAttack = character.getMaxAttack();
-		attack = maxAttack;
+		maxDamage = character.getMaxDamage();
+		
+		buffManager = new EffectManager(this);
 	}
 
 	public void render(Rectangle rect) {
@@ -51,6 +54,10 @@ public class CharacterStack {
 		GL11.glTranslatef(rect.getX() + (rect.getWidth() / 2), rect.getY() + (rect.getHeight() / 2), 0);
 		particleSystem.render();
 		GL11.glPopMatrix();
+		
+		if (buffManager != null) {
+			buffManager.render(rect);
+		}
 	}
 
 	public void renderFlipped(Rectangle rect) {
@@ -63,6 +70,10 @@ public class CharacterStack {
 		GL11.glTranslatef(rect.getX() + (rect.getWidth() / 2), rect.getY() + (rect.getHeight() / 2), 0);
 		particleSystem.render();
 		GL11.glPopMatrix();
+		
+		if (buffManager != null) {
+			buffManager.render(rect);
+		}
 	}
 	
 	public void renderStats(float x, float y) {
@@ -83,12 +94,12 @@ public class CharacterStack {
 		return health;
 	}
 
-	public int getMaxAttack() {
-		return maxAttack;
+	public int getMaxDamage() {
+		return maxDamage;
 	}
-
-	public int getAttack() {
-		return attack;
+	
+	public void setMaxDamage(int maxDamage) {
+		this.maxDamage = maxDamage;
 	}
 
 	public boolean isDone() {
@@ -99,8 +110,23 @@ public class CharacterStack {
 		this.isDone = isDone;
 	}
 	
+	public EffectManager getBuffManager() {
+		return buffManager;
+	}
+	
+	public ParticleSystem getParticleSystem() {
+		return particleSystem;
+	}
+	
 	//-------------------------------------------------------------------------------------------------------------------------
 
+	public void heal(int amount) {
+		health += amount;
+		
+		TextParticle text = new TextParticle(Integer.toString(amount), 0, 0, Color.green, 3000);
+		particleSystem.addParticle(text);
+	}
+	
 	public void damage(int damage) {
 
 		health -= damage;
