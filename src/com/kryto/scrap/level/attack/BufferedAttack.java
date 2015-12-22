@@ -3,6 +3,7 @@ package com.kryto.scrap.level.attack;
 import java.util.Random;
 
 import com.kryto.scrap.character.CharacterStack;
+import com.kryto.scrap.event.EventHandler;
 import com.kryto.scrap.stats.Stats;
 import com.kryto.scrap.util.IWipeable;
 import com.kryto.scrap.util.MathUtil;
@@ -39,10 +40,8 @@ public class BufferedAttack implements IWipeable {
 		}
 		
 		else {
-		
-			//Events
-			attacker.getBuffManager().onAttack(target);
-			attacker.getCharacter().onAttack(attacker, target);
+			
+			EventHandler.getInstance().call(e -> e.onAttack(attacker, target));
 			
 			int damage = getMaxDamage();
 			damage -= MathUtil.percent(damage, targetStats.getDefense());

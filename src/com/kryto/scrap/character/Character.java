@@ -22,14 +22,6 @@ public class Character implements Serializable {
 	public Character() {
 		type = null;
 	}
-	
-	public void updatePassive(CharacterStack stack) {
-		getType().updatePassive(stack);
-	}
-	
-	public void onAttack(CharacterStack attacker, CharacterStack target) {
-		getType().onAttack(attacker, target);
-	}
 		
 	public void renderCentered(float x, float y, float width, float height, float scale) {
 		

@@ -7,6 +7,7 @@ import com.kryto.scrap.battle.BattleSetup;
 import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.character.manager.EnemyMamager;
 import com.kryto.scrap.character.manager.PlayerManager;
+import com.kryto.scrap.event.EventHandler;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gui.Button;
 import com.kryto.scrap.level.attack.BufferedAttack;
@@ -87,12 +88,12 @@ public class Level {
 		if (state == TurnState.BUFF) {
 			for (CharacterStack stack : playerManager.getList()) {
 				stack.getBuffManager().update();
-				stack.getCharacter().updatePassive(stack);
+				EventHandler.getInstance().call(e -> e.onPassive(stack));
 			}
 			
 			for (CharacterStack stack : enemyManager.getList()) {
 				stack.getBuffManager().update();
-				stack.getCharacter().updatePassive(stack);
+				EventHandler.getInstance().call(e -> e.onPassive(stack));
 			}
 			
 			state = TurnState.PLAYER;
@@ -104,6 +105,8 @@ public class Level {
 		CharacterStack stack = playerManager.nextActingCharacter();
 		
 		stack.getBuffManager().onTurn();
+		
+		EventHandler.getInstance().call(e -> e.onTurn(stack));
 		
 		if (attackBtn.isClicked()) {
 
@@ -119,6 +122,8 @@ public class Level {
 		CharacterStack stack = enemyManager.nextActingCharacter();
 
 		stack.getBuffManager().onTurn();
+		
+		EventHandler.getInstance().call(e -> e.onTurn(stack));
 		
 		if (!stack.isDone()) {
 			
