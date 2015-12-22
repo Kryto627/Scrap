@@ -110,4 +110,9 @@ public class CharacterStack {
 		
 		particleSystem.spawnParticlesWithGravity(0, 0, 8, 8, 1000, Color.red, 2, 20);
 	}
+	
+	public void dodge() {
+		TextParticle text = new TextParticle("Dodged", 0, 0, Color.yellow, 3000);
+		particleSystem.addParticle(text);
+	}
 }

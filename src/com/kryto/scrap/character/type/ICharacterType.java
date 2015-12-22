@@ -9,8 +9,13 @@ public interface ICharacterType {
 	public String getName();
 	public IElement getElement();
 	
-	public int getHealthMultiplier();	
+	public int getHealthMultiplier();
 	public int getAttackMultiplier();
+	
+	public int getBaseDefence();
+	public int getBaseDodge();
+	
+	public int getBaseSpeed();
 	
 	public default String getIntroQuote() {
 		return "...";

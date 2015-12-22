@@ -30,6 +30,21 @@ public class TypeCruise implements ICharacterType, Serializable {
 	}
 	
 	@Override
+	public int getBaseDefence() {
+		return 10;
+	}
+	
+	@Override
+	public int getBaseDodge() {
+		return 10;
+	}
+	
+	@Override
+	public int getBaseSpeed() {
+		return 60;
+	}
+	
+	@Override
 	public IElement getElement() {
 		return new ElementWind();
 	}

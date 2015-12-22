@@ -30,6 +30,21 @@ public class TypeFrigid implements ICharacterType, Serializable {
 	}
 	
 	@Override
+	public int getBaseDefence() {
+		return 30;
+	}
+	
+	@Override
+	public int getBaseDodge() {
+		return 1;
+	}
+	
+	@Override
+	public int getBaseSpeed() {
+		return 20;
+	}
+	
+	@Override
 	public IElement getElement() {
 		return new ElementIce();
 	}

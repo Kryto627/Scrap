@@ -9,6 +9,5 @@ public class BattleSetups {
 	public static void init() {
 		firstBattle = new BattleSetup();
 		firstBattle.addChar(new TypeFrigid());
-		firstBattle.addChar(new TypeFrigid());
 	}
 }

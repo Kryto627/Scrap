@@ -35,7 +35,7 @@ public class Character implements Serializable {
 	public int getMaxAttack() {
 		return (level + 1) * getType().getAttackMultiplier();
 	}
-	
+		
 	public void renderCentered(float x, float y, float width, float height, float scale) {
 		
 		float scaledWidth = width * scale;

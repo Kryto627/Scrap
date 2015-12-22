@@ -28,7 +28,22 @@ public class TypeBoiler implements ICharacterType, Serializable {
 	public int getAttackMultiplier() {
 		return 200;
 	}
+	
+	@Override
+	public int getBaseDefence() {
+		return 15;
+	}
+	
+	@Override
+	public int getBaseDodge() {
+		return 5;
+	}
 
+	@Override
+	public int getBaseSpeed() {
+		return 30;
+	}
+	
 	@Override
 	public IElement getElement() {
 		return new ElementFire();
