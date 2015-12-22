@@ -2,8 +2,8 @@ package com.kryto.scrap.character.type;
 
 import java.io.Serializable;
 
-import com.kryto.scrap.element.ElementFire;
-import com.kryto.scrap.element.IElement;
+import com.kryto.scrap.character.element.ElementFire;
+import com.kryto.scrap.character.element.IElement;
 import com.kryto.scrap.stats.Stats;
 
 public class TypeBoiler implements ICharacterType, Serializable {

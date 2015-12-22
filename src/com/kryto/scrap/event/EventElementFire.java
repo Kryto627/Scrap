@@ -1,8 +1,8 @@
 package com.kryto.scrap.event;
 
 import com.kryto.scrap.character.CharacterStack;
+import com.kryto.scrap.character.element.ElementFire;
 import com.kryto.scrap.effects.EnrageEffect;
-import com.kryto.scrap.element.ElementFire;
 import com.kryto.scrap.stats.Stats;
 import com.kryto.scrap.util.MathUtil;
 

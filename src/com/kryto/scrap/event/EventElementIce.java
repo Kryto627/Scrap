@@ -1,8 +1,8 @@
 package com.kryto.scrap.event;
 
 import com.kryto.scrap.character.CharacterStack;
+import com.kryto.scrap.character.element.ElementIce;
 import com.kryto.scrap.effects.SnowedInEffect;
-import com.kryto.scrap.element.ElementIce;
 import com.kryto.scrap.util.MathUtil;
 
 public class EventElementIce implements IEventListerner {

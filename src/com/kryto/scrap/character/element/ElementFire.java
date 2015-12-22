@@ -1,4 +1,4 @@
-package com.kryto.scrap.element;
+package com.kryto.scrap.character.element;
 
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gfx.GLSprite;

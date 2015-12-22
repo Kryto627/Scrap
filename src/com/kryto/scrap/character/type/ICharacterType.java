@@ -1,6 +1,6 @@
 package com.kryto.scrap.character.type;
 
-import com.kryto.scrap.element.IElement;
+import com.kryto.scrap.character.element.IElement;
 import com.kryto.scrap.gfx.GLAnimation;
 import com.kryto.scrap.gfx.GLSprite;
 import com.kryto.scrap.stats.Stats;
