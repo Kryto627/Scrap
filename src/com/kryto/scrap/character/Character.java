@@ -35,6 +35,22 @@ public class Character implements Serializable {
 	public int getMaxAttack() {
 		return (level + 1) * getType().getAttackMultiplier();
 	}
+	
+	public int getDefense() {
+		return getType().getBaseDefense();
+	}
+	
+	public int getDodge() {
+		return getType().getBaseDodge();
+	}
+	
+	public int getSpeed() {
+		return getType().getBaseSpeed();
+	}
+	
+	public int getCriticalChance() {
+		return 10;
+	}
 		
 	public void renderCentered(float x, float y, float width, float height, float scale) {
 		

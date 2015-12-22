@@ -36,7 +36,7 @@ public class TypeCruise implements ICharacterType, Serializable {
 	
 	@Override
 	public int getBaseDodge() {
-		return 10;
+		return 30;
 	}
 	
 	@Override

@@ -16,17 +16,21 @@ public class BufferedAttack implements IWipeable {
 	private int defense = 0;
 	private int dodge = 0;
 	
-	private int speed = 0;	
+	private int speed = 0;
+	
+	private int crit = 0;
 	
 	public BufferedAttack(CharacterStack attacker, CharacterStack target, float power) {
 		this.attacker = attacker;
 		this.target = target;
 		this.power = power;
 		
-		this.defense = target.getCharacter().getType().getBaseDefense();
-		this.dodge = target.getCharacter().getType().getBaseDodge();
+		this.defense = target.getCharacter().getDefense();
+		this.dodge = target.getCharacter().getDodge();
 		
-		this.speed = attacker.getCharacter().getType().getBaseSpeed();		
+		this.speed = attacker.getCharacter().getSpeed();
+		
+		this.crit = attacker.getCharacter().getCriticalChance();
 	}
 
 	public int getMaxDamage() {
@@ -35,9 +39,10 @@ public class BufferedAttack implements IWipeable {
 	
 	public void attack() {
 		
-		int value = random.nextInt(100);
+		int dodgeChance = random.nextInt(100);
+		int critChance = random.nextInt(100);
 		
-		if (value <= dodge) {
+		if (dodgeChance <= dodge) {
 			target.dodge();
 		}
 		
@@ -46,7 +51,11 @@ public class BufferedAttack implements IWipeable {
 			int damage = getMaxDamage();
 			damage -= damage * (defense * 0.01F);
 				
-			target.damage(damage);			
+			if (critChance <= crit) {
+				target.damageCritical(damage);
+			}
+			
+			else target.damage(damage);			
 		}
 		
 		wipe();
