@@ -11,8 +11,7 @@ public class Assets {
 	public static GLSprite menu_background;
 	
 	public static GLSprite button_end;
-	public static GLSprite selected_button_end;
-	
+
 	public static GLSprite battle_background;
 	
 	public static void init() {
@@ -27,8 +26,7 @@ public class Assets {
 		menu_background = new GLSprite("menu_background.png");
 		
 		button_end = gui_sheet.getSubSprite(124, 0, 4, 21);		
-		selected_button_end = gui_sheet.getSubSprite(124, 21, 4, 21);
-		
+
 		battle_background = battle_sheet.getSubSprite(0, 0, 320, 180);
 	}
 	
