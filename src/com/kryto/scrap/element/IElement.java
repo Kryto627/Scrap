@@ -6,4 +6,8 @@ public interface IElement {
 	
 	public String getName();
 	public GLSprite getEmblem();
+	
+	public default int getDodgeAdditive() {
+		return 0;
+	}
 }

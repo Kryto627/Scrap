@@ -41,7 +41,7 @@ public class Character implements Serializable {
 	}
 	
 	public int getDodge() {
-		return getType().getBaseDodge();
+		return getType().getBaseDodge() + getType().getElement().getDodgeAdditive();
 	}
 	
 	public int getSpeed() {

@@ -9,6 +9,11 @@ public class ElementWind implements IElement {
 	public String getName() {
 		return "Wind";
 	}
+	
+	@Override
+	public int getDodgeAdditive() {
+		return 20;
+	}	
 
 	@Override
 	public GLSprite getEmblem() {
