@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.kryto.scrap.element.ElementWind;
 import com.kryto.scrap.element.IElement;
+import com.kryto.scrap.stats.Stats;
 
 public class TypeCruise implements ICharacterType, Serializable {
 
@@ -20,6 +21,15 @@ public class TypeCruise implements ICharacterType, Serializable {
 	}
 	
 	@Override
+	public Stats getDefaultStats() {
+		Stats stats = new Stats();
+		stats.setDefense(10);
+		stats.setDodgeChance(10);
+		stats.setSpeed(60);
+		return stats;
+	}
+	
+	@Override
 	public int getHealthMultiplier() {
 		return 800;
 	}
@@ -27,21 +37,6 @@ public class TypeCruise implements ICharacterType, Serializable {
 	@Override
 	public int getAttackMultiplier() {
 		return 240;
-	}
-	
-	@Override
-	public int getBaseDefense() {
-		return 10;
-	}
-	
-	@Override
-	public int getBaseDodge() {
-		return 10;
-	}
-	
-	@Override
-	public int getBaseSpeed() {
-		return 60;
 	}
 	
 	@Override

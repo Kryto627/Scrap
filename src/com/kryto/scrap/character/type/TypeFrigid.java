@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.kryto.scrap.element.ElementIce;
 import com.kryto.scrap.element.IElement;
+import com.kryto.scrap.stats.Stats;
 
 public class TypeFrigid implements ICharacterType, Serializable {
 
@@ -20,6 +21,15 @@ public class TypeFrigid implements ICharacterType, Serializable {
 	}
 	
 	@Override
+	public Stats getDefaultStats() {
+		Stats stats = new Stats();
+		stats.setDefense(30);
+		stats.setDodgeChance(1);
+		stats.setSpeed(20);
+		return stats;
+	}
+	
+	@Override
 	public int getHealthMultiplier() {
 		return 1200;
 	}
@@ -27,21 +37,6 @@ public class TypeFrigid implements ICharacterType, Serializable {
 	@Override
 	public int getAttackMultiplier() {
 		return 160;
-	}
-	
-	@Override
-	public int getBaseDefense() {
-		return 30;
-	}
-	
-	@Override
-	public int getBaseDodge() {
-		return 1;
-	}
-	
-	@Override
-	public int getBaseSpeed() {
-		return 20;
 	}
 	
 	@Override

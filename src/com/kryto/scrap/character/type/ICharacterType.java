@@ -4,19 +4,19 @@ import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.element.IElement;
 import com.kryto.scrap.gfx.GLAnimation;
 import com.kryto.scrap.gfx.GLSprite;
+import com.kryto.scrap.stats.Stats;
 
 public interface ICharacterType {
 	
 	public String getName();
+	
 	public IElement getElement();
 	
+	public Stats getDefaultStats();
+	
 	public int getHealthMultiplier();
+	
 	public int getAttackMultiplier();
-	
-	public int getBaseDefense();
-	public int getBaseDodge();
-	
-	public int getBaseSpeed();
 	
 	public default String getIntroQuote() {
 		return "...";

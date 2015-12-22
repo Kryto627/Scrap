@@ -3,6 +3,7 @@ package com.kryto.scrap.level.attack;
 import java.util.Random;
 
 import com.kryto.scrap.character.CharacterStack;
+import com.kryto.scrap.stats.Stats;
 import com.kryto.scrap.util.IWipeable;
 import com.kryto.scrap.util.MathUtil;
 
@@ -12,30 +13,20 @@ public class BufferedAttack implements IWipeable {
 	private boolean isDone = false;
 	
 	private CharacterStack attacker, target;
+	private Stats attackerStats, targetStats;
 	private float power;
-	
-	private int defense = 0;
-	private int dodge = 0;
-	
-	private int speed = 0;
-	
-	private int crit = 0;
 	
 	public BufferedAttack(CharacterStack attacker, CharacterStack target, float power) {
 		this.attacker = attacker;
 		this.target = target;
 		this.power = power;
 		
-		this.defense = target.getCharacter().getDefense();
-		this.dodge = target.getCharacter().getDodge();
-		
-		this.speed = attacker.getCharacter().getSpeed();
-		
-		this.crit = attacker.getCharacter().getCriticalChance();
+		this.attackerStats = attacker.getStats().clone();
+		this.targetStats = target.getStats().clone();
 	}
 
 	public int getMaxDamage() {
-		return (int) MathUtil.percent(attacker.getMaxDamage(), power);
+		return (int) MathUtil.percent(attackerStats.getMaxDamage(), power);
 	}
 	
 	public void attack() {
@@ -43,30 +34,33 @@ public class BufferedAttack implements IWipeable {
 		int dodgeChance = random.nextInt(100);
 		int critChance = random.nextInt(100);
 		
-		if (dodgeChance <= dodge) {
+		if (dodgeChance <= targetStats.getDodgeChance()) {
 			target.dodge();
 		}
 		
 		else {
 		
+			//Events
 			attacker.getBuffManager().onAttack(target);
 			attacker.getCharacter().onAttack(attacker, target);
 			
 			int damage = getMaxDamage();
-			damage -= MathUtil.percent(damage, defense);
+			damage -= MathUtil.percent(damage, targetStats.getDefense());
 				
-			if (critChance <= crit) {
+			if (critChance <= attackerStats.getCritChance()) {
 				target.damageCritical(damage);
 			}
 			
-			else target.damage(damage);			
+			else {
+				target.damage(damage);			
+			}
 		}
 		
 		wipe();
 	}
 	
 	public int getSpeed() {
-		return speed;
+		return attackerStats.getSpeed();
 	}
 
 	@Override

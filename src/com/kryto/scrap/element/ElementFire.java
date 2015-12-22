@@ -23,7 +23,7 @@ public class ElementFire implements IElement {
 	@Override
 	public void updatePassive(CharacterStack stack) {
 		
-		if (stack.getHealth() < MathUtil.percent(stack.getMaxHealth(), ENRAGE_VALUE)) {
+		if (stack.getStats().getHealth() < MathUtil.percent(stack.getStats().getMaxHealth(), ENRAGE_VALUE)) {
 			
 			stack.getBuffManager().addEffect(new EnrageEffect());
 		}

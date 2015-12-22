@@ -10,16 +10,14 @@ import com.kryto.scrap.gfx.GLAnimation;
 import com.kryto.scrap.gfx.GLFont;
 import com.kryto.scrap.particle.ParticleSystem;
 import com.kryto.scrap.particle.TextParticle;
+import com.kryto.scrap.stats.Stats;
 
 public class CharacterStack {
 
 	private Character character;
 	private GLAnimation animation;
 
-	private int maxHealth;
-	private int health;
-
-	private int maxDamage;
+	private Stats stats;
 
 	private boolean isDone;
 	
@@ -36,10 +34,7 @@ public class CharacterStack {
 
 		animation = character.type.getAnimationByString();
 
-		maxHealth = character.getMaxHealth();
-		health = maxHealth;
-
-		maxDamage = character.getMaxDamage();
+		stats = character.getStats().clone();
 		
 		buffManager = new EffectManager(this);
 	}
@@ -79,27 +74,15 @@ public class CharacterStack {
 	public void renderStats(float x, float y) {
 		GLFont font = Assets.PIXEL_OPERATOR_SMALL;
 		
-		font.renderCentered("HP: " + health + "/" + maxHealth, x, y, Color.red);
+		font.renderCentered("HP: " + stats.getHealth() + "/" + stats.getMaxHealth(), x, y, Color.red);
 	}
 
 	public Character getCharacter() {
 		return character;
 	}
-
-	public int getMaxHealth() {
-		return maxHealth;
-	}
-
-	public int getHealth() {
-		return health;
-	}
-
-	public int getMaxDamage() {
-		return maxDamage;
-	}
 	
-	public void setMaxDamage(int maxDamage) {
-		this.maxDamage = maxDamage;
+	public Stats getStats() {
+		return stats;
 	}
 
 	public boolean isDone() {
@@ -121,29 +104,30 @@ public class CharacterStack {
 	//-------------------------------------------------------------------------------------------------------------------------
 
 	public void heal(int amount) {
-		health += amount;
+		
+		stats.heal(amount);
 		
 		TextParticle text = new TextParticle(Integer.toString(amount), 0, 0, Color.green, 3000);
 		particleSystem.addParticle(text);
 	}
 	
-	public void damage(int damage) {
+	public void damage(int amount) {
 
-		health -= damage;
+		stats.damage(amount);
 		
-		TextParticle text = new TextParticle(Integer.toString(damage), 0, 0, Color.red, 3000);
+		TextParticle text = new TextParticle(Integer.toString(amount), 0, 0, Color.red, 3000);
 		particleSystem.addParticle(text);
 		
-		particleSystem.spawnParticlesWithGravity(0, 0, 8, 8, 1000, Color.red, 2, 20);
+		particleSystem.spawnParticlesWithGravity(0, 0, 8, 8, 1000, Color.red, 1, 20);
 	}
 	
-	public void damageCritical(int damage) {
+	public void damageCritical(int amount) {
 		
-		damage *= 2;
+		amount *= 2;
 		
-		health -= damage;
+		stats.damage(amount);
 		
-		TextParticle text = new TextParticle(Integer.toString(damage), 0, 0, Color.pink, 3000);
+		TextParticle text = new TextParticle(Integer.toString(amount), 0, 0, Color.pink, 3000);
 		particleSystem.addParticle(text);
 		
 		particleSystem.spawnParticlesWithGravity(0, 0, 8, 8, 1000, Color.red, 2, 20);

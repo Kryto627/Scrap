@@ -18,8 +18,8 @@ public class EnrageEffect extends Effect {
 
 	@Override
 	public void init() {
-		maxDamage = manager.getHost().getMaxDamage();
-		manager.getHost().setMaxDamage(MathUtil.percent(maxDamage, 150));
+		maxDamage = manager.getHost().getStats().getMaxDamage();
+		manager.getHost().getStats().setMaxDamage(MathUtil.percent(maxDamage, 150));
 	}
 
 	@Override

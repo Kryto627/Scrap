@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.kryto.scrap.element.ElementFire;
 import com.kryto.scrap.element.IElement;
+import com.kryto.scrap.stats.Stats;
 
 public class TypeBoiler implements ICharacterType, Serializable {
 
@@ -20,6 +21,15 @@ public class TypeBoiler implements ICharacterType, Serializable {
 	}
 	
 	@Override
+	public Stats getDefaultStats() {
+		Stats stats = new Stats();
+		stats.setDefense(15);
+		stats.setDodgeChance(5);
+		stats.setSpeed(30);
+		return stats;
+	}
+	
+	@Override
 	public int getHealthMultiplier() {
 		return 1000;
 	}
@@ -27,21 +37,6 @@ public class TypeBoiler implements ICharacterType, Serializable {
 	@Override
 	public int getAttackMultiplier() {
 		return 200;
-	}
-	
-	@Override
-	public int getBaseDefense() {
-		return 15;
-	}
-	
-	@Override
-	public int getBaseDodge() {
-		return 5;
-	}
-
-	@Override
-	public int getBaseSpeed() {
-		return 30;
 	}
 	
 	@Override

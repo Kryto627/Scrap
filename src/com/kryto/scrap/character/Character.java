@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.kryto.scrap.character.type.ICharacterType;
 import com.kryto.scrap.gfx.GLAnimation;
+import com.kryto.scrap.stats.Stats;
 
 public class Character implements Serializable {
 		
@@ -12,9 +13,7 @@ public class Character implements Serializable {
 	public transient GLAnimation animation;
 	
 	public ICharacterType type;
-	public int exp;
-	public int levelCost;
-	public int level;
+	public int exp, level;
 	
 	public Character(ICharacterType type) {
 		this.type = type;
@@ -22,34 +21,6 @@ public class Character implements Serializable {
 	
 	public Character() {
 		type = null;
-	}
-	
-	public int getEXPCost() {
-		return (level + 1) * 5;
-	}
-	
-	public int getMaxHealth() {
-		return (level + 1) * getType().getHealthMultiplier();
-	}
-	
-	public int getMaxDamage() {
-		return (level + 1) * getType().getAttackMultiplier();
-	}
-	
-	public int getDefense() {
-		return getType().getBaseDefense();
-	}
-	
-	public int getDodge() {
-		return getType().getBaseDodge() + getType().getElement().getDodgeAdditive();
-	}
-	
-	public int getSpeed() {
-		return getType().getBaseSpeed();
-	}
-	
-	public int getCriticalChance() {
-		return 10;
 	}
 	
 	public void updatePassive(CharacterStack stack) {
@@ -78,11 +49,14 @@ public class Character implements Serializable {
 		return type;		
 	}
 	
-	//------------------------------------------------ CHANGABLE STATS --------------------------------------------------------
-	
-	/*public transient int health;
-	
-	public void loadStats() {
-		health = getMaxHealth();
-	}*/
+	public Stats getStats() {
+		Stats stats = getType().getDefaultStats();
+		
+		stats.setMaxHealth((level + 1) * getType().getHealthMultiplier());
+		stats.setMaxDamage((level + 1) * getType().getAttackMultiplier());
+		
+		stats.resetHealth();
+		
+		return stats;
+	}
 }
