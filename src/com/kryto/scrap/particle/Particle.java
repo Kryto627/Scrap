@@ -1,5 +1,7 @@
 package com.kryto.scrap.particle;
 
+import java.util.Random;
+
 import org.newdawn.slick.Color;
 
 import com.kryto.scrap.geometry.Rectangle;
@@ -8,6 +10,8 @@ import com.kryto.scrap.util.Timer;
 
 public class Particle implements IWipeable {
 
+	Random random = new Random();
+	
 	public static final float GRAVITY = 0.1F;
 	public static final float MAX_GRAVITY = 5F;
 	
@@ -27,7 +31,7 @@ public class Particle implements IWipeable {
 		this.height = height;
 		this.color = color;
 		this.useGravity = useGravity;
-		this.timer = new Timer(time);
+		this.timer = new Timer(time + random.nextInt(300));
 		this.isDead = false;
 	}
 	
@@ -37,6 +41,7 @@ public class Particle implements IWipeable {
 	}
 	
 	public void update() {
+		
 		if (timer.isDoneAndReset()) {
 			wipe();
 		}

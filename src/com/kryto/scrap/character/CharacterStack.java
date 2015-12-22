@@ -118,7 +118,7 @@ public class CharacterStack {
 		TextParticle text = new TextParticle(Integer.toString(amount), 0, 0, Color.red, 3000);
 		particleSystem.addParticle(text);
 		
-		particleSystem.spawnParticlesWithGravity(0, 0, 8, 8, 1000, Color.red, 1, 20);
+		particleSystem.spawnParticlesWithGravity(0, 0, 8, 8, Color.red, 1000, 1, 20);
 	}
 	
 	public void damageCritical(int amount) {
@@ -130,7 +130,7 @@ public class CharacterStack {
 		TextParticle text = new TextParticle(Integer.toString(amount), 0, 0, Color.pink, 3000);
 		particleSystem.addParticle(text);
 		
-		particleSystem.spawnParticlesWithGravity(0, 0, 8, 8, 1000, Color.red, 2, 20);
+		particleSystem.spawnParticlesWithGravity(0, 0, 8, 8, Color.red, 1000, 2, 20);
 	}
 	
 	public void dodge() {

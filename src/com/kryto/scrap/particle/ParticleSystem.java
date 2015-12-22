@@ -49,7 +49,7 @@ public class ParticleSystem {
 		addParticle(p);
 	}
 	
-	public void spawnParticles(float x, float y, float width, float height, long time, Color color, float spred, int amount) {
+	public void spawnParticles(float x, float y, float width, float height, Color color, long time, float spred, int amount) {
 		
 		Random random = new Random();
 		
@@ -65,7 +65,7 @@ public class ParticleSystem {
 		}
 	}
 	
-	public void spawnParticlesWithGravity(float x, float y, float width, float height, long time, Color color, float spred, int amount) {
+	public void spawnParticlesWithGravity(float x, float y, float width, float height, Color color, long time, float spred, int amount) {
 		
 		Random random = new Random();
 		
