@@ -30,7 +30,7 @@ public class TypeFrigid implements ICharacterType, Serializable {
 	}
 	
 	@Override
-	public int getBaseDefence() {
+	public int getBaseDefense() {
 		return 30;
 	}
 	

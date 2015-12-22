@@ -12,7 +12,7 @@ public interface ICharacterType {
 	public int getHealthMultiplier();
 	public int getAttackMultiplier();
 	
-	public int getBaseDefence();
+	public int getBaseDefense();
 	public int getBaseDodge();
 	
 	public int getBaseSpeed();

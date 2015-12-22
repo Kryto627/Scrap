@@ -30,7 +30,7 @@ public class TypeCruise implements ICharacterType, Serializable {
 	}
 	
 	@Override
-	public int getBaseDefence() {
+	public int getBaseDefense() {
 		return 10;
 	}
 	
