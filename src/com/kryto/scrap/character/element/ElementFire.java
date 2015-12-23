@@ -12,6 +12,6 @@ public class ElementFire implements IElement {
 
 	@Override
 	public GLSprite getEmblem() {
-		return Assets.gui_sheet.getSubSprite(0, 21, 26, 26);
+		return Assets.emblem_sheet.getSubSprite(0, 0, 26, 26);
 	}
 }

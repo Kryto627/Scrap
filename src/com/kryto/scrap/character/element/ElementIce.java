@@ -12,6 +12,6 @@ public class ElementIce implements IElement {
 
 	@Override
 	public GLSprite getEmblem() {
-		return Assets.gui_sheet.getSubSprite(52, 21, 26, 26);
+		return Assets.emblem_sheet.getSubSprite(52, 0, 26, 26);
 	}
 }

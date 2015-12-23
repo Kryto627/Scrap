@@ -17,6 +17,6 @@ public class ElementWind implements IElement {
 
 	@Override
 	public GLSprite getEmblem() {
-		return Assets.gui_sheet.getSubSprite(26, 21, 26, 26);
+		return Assets.emblem_sheet.getSubSprite(26, 0, 26, 26);
 	}
 }

@@ -9,8 +9,7 @@ import com.kryto.scrap.character.manager.EnemyMamager;
 import com.kryto.scrap.character.manager.PlayerManager;
 import com.kryto.scrap.event.EventHandler;
 import com.kryto.scrap.gfx.Assets;
-import com.kryto.scrap.gui.AbilityButton;
-import com.kryto.scrap.gui.AbilityTypeButton;
+import com.kryto.scrap.gui.GuiAbilities;
 import com.kryto.scrap.level.attack.BufferedAttack;
 import com.kryto.scrap.level.attack.BufferedAttackManager;
 import com.kryto.scrap.level.state.TurnState;
@@ -19,9 +18,8 @@ public class Level {
 
 	private PlayerManager playerManager;
 	private EnemyMamager enemyManager;
-
-	private AbilityTypeButton attackBtn, defenseBtn, specialBtn;
-	private AbilityButton[] abilityBtns = new AbilityButton[6];
+	
+	private GuiAbilities gui;
 	
 	private TurnState state;
 	
@@ -31,14 +29,8 @@ public class Level {
 
 		playerManager = new PlayerManager(100, 200);
 		enemyManager = new EnemyMamager(Game.getWidth() - 100, 200);
-
-		attackBtn = new AbilityTypeButton(1);
-		defenseBtn = new AbilityTypeButton(2);
-		specialBtn = new AbilityTypeButton(3);
 		
-		for (int i = 0; i < abilityBtns.length; i++) {
-			abilityBtns[i] = new AbilityButton(i);
-		}
+		gui = new GuiAbilities(this);
 		
 		state = TurnState.PLAYER;
 		
@@ -54,9 +46,9 @@ public class Level {
 	}
 
 	public void update() {
+				
+		enemyManager.update();	
 		
-		enemyManager.update();
-
 		if (state == TurnState.PLAYER) {
 
 			if (!playerManager.isAllDone()) {
@@ -95,6 +87,7 @@ public class Level {
 		}
 		
 		if (state == TurnState.BUFF) {
+			
 			for (CharacterStack stack : playerManager.getList()) {
 				stack.getBuffManager().update();
 				EventHandler.getInstance().call(e -> e.onPassive(stack));
@@ -105,25 +98,19 @@ public class Level {
 				EventHandler.getInstance().call(e -> e.onPassive(stack));
 			}
 			
+			gui.reset();
+			
 			state = TurnState.PLAYER;
 		}
 	}
 	
 	private void updatePlayer() {
+				
+		playerManager.nextActingCharacter().getBuffManager().onTurn();
 		
-		CharacterStack stack = playerManager.nextActingCharacter();
+		EventHandler.getInstance().call(e -> e.onTurn(playerManager.nextActingCharacter()));
 		
-		stack.getBuffManager().onTurn();
-		
-		EventHandler.getInstance().call(e -> e.onTurn(stack));
-		
-		if (attackBtn.isClicked()) {
-
-			BufferedAttack attack = new BufferedAttack(stack, enemyManager.getTargetCharacter(), 75);
-			attackManager.addAttack(attack);
-			
-			stack.setDone(true);
-		}
+		gui.update();
 	}
 	
 	private void updateEnemy() {
@@ -156,13 +143,19 @@ public class Level {
 
 		if (state == TurnState.PLAYER) {
 			
-			for (int i = 0; i < abilityBtns.length; i++) {
-				abilityBtns[i].render();
-			}
-			
-			//attackBtn.render();
-			//defenseBtn.render();
-			//specialBtn.render();
+			gui.render();
 		}
+	}
+	
+	public PlayerManager getPlayerManager() {
+		return playerManager;
+	}
+	
+	public EnemyMamager getEnemyManager() {
+		return enemyManager;
+	}
+	
+	public BufferedAttackManager getAttackManager() {
+		return attackManager;
 	}
 }
