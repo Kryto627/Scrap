@@ -19,6 +19,9 @@ public class Particle implements IWipeable {
 	public Timer timer;
 	public Color color;
 	
+	public float gravity = GRAVITY;
+	public float maxGravity = MAX_GRAVITY;
+	
 	public float dx, dy;
 	public boolean useGravity;
 	
@@ -49,8 +52,8 @@ public class Particle implements IWipeable {
 		x += dx;
 		y += dy;
 		
-		if (useGravity && dy < MAX_GRAVITY) {
-			dy += GRAVITY;
+		if (useGravity && dy < maxGravity) {
+			dy += gravity;
 		}
 	}
 	
