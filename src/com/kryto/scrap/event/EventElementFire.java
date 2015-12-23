@@ -2,7 +2,7 @@ package com.kryto.scrap.event;
 
 import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.character.element.ElementFire;
-import com.kryto.scrap.effects.EnrageEffect;
+import com.kryto.scrap.effects.EffectEnrage;
 import com.kryto.scrap.stats.Stats;
 import com.kryto.scrap.util.MathUtil;
 
@@ -13,6 +13,11 @@ public class EventElementFire implements IEventListerner {
 	@Override
 	public void onAttack(CharacterStack attacker, CharacterStack target) {
 
+	}
+	
+	@Override
+	public void onDodged(CharacterStack attacker, CharacterStack target) {
+		
 	}
 
 	@Override
@@ -27,7 +32,7 @@ public class EventElementFire implements IEventListerner {
 		
 		if (isFireType(stack) && stats.getHealth() < MathUtil.percent(stats.getMaxHealth(), ENRAGE_PERCENT)) {
 
-			stack.getBuffManager().addEffect(new EnrageEffect());
+			stack.getBuffManager().addEffect(new EffectEnrage());
 		}
 
 	}

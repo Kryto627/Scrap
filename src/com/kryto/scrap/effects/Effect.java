@@ -9,8 +9,8 @@ public abstract class Effect implements IEffect, IWipeable {
 
 	@Override
 	public void wipe() {
-		isDead = true;
 		end();
+		isDead = true;		
 	}
 
 	@Override

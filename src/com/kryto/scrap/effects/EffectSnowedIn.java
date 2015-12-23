@@ -5,7 +5,7 @@ import org.newdawn.slick.Color;
 import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.geometry.Rectangle;
 
-public class SnowedInEffect extends Effect {
+public class EffectSnowedIn extends Effect {
 
 	@Override
 	public void onAttack(CharacterStack target) {

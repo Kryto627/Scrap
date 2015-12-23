@@ -36,12 +36,17 @@ public class BufferedAttack implements IWipeable {
 		int critChance = random.nextInt(100);
 		
 		if (dodgeChance <= targetStats.getDodgeChance()) {
-			target.dodge();
+			
+			EventHandler.getInstance().call(e -> e.onDodged(attacker, target));
+			
+			target.dodge();			
 		}
 		
 		else {
 			
 			EventHandler.getInstance().call(e -> e.onAttack(attacker, target));
+			
+			attacker.getBuffManager().onAttack(target);
 			
 			int damage = getMaxDamage();
 			damage -= MathUtil.percent(damage, targetStats.getDefense());

@@ -9,7 +9,7 @@ import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.particle.Particle;
 import com.kryto.scrap.util.MathUtil;
 
-public class EnrageEffect extends Effect {
+public class EffectEnrage extends Effect {
 
 	private Random random = new Random();
 	private int maxDamage;
@@ -34,6 +34,7 @@ public class EnrageEffect extends Effect {
 
 	@Override
 	public void end() {
+		manager.getHost().getStats().setMaxDamage(maxDamage);
 	}
 
 	@Override

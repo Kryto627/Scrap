@@ -21,4 +21,8 @@ public class MathUtil {
 	public static boolean chance(int chance) {
 		return random.nextInt(100) <= chance;
 	}
+	
+	public static int clamp(int value, int min, int max) {
+		return Math.min(max, Math.max(value, min));
+	}
 }

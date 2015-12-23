@@ -6,6 +6,8 @@ public interface IEventListerner {
 
 	public void onAttack(CharacterStack attacker, CharacterStack target);
 	
+	public void onDodged(CharacterStack attacker, CharacterStack target);
+	
 	public void onTurn(CharacterStack stack);
 	
 	public void onPassive(CharacterStack stack);

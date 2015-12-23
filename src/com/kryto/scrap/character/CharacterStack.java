@@ -11,6 +11,7 @@ import com.kryto.scrap.gfx.GLFont;
 import com.kryto.scrap.particle.ParticleSystem;
 import com.kryto.scrap.particle.TextParticle;
 import com.kryto.scrap.stats.Stats;
+import com.kryto.scrap.util.MathUtil;
 
 public class CharacterStack {
 
@@ -109,6 +110,8 @@ public class CharacterStack {
 		
 		TextParticle text = new TextParticle(Integer.toString(amount), 0, 0, Color.green, 3000);
 		particleSystem.addParticle(text);
+		
+		stats.setHealth(MathUtil.clamp(stats.getHealth(), 0, stats.getMaxHealth()));
 	}
 	
 	public void damage(int amount) {

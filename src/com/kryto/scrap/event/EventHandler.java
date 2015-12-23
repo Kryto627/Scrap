@@ -20,6 +20,9 @@ public class EventHandler {
 	}
 	
 	private void init() {
+		addEvent(new EventRetaliation());
+		addEvent(new EventRefreshment());
+		
 		addEvent(new EventElementIce());
 		addEvent(new EventElementFire());
 	}
