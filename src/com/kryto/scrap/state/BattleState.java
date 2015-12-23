@@ -9,6 +9,7 @@ public class BattleState implements IGameState {
 	
 	@Override
 	public void init(GameStateManager gsm) {
+
 	}
 	
 	@Override

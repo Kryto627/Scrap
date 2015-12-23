@@ -9,19 +9,21 @@ public class Component {
 	
 	protected Rectangle bounds;
 	
+	private boolean disabled;
+	
 	private static boolean canCallClick;
 	
 	public Component(Rectangle bounds) {
 		this.bounds = bounds;
 	}
 	
-	public void update() {
-		
+	public Component() {
+		super();
 	}
 	
-	public void render() {
-		
-	}
+	public void update() {}
+	
+	public void render() {}
 	
 	public Rectangle getBounds() {
 		return bounds;
@@ -31,12 +33,20 @@ public class Component {
 		this.bounds = bounds;
 	}
 	
+	public boolean isDisabled() {
+		return disabled;
+	}
+	
+	public void setDisabled(boolean disabled) {
+		this.disabled = disabled;
+	}
+	
 	public boolean isMouseOver() {		
-		return bounds.contains(Input.getMouseX(), Input.getMouseY());
+		return !isDisabled() && bounds.contains(Input.getMouseX(), Input.getMouseY());
 	}
 	
 	public boolean isClicked() {
-		
+				
 		if (isMouseOver() && Mouse.isButtonDown(0) && canCallClick) {
 			canCallClick = false;
 			return true;

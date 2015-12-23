@@ -9,7 +9,8 @@ import com.kryto.scrap.character.manager.EnemyMamager;
 import com.kryto.scrap.character.manager.PlayerManager;
 import com.kryto.scrap.event.EventHandler;
 import com.kryto.scrap.gfx.Assets;
-import com.kryto.scrap.gui.Button;
+import com.kryto.scrap.gui.AbilityButton;
+import com.kryto.scrap.gui.AbilityTypeButton;
 import com.kryto.scrap.level.attack.BufferedAttack;
 import com.kryto.scrap.level.attack.BufferedAttackManager;
 import com.kryto.scrap.level.state.TurnState;
@@ -19,8 +20,9 @@ public class Level {
 	private PlayerManager playerManager;
 	private EnemyMamager enemyManager;
 
-	private Button attackBtn;
-
+	private AbilityTypeButton attackBtn, defenseBtn, specialBtn;
+	private AbilityButton[] abilityBtns = new AbilityButton[6];
+	
 	private TurnState state;
 	
 	private BufferedAttackManager attackManager;
@@ -30,8 +32,14 @@ public class Level {
 		playerManager = new PlayerManager(100, 200);
 		enemyManager = new EnemyMamager(Game.getWidth() - 100, 200);
 
-		attackBtn = new Button(100, 500, "Attack");
-
+		attackBtn = new AbilityTypeButton(1);
+		defenseBtn = new AbilityTypeButton(2);
+		specialBtn = new AbilityTypeButton(3);
+		
+		for (int i = 0; i < abilityBtns.length; i++) {
+			abilityBtns[i] = new AbilityButton(i);
+		}
+		
 		state = TurnState.PLAYER;
 		
 		attackManager = new BufferedAttackManager();
@@ -46,6 +54,7 @@ public class Level {
 	}
 
 	public void update() {
+		
 		enemyManager.update();
 
 		if (state == TurnState.PLAYER) {
@@ -146,7 +155,14 @@ public class Level {
 		enemyManager.render();
 
 		if (state == TurnState.PLAYER) {
-			attackBtn.render();
-		}		
+			
+			for (int i = 0; i < abilityBtns.length; i++) {
+				abilityBtns[i].render();
+			}
+			
+			//attackBtn.render();
+			//defenseBtn.render();
+			//specialBtn.render();
+		}
 	}
 }

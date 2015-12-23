@@ -14,6 +14,9 @@ public class Assets {
 
 	public static GLSprite battle_background;
 	
+	public static GLSprite abl_type_button;
+	public static GLSprite abl_button;
+	
 	public static void init() {
 		
 		PIXEL_OPERATOR_BIG = new GLFont("PixelOperator-Bold.ttf", 64);
@@ -28,6 +31,9 @@ public class Assets {
 		button_end = gui_sheet.getSubSprite(124, 0, 4, 21);		
 
 		battle_background = battle_sheet.getSubSprite(0, 0, 320, 180);
+		
+		abl_type_button = battle_sheet.getSubSprite(0, 180, 32, 32);
+		abl_button = battle_sheet.getSubSprite(0, 212, 78, 28);
 	}
 	
 	public static void cleanup() {
