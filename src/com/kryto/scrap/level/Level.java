@@ -7,7 +7,10 @@ import com.kryto.scrap.battle.BattleSetup;
 import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.character.manager.EnemyMamager;
 import com.kryto.scrap.character.manager.PlayerManager;
-import com.kryto.scrap.event.EventHandler;
+import com.kryto.scrap.events.EventCreated;
+import com.kryto.scrap.events.EventPassive;
+import com.kryto.scrap.events.EventTurn;
+import com.kryto.scrap.events.listeners.EventHandler;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gui.GuiAbilities;
 import com.kryto.scrap.level.attack.BufferedAttack;
@@ -43,7 +46,7 @@ public class Level {
 		
 		for (CharacterStack stack : enemyManager.getList()) {
 			
-			EventHandler.getInstance().call(e -> e.onCreated(stack));
+			EventHandler.getInstance().post(new EventCreated(stack));
 		}
 	}
 
@@ -53,7 +56,7 @@ public class Level {
 		
 		for (CharacterStack stack : playerManager.getList()) {
 			
-			EventHandler.getInstance().call(e -> e.onCreated(stack));
+			EventHandler.getInstance().post(new EventCreated(stack));
 		}
 	}
 
@@ -101,13 +104,17 @@ public class Level {
 		if (state == TurnState.BUFF) {
 			
 			for (CharacterStack stack : playerManager.getList()) {
+				
 				stack.getBuffManager().update();
-				EventHandler.getInstance().call(e -> e.onPassive(stack));
+				
+				EventHandler.getInstance().post(new EventPassive(stack));
 			}
-			
+		
 			for (CharacterStack stack : enemyManager.getList()) {
+				
 				stack.getBuffManager().update();
-				EventHandler.getInstance().call(e -> e.onPassive(stack));
+				
+				EventHandler.getInstance().post(new EventPassive(stack));
 			}
 			
 			gui.reset();
@@ -120,7 +127,7 @@ public class Level {
 				
 		playerManager.nextActingCharacter().getBuffManager().onTurn();
 		
-		EventHandler.getInstance().call(e -> e.onTurn(playerManager.nextActingCharacter()));
+		EventHandler.getInstance().post(new EventTurn(playerManager.nextActingCharacter()));
 		
 		gui.update();
 	}
@@ -131,7 +138,7 @@ public class Level {
 
 		stack.getBuffManager().onTurn();
 		
-		EventHandler.getInstance().call(e -> e.onTurn(stack));
+		EventHandler.getInstance().post(new EventTurn(stack));
 		
 		if (!stack.isDone()) {
 			

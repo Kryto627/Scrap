@@ -1,8 +1,10 @@
-package com.kryto.scrap.event;
+package com.kryto.scrap.events.listeners;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+
+import com.kryto.scrap.events.IEvent;
 
 public class EventHandler {
 
@@ -28,8 +30,27 @@ public class EventHandler {
 		addEvent(new EventElementFire());
 	}
 	
-	public void call(Consumer<IEventListerner> con) {
-		events.forEach(con);
+	public void post(IEvent event) {
+		
+		for (IEventListerner listerner : events) {
+			
+			for (Method method : listerner.getClass().getMethods()) {
+				
+				if (method.getParameterTypes().length == 1) {
+					
+					Class<?> c = method.getParameterTypes()[0];
+					
+					if (c.equals(event.getClass())) {
+						
+						try {
+							method.invoke(listerner, event);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	public void addEvent(IEventListerner event) {
