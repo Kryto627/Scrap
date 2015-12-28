@@ -7,7 +7,7 @@ import com.kryto.scrap.util.MathUtil;
 
 public class EventElementIce implements IEventListerner {
 
-	private final int FROST_CHANCE = 20;
+	private final int FROST_CHANCE = 15;
 
 	@Override
 	public void onAttack(CharacterStack attacker, CharacterStack target) {
