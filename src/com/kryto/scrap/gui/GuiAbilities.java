@@ -1,5 +1,6 @@
 package com.kryto.scrap.gui;
 
+import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.level.Level;
 
 public class GuiAbilities {
@@ -14,6 +15,8 @@ public class GuiAbilities {
 	
 	private AbilityButton[] abilityBtns = new AbilityButton[6];
 	
+	private Tooltip attackTooltip, defenseTooltip, specialTooltip;
+	
 	public GuiAbilities(Level level) {
 		
 		this.level = level;
@@ -25,6 +28,10 @@ public class GuiAbilities {
 		attackBtn = new AbilityTypeButton(1);
 		defenseBtn = new AbilityTypeButton(2);
 		specialBtn = new AbilityTypeButton(3);	
+		
+		attackTooltip = new Tooltip(new Rectangle(attackBtn.bounds), "Attack");
+		defenseTooltip = new Tooltip(new Rectangle(defenseBtn.bounds), "Defense");
+		specialTooltip = new Tooltip(new Rectangle(specialBtn.bounds), "Special");
 	}
 	
 	public void update() {
@@ -68,6 +75,10 @@ public class GuiAbilities {
 			attackBtn.render();
 			defenseBtn.render();
 			specialBtn.render();
+			
+			attackTooltip.render();
+			defenseTooltip.render();
+			specialTooltip.render();
 		}
 		
 		else {

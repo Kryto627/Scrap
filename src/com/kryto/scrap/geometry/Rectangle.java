@@ -2,6 +2,7 @@ package com.kryto.scrap.geometry;
 
 import org.newdawn.slick.Color;
 
+import com.kryto.scrap.Input;
 import com.kryto.scrap.gfx.RenderUtil;
 
 public class Rectangle {
@@ -24,6 +25,10 @@ public class Rectangle {
 	
 	public boolean contains(float px, float py) {
 		return px > x && px < (x + width) && py > y && py < (y + height);
+	}
+	
+	public boolean isMouseOver() {
+		return contains(Input.getMouseX(), Input.getMouseY());		
 	}
 	
 	public Rectangle addSize(float w, float h) {
