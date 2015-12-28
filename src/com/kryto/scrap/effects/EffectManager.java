@@ -1,5 +1,7 @@
 package com.kryto.scrap.effects;
 
+import java.util.function.Consumer;
+
 import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.util.WipingArrayList;
@@ -27,6 +29,10 @@ public class EffectManager {
 		for (Effect effect : effects) {
 			effect.render(rect);
 		}
+	}
+	
+	public void call(Consumer<IEffect> c) {
+		effects.forEach(c);
 	}
 	
 	public void onAttack(CharacterStack target) {

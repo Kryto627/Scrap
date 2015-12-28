@@ -24,6 +24,7 @@ public class TypeCruise implements ICharacterType, Serializable {
 	public Stats getDefaultStats() {
 		Stats stats = new Stats();
 		stats.setDefense(10);
+		stats.setCritChance(5);
 		stats.setDodgeChance(10);
 		stats.setSpeed(60);
 		return stats;
@@ -31,7 +32,7 @@ public class TypeCruise implements ICharacterType, Serializable {
 	
 	@Override
 	public int getHealthMultiplier() {
-		return 800;
+		return 1200;
 	}
 	
 	@Override

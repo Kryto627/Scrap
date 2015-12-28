@@ -1,10 +1,19 @@
 package com.kryto.scrap.event;
 
 import com.kryto.scrap.character.CharacterStack;
-import com.kryto.scrap.character.type.TypeCruise;
-import com.kryto.scrap.effects.EffectRetaliation;
+import com.kryto.scrap.character.type.TypeBoiler;
+import com.kryto.scrap.effects.EffectFiredUp;
 
-public class EventRetaliation implements IEventListerner {
+public class EventBoiler implements IEventListerner {
+
+	@Override
+	public void onCreated(CharacterStack stack) {
+		
+		if (stack.getCharacter().getType() instanceof TypeBoiler) {
+			
+			stack.getBuffManager().addEffect(new EffectFiredUp());			
+		}
+	}
 
 	@Override
 	public void onAttack(CharacterStack attacker, CharacterStack target) {
@@ -14,9 +23,6 @@ public class EventRetaliation implements IEventListerner {
 	@Override
 	public void onDodged(CharacterStack attacker, CharacterStack target) {
 		
-		if (target.getCharacter().getType() instanceof TypeCruise) {
-			target.getBuffManager().addEffect(new EffectRetaliation());
-		}
 	}
 
 	@Override

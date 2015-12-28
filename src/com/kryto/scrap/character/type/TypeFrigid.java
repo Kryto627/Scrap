@@ -24,6 +24,7 @@ public class TypeFrigid implements ICharacterType, Serializable {
 	public Stats getDefaultStats() {
 		Stats stats = new Stats();
 		stats.setDefense(30);
+		stats.setCritChance(5);
 		stats.setDodgeChance(1);
 		stats.setSpeed(20);
 		return stats;
@@ -31,7 +32,7 @@ public class TypeFrigid implements ICharacterType, Serializable {
 	
 	@Override
 	public int getHealthMultiplier() {
-		return 1200;
+		return 1800;
 	}
 		
 	@Override

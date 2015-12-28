@@ -7,7 +7,7 @@ import com.kryto.scrap.util.MathUtil;
 public class EffectRetaliation extends Effect {
 
 	private int maxDamage;
-	
+		
 	@Override
 	public void onAttack(CharacterStack target) {				
 		wipe();

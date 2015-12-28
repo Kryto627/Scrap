@@ -47,7 +47,9 @@ public class Character implements Serializable {
 		stats.setMaxHealth((level + 1) * getType().getHealthMultiplier());
 		stats.setMaxDamage((level + 1) * getType().getAttackMultiplier());
 		
-		stats.resetHealth();
+		stats.add(getType().getElement().getAdditiveStats());
+		
+		stats.resetHealth();	
 		
 		return stats;
 	}

@@ -28,6 +28,16 @@ public class Stats implements Serializable {
 	public Stats() {
 		this(0, 0, 0, 0, 0, 0);
 	}
+	
+	public void add(Stats stats) {
+		
+		maxHealth += stats.maxHealth;
+		maxDamage += stats.maxDamage;
+		critChance += stats.critChance;
+		dodgeChance += stats.dodgeChance;
+		defense += stats.defense;
+		speed += stats.speed;
+	}
 
 	public boolean isDead() {
 		return health <= 0;

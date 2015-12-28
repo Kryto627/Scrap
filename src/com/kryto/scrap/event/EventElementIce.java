@@ -10,6 +10,11 @@ public class EventElementIce implements IEventListerner {
 	private final int FROST_CHANCE = 15;
 
 	@Override
+	public void onCreated(CharacterStack stack) {
+		
+	}
+	
+	@Override
 	public void onAttack(CharacterStack attacker, CharacterStack target) {
 
 		if (isIceType(attacker) && MathUtil.chance(FROST_CHANCE)) {

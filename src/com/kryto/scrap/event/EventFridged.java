@@ -4,8 +4,13 @@ import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.character.type.TypeFrigid;
 import com.kryto.scrap.util.MathUtil;
 
-public class EventRefreshment implements IEventListerner {
+public class EventFridged implements IEventListerner {
 
+	@Override
+	public void onCreated(CharacterStack stack) {
+		
+	}
+	
 	@Override
 	public void onAttack(CharacterStack attacker, CharacterStack target) {
 		

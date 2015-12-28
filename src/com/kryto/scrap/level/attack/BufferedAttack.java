@@ -51,7 +51,7 @@ public class BufferedAttack implements IWipeable {
 			int damage = getMaxDamage();
 			damage -= MathUtil.percent(damage, targetStats.getDefense());
 				
-			if (critChance <= attackerStats.getCritChance()) {
+			if (critChance < attackerStats.getCritChance()) {
 				target.damageCritical(damage);
 			}
 			

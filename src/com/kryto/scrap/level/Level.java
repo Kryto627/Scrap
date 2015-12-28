@@ -38,11 +38,23 @@ public class Level {
 	}
 
 	public void setupBattle(BattleSetup setup) {
+		
 		enemyManager.setup(setup);
+		
+		for (CharacterStack stack : enemyManager.getList()) {
+			
+			EventHandler.getInstance().call(e -> e.onCreated(stack));
+		}
 	}
 
 	public void setupHand() {
+		
 		playerManager.setup();
+		
+		for (CharacterStack stack : playerManager.getList()) {
+			
+			EventHandler.getInstance().call(e -> e.onCreated(stack));
+		}
 	}
 
 	public void update() {

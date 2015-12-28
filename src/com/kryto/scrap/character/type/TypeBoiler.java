@@ -24,6 +24,7 @@ public class TypeBoiler implements ICharacterType, Serializable {
 	public Stats getDefaultStats() {
 		Stats stats = new Stats();
 		stats.setDefense(15);
+		stats.setCritChance(15);
 		stats.setDodgeChance(5);
 		stats.setSpeed(30);
 		return stats;
@@ -31,7 +32,7 @@ public class TypeBoiler implements ICharacterType, Serializable {
 	
 	@Override
 	public int getHealthMultiplier() {
-		return 1000;
+		return 1500;
 	}
 	
 	@Override

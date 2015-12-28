@@ -13,13 +13,15 @@ public class EffectEnrage extends Effect {
 
 	private Random random = new Random();
 	private int maxDamage;
-	
+		
 	@Override
 	public void onAttack(CharacterStack target) {
+		wipe();
 	}
 
 	@Override
 	public void onTurn() {
+
 	}
 
 	@Override

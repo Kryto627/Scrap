@@ -11,6 +11,11 @@ public class EventElementFire implements IEventListerner {
 	private final int ENRAGE_PERCENT = 30;
 
 	@Override
+	public void onCreated(CharacterStack stack) {
+		
+	}
+	
+	@Override
 	public void onAttack(CharacterStack attacker, CharacterStack target) {
 
 	}
