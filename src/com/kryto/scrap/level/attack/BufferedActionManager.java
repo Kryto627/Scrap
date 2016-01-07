@@ -3,13 +3,13 @@ package com.kryto.scrap.level.attack;
 import com.kryto.scrap.util.Timer;
 import com.kryto.scrap.util.WipingArrayList;
 
-public class BufferedAttackManager {
+public class BufferedActionManager {
 
-	private WipingArrayList<BufferedAttack> attacks;
+	private WipingArrayList<IBufferedAction> attacks;
 	private Timer attackTime;
 	
-	public BufferedAttackManager() {
-		attacks = new WipingArrayList<BufferedAttack>();
+	public BufferedActionManager() {
+		attacks = new WipingArrayList<IBufferedAction>();
 		attackTime = new Timer(1000);
 	}
 	
@@ -25,17 +25,19 @@ public class BufferedAttackManager {
 		
 		if (attackTime.isDoneAndReset() && !isDone()) {
 			
-			getFastestAttack().attack();
+			IBufferedAction action = getFastestAttack();
+			action.onAction();
+			action.wipe();
 		}
 		
 		attacks.clean();
 	}
 	
-	private BufferedAttack getFastestAttack() {
+	private IBufferedAction getFastestAttack() {
 		
-		BufferedAttack fastest = null;
+		IBufferedAction fastest = null;
 		
-		for (BufferedAttack attack : attacks) {
+		for (IBufferedAction attack : attacks) {
 			if (fastest == null || fastest.getSpeed() < attack.getSpeed()) {
 				fastest = attack;
 			}

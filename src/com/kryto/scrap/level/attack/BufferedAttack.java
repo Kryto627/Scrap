@@ -7,10 +7,9 @@ import com.kryto.scrap.events.EventAttack;
 import com.kryto.scrap.events.EventDodged;
 import com.kryto.scrap.events.listeners.EventHandler;
 import com.kryto.scrap.stats.Stats;
-import com.kryto.scrap.util.IWipeable;
 import com.kryto.scrap.util.MathUtil;
 
-public class BufferedAttack implements IWipeable {
+public class BufferedAttack implements IBufferedAction {
 
 	private Random random = new Random();
 	private boolean isDone = false;
@@ -32,7 +31,8 @@ public class BufferedAttack implements IWipeable {
 		return (int) MathUtil.percent(attackerStats.getMaxDamage(), power);
 	}
 	
-	public void attack() {
+	@Override
+	public void onAction() {
 		
 		int dodgeChance = random.nextInt(100);
 		int critChance = random.nextInt(100);
@@ -61,10 +61,9 @@ public class BufferedAttack implements IWipeable {
 				target.damage(damage);			
 			}
 		}
-		
-		wipe();
 	}
 	
+	@Override
 	public int getSpeed() {
 		return attackerStats.getSpeed();
 	}

@@ -3,6 +3,7 @@ package com.kryto.scrap.character;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 
+import com.kryto.scrap.abilities.AbilityBank;
 import com.kryto.scrap.effects.EffectManager;
 import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.gfx.Assets;
@@ -25,6 +26,7 @@ public class CharacterStack {
 	private ParticleSystem particleSystem = new ParticleSystem();
 	
 	private EffectManager buffManager;
+	private AbilityBank abilities;
 
 	public CharacterStack(Character character) {
 		initCharData(character);
@@ -38,6 +40,7 @@ public class CharacterStack {
 		stats = character.getStats().clone();
 		
 		buffManager = new EffectManager(this);
+		abilities = character.getAbilities();
 	}
 
 	public void render(Rectangle rect) {
@@ -100,6 +103,10 @@ public class CharacterStack {
 	
 	public ParticleSystem getParticleSystem() {
 		return particleSystem;
+	}
+	
+	public AbilityBank getAbilities() {
+		return abilities;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------------

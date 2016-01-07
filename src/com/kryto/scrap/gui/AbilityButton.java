@@ -1,16 +1,19 @@
 package com.kryto.scrap.gui;
 
+import org.newdawn.slick.Color;
+
+import com.kryto.scrap.abilities.IAbility;
 import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.level.Level;
-import com.kryto.scrap.level.attack.BufferedAttack;
 
 public class AbilityButton extends Component {
 
 	private Level level;
+	private IAbility ability;
 		
-	public AbilityButton(Level level, int i) {
+	public AbilityButton(Level level, int i, IAbility ability) {
 		
 		this.level = level;
 		
@@ -21,6 +24,8 @@ public class AbilityButton extends Component {
 		float y = (103 * 4) + ((i % 2) * (height + (8 * 4)));
 		
 		bounds = new Rectangle(x, y, width, height);
+		
+		this.ability = ability;
 	}
 	
 	@Override
@@ -30,8 +35,7 @@ public class AbilityButton extends Component {
 		
 		if (isClicked()) {
 			
-			BufferedAttack attack = new BufferedAttack(stack, level.getEnemyManager().getTargetCharacter(), 75);
-			level.getAttackManager().addAttack(attack);
+			ability.onAction(level);
 			
 			stack.setDone(true);		
 		}
@@ -39,7 +43,7 @@ public class AbilityButton extends Component {
 	
 	@Override
 	public void render() {
-		
-		Assets.abl_button.render(bounds);		
+		Assets.abl_button.render(bounds);
+		Assets.PIXEL_OPERATOR_SMALL.renderCentered(ability.getName(), bounds.getCenterX(), bounds.getCenterY(), Color.white);
 	}
 }

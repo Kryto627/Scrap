@@ -1,5 +1,7 @@
 package com.kryto.scrap.gui;
 
+import com.kryto.scrap.abilities.IAbility;
+import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.level.Level;
 
@@ -41,7 +43,13 @@ public class GuiAbilities {
 			if (attackBtn.isClicked()) {
 				currentState = GuiState.ATTACK;
 				
-				abilityBtns[0] = new AbilityButton(level, 0);
+				CharacterStack stack = level.getPlayerManager().getSelectedCharacter();
+				int i = 0;
+				
+				for (IAbility ability : stack.getAbilities().getAbilities()) {
+					abilityBtns[i] = new AbilityButton(level, i, ability);
+					i++;
+				}
 			}
 			
 			if (defenseBtn.isClicked()) {

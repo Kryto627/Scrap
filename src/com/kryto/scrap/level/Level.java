@@ -14,7 +14,7 @@ import com.kryto.scrap.events.listeners.EventHandler;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gui.GuiAbilities;
 import com.kryto.scrap.level.attack.BufferedAttack;
-import com.kryto.scrap.level.attack.BufferedAttackManager;
+import com.kryto.scrap.level.attack.BufferedActionManager;
 import com.kryto.scrap.level.state.TurnState;
 
 public class Level {
@@ -26,7 +26,7 @@ public class Level {
 	
 	private TurnState state;
 	
-	private BufferedAttackManager attackManager;
+	private BufferedActionManager attackManager;
 
 	public Level() {
 
@@ -37,7 +37,7 @@ public class Level {
 		
 		state = TurnState.PLAYER;
 		
-		attackManager = new BufferedAttackManager();
+		attackManager = new BufferedActionManager();
 	}
 
 	public void setupBattle(BattleSetup setup) {
@@ -174,7 +174,7 @@ public class Level {
 		return enemyManager;
 	}
 	
-	public BufferedAttackManager getAttackManager() {
+	public BufferedActionManager getAttackManager() {
 		return attackManager;
 	}
 }

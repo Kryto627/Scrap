@@ -2,6 +2,7 @@ package com.kryto.scrap.character;
 
 import java.io.Serializable;
 
+import com.kryto.scrap.abilities.AbilityBank;
 import com.kryto.scrap.character.type.ICharacterType;
 import com.kryto.scrap.gfx.GLAnimation;
 import com.kryto.scrap.stats.Stats;
@@ -52,5 +53,11 @@ public class Character implements Serializable {
 		stats.resetHealth();	
 		
 		return stats;
+	}
+	
+	public AbilityBank getAbilities() {
+		AbilityBank bank = new AbilityBank();
+		getType().addAbilities(bank);
+		return bank;
 	}
 }
