@@ -16,6 +16,7 @@ import com.kryto.scrap.gui.GuiAbilities;
 import com.kryto.scrap.level.attack.BufferedAttack;
 import com.kryto.scrap.level.attack.BufferedActionManager;
 import com.kryto.scrap.level.state.TurnState;
+import com.kryto.scrap.util.Timer;
 
 public class Level {
 
@@ -28,6 +29,8 @@ public class Level {
 	
 	private BufferedActionManager attackManager;
 
+	private Timer timer = new Timer(500);
+	
 	public Level() {
 
 		playerManager = new PlayerManager(100, 200);
@@ -98,10 +101,12 @@ public class Level {
 				playerManager.resetAllCharacters();
 				
 				state = TurnState.BUFF;
+				
+				timer.reset();
 			}
 		}
 		
-		if (state == TurnState.BUFF) {
+		if (state == TurnState.BUFF && timer.isDone()) {
 			
 			for (CharacterStack stack : playerManager.getList()) {
 				
