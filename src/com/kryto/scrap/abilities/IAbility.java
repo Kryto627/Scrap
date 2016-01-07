@@ -7,4 +7,6 @@ public interface IAbility {
 	public void onAction(Level level);
 	
 	public String getName();
+	
+	public AbilityType getType();
 }

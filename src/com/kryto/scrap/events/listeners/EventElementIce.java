@@ -14,7 +14,7 @@ public class EventElementIce implements IEventListerner {
 
 		if (isIceType(event.getCharacter()) && MathUtil.chance(FROST_CHANCE)) {
 			
-			event.getTarget().getBuffManager().addEffect(new EffectSnowedIn());
+			event.getTarget().getEffectManager().addEffect(new EffectSnowedIn());
 		}
 	}
 

@@ -1,6 +1,7 @@
 package com.kryto.scrap.stats;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Stats implements Serializable {
 
@@ -37,6 +38,18 @@ public class Stats implements Serializable {
 		dodgeChance += stats.dodgeChance;
 		defense += stats.defense;
 		speed += stats.speed;
+	}
+	
+	public Stats getTotalStats(List<Stats> list) {
+		Stats stats = new Stats();
+		
+		stats.add(this);
+		
+		for (Stats s : list) {
+			stats.add(s);
+		}
+		
+		return stats;
 	}
 
 	public boolean isDead() {

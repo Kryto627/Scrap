@@ -10,7 +10,7 @@ public class EventBoiler implements IEventListerner {
 
 		if (setup.getCharacter().getCharacter().getType() instanceof TypeBoiler) {
 
-			setup.getCharacter().getBuffManager().addEffect(new EffectFiredUp());
+			setup.getCharacter().getEffectManager().addEffect(new EffectFiredUp());
 		}
 	}
 }

@@ -17,7 +17,7 @@ public class EventElementFire implements IEventListerner {
 		
 		if (isFireType(event.getCharacter()) && stats.getHealth() < MathUtil.percent(stats.getMaxHealth(), ENRAGE_PERCENT)) {
 
-			event.getCharacter().getBuffManager().addEffect(new EffectEnrage());
+			event.getCharacter().getEffectManager().addEffect(new EffectEnrage());
 		}
 
 	}

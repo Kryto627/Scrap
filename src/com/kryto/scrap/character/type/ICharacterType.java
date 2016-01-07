@@ -2,6 +2,7 @@ package com.kryto.scrap.character.type;
 
 import com.kryto.scrap.abilities.AbilityAttack;
 import com.kryto.scrap.abilities.AbilityBank;
+import com.kryto.scrap.abilities.AbilityType;
 import com.kryto.scrap.character.element.IElement;
 import com.kryto.scrap.gfx.GLAnimation;
 import com.kryto.scrap.gfx.GLSprite;
@@ -31,7 +32,7 @@ public interface ICharacterType {
 	}
 	
 	public default void addAbilities(AbilityBank bank) {
-		bank.add(new AbilityAttack(50, "Punch"));
+		bank.add(new AbilityAttack(AbilityType.ATTACK, 50, "Punch"));
 		getElement().addAbilities(bank);
 	}
 }

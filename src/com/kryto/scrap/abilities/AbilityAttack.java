@@ -8,10 +8,12 @@ public class AbilityAttack implements IAbility {
 
 	private int power;
 	private String name;
+	private AbilityType type;
 	
-	public AbilityAttack(int power, String name) {
+	public AbilityAttack(AbilityType type, int power, String name) {
 		this.power = power;
 		this.name = name;
+		this.type = type;
 	}
 
 	@Override
@@ -26,6 +28,11 @@ public class AbilityAttack implements IAbility {
 	@Override
 	public String getName() {
 		return name;
+	}
+	
+	@Override
+	public AbilityType getType() {
+		return type;
 	}
 	
 	public int getPower() {

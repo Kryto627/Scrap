@@ -110,14 +110,14 @@ public class Level {
 			
 			for (CharacterStack stack : playerManager.getList()) {
 				
-				stack.getBuffManager().update();
+				stack.getEffectManager().update();
 				
 				EventHandler.getInstance().post(new EventPassive(stack));
 			}
 		
 			for (CharacterStack stack : enemyManager.getList()) {
 				
-				stack.getBuffManager().update();
+				stack.getEffectManager().update();
 				
 				EventHandler.getInstance().post(new EventPassive(stack));
 			}
@@ -130,7 +130,7 @@ public class Level {
 	
 	private void updatePlayer() {
 				
-		playerManager.nextActingCharacter().getBuffManager().onTurn();
+		playerManager.nextActingCharacter().getEffectManager().onTurn();
 		
 		EventHandler.getInstance().post(new EventTurn(playerManager.nextActingCharacter()));
 		
@@ -141,7 +141,7 @@ public class Level {
 		
 		CharacterStack stack = enemyManager.nextActingCharacter();
 
-		stack.getBuffManager().onTurn();
+		stack.getEffectManager().onTurn();
 		
 		EventHandler.getInstance().post(new EventTurn(stack));
 		

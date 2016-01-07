@@ -9,7 +9,7 @@ public class EventCruise implements IEventListerner {
 	public void onDodged(EventDodged event) {
 		
 		if (event.getTarget().getCharacter().getType() instanceof TypeCruise) {
-			event.getTarget().getBuffManager().addEffect(new EffectRetaliation());
+			event.getTarget().getEffectManager().addEffect(new EffectRetaliation());
 		}
 	}
 }

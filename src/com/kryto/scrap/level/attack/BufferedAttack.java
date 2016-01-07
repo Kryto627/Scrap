@@ -48,7 +48,7 @@ public class BufferedAttack implements IBufferedAction {
 			
 			EventHandler.getInstance().post(new EventAttack(attacker, target));
 			
-			attacker.getBuffManager().onAttack(target);
+			attacker.getEffectManager().onAttack(target);
 			
 			int damage = getMaxDamage();
 			damage -= MathUtil.percent(damage, targetStats.getDefense());

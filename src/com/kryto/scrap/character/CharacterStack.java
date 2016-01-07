@@ -1,5 +1,8 @@
 package com.kryto.scrap.character;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 
@@ -18,14 +21,14 @@ public class CharacterStack {
 
 	private Character character;
 	private GLAnimation animation;
+	private ParticleSystem particleSystem;
 
+	private List<Stats> temporaryStats;
 	private Stats stats;
 
 	private boolean isDone;
 	
-	private ParticleSystem particleSystem = new ParticleSystem();
-	
-	private EffectManager buffManager;
+	private EffectManager effectManager;
 	private AbilityBank abilities;
 
 	public CharacterStack(Character character) {
@@ -36,10 +39,12 @@ public class CharacterStack {
 		this.character = character;
 
 		animation = character.type.getAnimationByString();
+		particleSystem = new ParticleSystem();
 
+		temporaryStats = new ArrayList<Stats>();
 		stats = character.getStats().clone();
 		
-		buffManager = new EffectManager(this);
+		effectManager = new EffectManager(this);
 		abilities = character.getAbilities();
 	}
 
@@ -54,8 +59,8 @@ public class CharacterStack {
 		particleSystem.render();
 		GL11.glPopMatrix();
 		
-		if (buffManager != null) {
-			buffManager.render(rect);
+		if (effectManager != null) {
+			effectManager.render(rect);
 		}
 	}
 
@@ -70,8 +75,8 @@ public class CharacterStack {
 		particleSystem.render();
 		GL11.glPopMatrix();
 		
-		if (buffManager != null) {
-			buffManager.render(rect);
+		if (effectManager != null) {
+			effectManager.render(rect);
 		}
 	}
 	
@@ -85,8 +90,12 @@ public class CharacterStack {
 		return character;
 	}
 	
+	public List<Stats> getTemporaryStats() {
+		return temporaryStats;
+	}
+	
 	public Stats getStats() {
-		return stats;
+		return stats.getTotalStats(temporaryStats);
 	}
 
 	public boolean isDone() {
@@ -97,8 +106,8 @@ public class CharacterStack {
 		this.isDone = isDone;
 	}
 	
-	public EffectManager getBuffManager() {
-		return buffManager;
+	public EffectManager getEffectManager() {
+		return effectManager;
 	}
 	
 	public ParticleSystem getParticleSystem() {
@@ -107,6 +116,10 @@ public class CharacterStack {
 	
 	public AbilityBank getAbilities() {
 		return abilities;
+	}
+	
+	public void addTempStats(Stats stats) {
+		temporaryStats.add(stats);
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------------
