@@ -32,6 +32,7 @@ public class Stats implements Serializable {
 	
 	public void add(Stats stats) {
 		
+		health += stats.health;
 		maxHealth += stats.maxHealth;
 		maxDamage += stats.maxDamage;
 		critChance += stats.critChance;

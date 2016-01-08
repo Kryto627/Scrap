@@ -2,6 +2,9 @@ package com.kryto.scrap.character.type;
 
 import java.io.Serializable;
 
+import com.kryto.scrap.abilities.AbilityBank;
+import com.kryto.scrap.abilities.AbilityHeal;
+import com.kryto.scrap.abilities.AbilityType;
 import com.kryto.scrap.character.element.ElementIce;
 import com.kryto.scrap.character.element.IElement;
 import com.kryto.scrap.stats.Stats;
@@ -43,5 +46,11 @@ public class TypeFrigid implements ICharacterType, Serializable {
 	@Override
 	public IElement getElement() {
 		return new ElementIce();
+	}
+	
+	@Override
+	public void addAbilities(AbilityBank bank) {
+		ICharacterType.super.addAbilities(bank);
+		bank.add(new AbilityHeal(10, "Frost Heal", AbilityType.DEFENSE));
 	}
 }

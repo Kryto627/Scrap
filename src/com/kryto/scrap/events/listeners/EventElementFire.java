@@ -19,7 +19,6 @@ public class EventElementFire implements IEventListerner {
 
 			event.getCharacter().getEffectManager().addEffect(new EffectEnrage());
 		}
-
 	}
 
 	private boolean isFireType(CharacterStack stack) {

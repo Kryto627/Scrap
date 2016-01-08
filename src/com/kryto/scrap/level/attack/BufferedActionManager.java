@@ -17,7 +17,7 @@ public class BufferedActionManager {
 		return attacks.size() == 0;
 	}
 	
-	public void addAttack(BufferedAttack attack) {
+	public void addAttack(IBufferedAction attack) {
 		attacks.add(attack);
 	}
 	

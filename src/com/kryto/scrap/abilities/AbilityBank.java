@@ -18,4 +18,16 @@ public class AbilityBank {
 	public List<IAbility> getAbilities() {
 		return abilities;
 	}
+	
+	public List<IAbility> getAbilitiesByType(AbilityType type) {
+		List<IAbility> list = new ArrayList<>();
+		
+		for (IAbility ability : abilities) {
+			if (ability.getType() == type) {
+				list.add(ability);
+			}
+		}
+		
+		return list;
+	}
 }

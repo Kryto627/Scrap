@@ -8,7 +8,7 @@ import com.kryto.scrap.util.WipingArrayList;
 
 public class EffectManager {
 
-	private WipingArrayList<Effect> effects;
+	private WipingArrayList<Effect> effects, temp;
 	private CharacterStack host;
 
 	public EffectManager(CharacterStack host) {
@@ -16,14 +16,27 @@ public class EffectManager {
 		this.host = host;
 	}
 
+	public void setup() {
+		temp = new WipingArrayList<Effect>();
+		temp.addAll(effects);
+	}
+	
 	public void update() {
 		clean();
 
-		for (Effect effect : effects) {
+		if (temp != null && !temp.isEmpty()) {
+			Effect effect = temp.get(0);
 			effect.update();
+			temp.remove(effect);
+		} else {
+			temp = null;
 		}
 	}
 	
+	public boolean isUpdateDone() {
+		return temp == null;
+	}
+
 	public void render(Rectangle rect) {
 
 		for (Effect effect : effects) {
