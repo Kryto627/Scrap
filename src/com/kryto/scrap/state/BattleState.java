@@ -1,11 +1,9 @@
 package com.kryto.scrap.state;
 
 import com.kryto.scrap.battle.BattleSetup;
-import com.kryto.scrap.level.Level;
+import com.kryto.scrap.level.LevelManager;
 
 public class BattleState implements IGameState {
-
-	private Level level = new Level();
 	
 	@Override
 	public void init(GameStateManager gsm) {
@@ -14,27 +12,26 @@ public class BattleState implements IGameState {
 	
 	@Override
 	public void update(GameStateManager gsm) {
-		level.update();
+		LevelManager.getInstance().getLevel().update();
 	}
 
 	@Override
 	public void render() {
-		level.render();
+		LevelManager.getInstance().getLevel().render();
 	}
 
 	@Override
 	public void onEnter() {
-		level.setupHand();
 	}
 
 	@Override
 	public void onLeave() {
 	}
 	
-	public void enterBattle(BattleSetup setup) {
+	public static void enterBattle(BattleSetup setup) {
 
 		GameStateManager.getInstance().switchState(3);
 
-		level.setupBattle(setup);
+		LevelManager.getInstance().enterBattle(setup);
 	}
 }

@@ -7,7 +7,7 @@ import com.kryto.scrap.events.EventPassive;
 import com.kryto.scrap.stats.Stats;
 import com.kryto.scrap.util.MathUtil;
 
-public class EventElementFire implements IEventListerner {
+public class EventElementFire implements IEventListener {
 
 	private final int ENRAGE_PERCENT = 30;
 

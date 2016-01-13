@@ -51,7 +51,7 @@ public class EnemyMamager extends CharacterManager {
 
 			Rectangle rect = getBounds(i);
 
-			list.get(i).renderFlipped(rect);
+			list.get(i).render(rect);
 
 			if (i == target) {
 				RenderUtil.trace(getBounds(i).addSize(20, 20), Color.white);

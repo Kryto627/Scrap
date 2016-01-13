@@ -11,7 +11,6 @@ import com.kryto.scrap.effects.EffectManager;
 import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.gfx.Assets;
 import com.kryto.scrap.gfx.GLAnimation;
-import com.kryto.scrap.gfx.GLFont;
 import com.kryto.scrap.particle.ParticleSystem;
 import com.kryto.scrap.particle.TextParticle;
 import com.kryto.scrap.stats.Stats;
@@ -25,17 +24,14 @@ public class CharacterStack {
 
 	private List<Stats> temporaryStats;
 	private Stats stats;
-
-	private boolean isDone;
 	
 	private EffectManager effectManager;
 	private AbilityBank abilities;
 
+	private boolean isDone;
+	public boolean isPlayer = false;
+	
 	public CharacterStack(Character character) {
-		initCharData(character);
-	}
-
-	public void initCharData(Character character) {
 		this.character = character;
 
 		animation = character.type.getAnimationByString();
@@ -49,23 +45,7 @@ public class CharacterStack {
 	}
 
 	public void render(Rectangle rect) {
-		animation.render(rect);
-		renderStats(rect.getX() + (rect.getWidth() / 2), rect.getY() - 100);
-		
-		particleSystem.update();
-		
-		GL11.glPushMatrix();
-		GL11.glTranslatef(rect.getX() + (rect.getWidth() / 2), rect.getY() + (rect.getHeight() / 2), 0);
-		particleSystem.render();
-		GL11.glPopMatrix();
-		
-		if (effectManager != null) {
-			effectManager.render(rect);
-		}
-	}
-
-	public void renderFlipped(Rectangle rect) {
-		animation.render(rect, true);
+		animation.render(rect, !isPlayer);
 		renderStats(rect.getX() + (rect.getWidth() / 2), rect.getY() - 100);
 		
 		particleSystem.update();
@@ -81,9 +61,7 @@ public class CharacterStack {
 	}
 	
 	public void renderStats(float x, float y) {
-		GLFont font = Assets.PIXEL_OPERATOR_SMALL;
-		
-		font.renderCentered("HP: " + stats.getHealth() + "/" + stats.getMaxHealth(), x, y, Color.red);
+		Assets.PIXEL_OPERATOR_SMALL.renderCentered("HP: " + stats.getHealth() + "/" + stats.getMaxHealth(), x, y, Color.red);
 	}
 
 	public Character getCharacter() {

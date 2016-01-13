@@ -15,6 +15,6 @@ public class CharacterLibrary implements Serializable {
 	
 	public CharacterLibrary() {
 		characters = new ArrayList<Character>();
-		hand = new Character[2];
+		hand = new Character[3];
 	}
 }

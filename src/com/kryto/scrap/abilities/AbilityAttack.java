@@ -1,8 +1,11 @@
 package com.kryto.scrap.abilities;
 
 import com.kryto.scrap.character.CharacterStack;
-import com.kryto.scrap.level.Level;
-import com.kryto.scrap.level.attack.BufferedAttack;
+import com.kryto.scrap.events.EventAttack;
+import com.kryto.scrap.events.EventDodged;
+import com.kryto.scrap.events.listeners.EventHandler;
+import com.kryto.scrap.level.LevelManager;
+import com.kryto.scrap.util.MathUtil;
 
 public class AbilityAttack implements IAbility {
 
@@ -17,12 +20,33 @@ public class AbilityAttack implements IAbility {
 	}
 
 	@Override
-	public void onAction(Level level) {
+	public void onAction() {
 		
-		CharacterStack attacker = level.getPlayerManager().getSelectedCharacter();
-		CharacterStack target = level.getEnemyManager().getTargetCharacter();
+		CharacterStack attacker = LevelManager.getInstance().getLevel().getFastest();
+		CharacterStack target = LevelManager.getInstance().getLevel().getEnemyManager().getTargetCharacter();
 		
-		level.getAttackManager().addAttack(new BufferedAttack(attacker, target, power));
+		int damage = MathUtil.percent(attacker.getStats().getMaxDamage(), power);
+		
+		if (MathUtil.chance(target.getStats().getDodgeChance())) {
+			
+			EventHandler.getInstance().post(new EventDodged(attacker, target));
+			
+			target.dodge();
+		} else {
+			
+			if (MathUtil.chance(attacker.getStats().getCritChance())) {
+				
+				EventHandler.getInstance().post(new EventAttack(attacker, target));
+				
+				target.damageCritical(damage);
+				
+			} else {
+				
+				EventHandler.getInstance().post(new EventAttack(attacker, target));
+				
+				target.damage(damage);
+			}
+		}
 	}
 	
 	@Override

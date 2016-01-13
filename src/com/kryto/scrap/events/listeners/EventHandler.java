@@ -14,10 +14,10 @@ public class EventHandler {
 		return instance;
 	}
 	
-	private List<IEventListerner> events;
+	private List<IEventListener> events;
 	
 	private EventHandler() {
-		events = new ArrayList<IEventListerner>();
+		events = new ArrayList<IEventListener>();
 		init();
 	}
 	
@@ -28,11 +28,13 @@ public class EventHandler {
 		
 		addEvent(new EventElementIce());
 		addEvent(new EventElementFire());
+		
+		addEvent(new EventEffectListener());
 	}
 	
 	public void post(IEvent event) {
 		
-		for (IEventListerner listerner : events) {
+		for (IEventListener listerner : events) {
 			
 			for (Method method : listerner.getClass().getMethods()) {
 				
@@ -53,7 +55,7 @@ public class EventHandler {
 		}
 	}
 	
-	public void addEvent(IEventListerner event) {
+	public void addEvent(IEventListener event) {
 		events.add(event);
 	}
 }

@@ -4,7 +4,7 @@ import com.kryto.scrap.character.type.TypeFrigid;
 import com.kryto.scrap.events.EventPassive;
 import com.kryto.scrap.util.MathUtil;
 
-public class EventFridged implements IEventListerner {
+public class EventFridged implements IEventListener {
 
 	public void onPassive(EventPassive event) {
 		

@@ -29,7 +29,9 @@ public class PlayerManager extends CharacterManager {
 
 			if (character != null) {
 				
-				list.add(new CharacterStack(character));
+				CharacterStack stack = new CharacterStack(character);
+				stack.isPlayer = true;
+				list.add(stack);
 			}
 		}
 	}

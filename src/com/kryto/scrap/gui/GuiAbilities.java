@@ -4,11 +4,8 @@ import com.kryto.scrap.abilities.AbilityType;
 import com.kryto.scrap.abilities.IAbility;
 import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.geometry.Rectangle;
-import com.kryto.scrap.level.Level;
 
 public class GuiAbilities {
-
-	private Level level;
 
 	private GuiState currentState;
 
@@ -20,9 +17,7 @@ public class GuiAbilities {
 
 	private Tooltip attackTooltip, defenseTooltip, specialTooltip;
 
-	public GuiAbilities(Level level) {
-
-		this.level = level;
+	public GuiAbilities() {
 
 		currentState = GuiState.MAIN;
 
@@ -37,9 +32,7 @@ public class GuiAbilities {
 		specialTooltip = new Tooltip(new Rectangle(specialBtn.bounds), "Special");
 	}
 
-	public void update() {
-
-		CharacterStack stack = level.getPlayerManager().getSelectedCharacter();
+	public void update(CharacterStack player) {
 
 		if (currentState == GuiState.MAIN) {
 
@@ -48,8 +41,8 @@ public class GuiAbilities {
 
 				int i = 0;
 
-				for (IAbility ability : stack.getAbilities().getAbilitiesByType(AbilityType.ATTACK)) {
-					abilityBtns[i] = new AbilityButton(level, i, ability);
+				for (IAbility ability : player.getAbilities().getAbilitiesByType(AbilityType.ATTACK)) {
+					abilityBtns[i] = new AbilityButton(i, ability);
 					i++;
 				}
 			}
@@ -59,8 +52,8 @@ public class GuiAbilities {
 
 				int i = 0;
 
-				for (IAbility ability : stack.getAbilities().getAbilitiesByType(AbilityType.DEFENSE)) {
-					abilityBtns[i] = new AbilityButton(level, i, ability);
+				for (IAbility ability : player.getAbilities().getAbilitiesByType(AbilityType.DEFENSE)) {
+					abilityBtns[i] = new AbilityButton(i, ability);
 					i++;
 				}
 			}
@@ -70,8 +63,8 @@ public class GuiAbilities {
 
 				int i = 0;
 
-				for (IAbility ability : stack.getAbilities().getAbilitiesByType(AbilityType.SPECIAL)) {
-					abilityBtns[i] = new AbilityButton(level, i, ability);
+				for (IAbility ability : player.getAbilities().getAbilitiesByType(AbilityType.SPECIAL)) {
+					abilityBtns[i] = new AbilityButton(i, ability);
 					i++;
 				}
 			}
@@ -87,7 +80,11 @@ public class GuiAbilities {
 
 				if (abilityBtns[i] != null) {
 
-					abilityBtns[i].update();
+					abilityBtns[i].update(player);
+					
+					if (abilityBtns[i].active) {
+						reset();
+					}
 				}
 			}
 		}

@@ -6,17 +6,13 @@ import com.kryto.scrap.abilities.IAbility;
 import com.kryto.scrap.character.CharacterStack;
 import com.kryto.scrap.geometry.Rectangle;
 import com.kryto.scrap.gfx.Assets;
-import com.kryto.scrap.level.Level;
 
 public class AbilityButton extends Component {
 
-	private Level level;
 	private IAbility ability;
+	public boolean active = false;
 		
-	public AbilityButton(Level level, int i, IAbility ability) {
-		
-		this.level = level;
-		
+	public AbilityButton(int i, IAbility ability) {
 		float width = 72 * 4;
 		float height = 28 * 4;
 		
@@ -28,16 +24,16 @@ public class AbilityButton extends Component {
 		this.ability = ability;
 	}
 	
-	@Override
-	public void update() {
-		
-		CharacterStack stack = level.getPlayerManager().nextActingCharacter();
+	
+	public void update(CharacterStack fastest) {
 		
 		if (isClicked()) {
 			
-			ability.onAction(level);
+			ability.onAction();
 			
-			stack.setDone(true);		
+			fastest.setDone(true);
+			
+			active = true;
 		}
 	} 
 	

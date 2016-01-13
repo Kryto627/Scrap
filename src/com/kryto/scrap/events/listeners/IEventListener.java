@@ -1,5 +1,5 @@
 package com.kryto.scrap.events.listeners;
 
-public interface IEventListerner {
+public interface IEventListener {
 
 }

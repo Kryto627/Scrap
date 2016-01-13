@@ -6,7 +6,7 @@ import com.kryto.scrap.effects.EffectSnowedIn;
 import com.kryto.scrap.events.EventAttack;
 import com.kryto.scrap.util.MathUtil;
 
-public class EventElementIce implements IEventListerner {
+public class EventElementIce implements IEventListener {
 
 	private final int FROST_CHANCE = 15;
 
